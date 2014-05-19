@@ -28,7 +28,7 @@ public class Kuningas implements Nappula{
     public int[][] liikkeet() {
         return liikkeet;
     }
+    
 
     
-      
 }
