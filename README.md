@@ -1,4 +1,4 @@
 JShakki
 =======
 
-JavaLabran harjoitustyö kesä 2014
+JavaLabran harjoitustyö alku-kesällä 2014.
