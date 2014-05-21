@@ -6,8 +6,8 @@
 
 package jshakki.kayttoliittyma;
 
-import jshakki.domain.Nappula;
-import jshakki.domain.Tilanne;
+import jshakki.logiikka.Nappula;
+import jshakki.logiikka.Tilanne;
 
 /**
  *
@@ -21,7 +21,7 @@ public class tekstiKaytto implements Kayttoliittyma {
     }
     
     public void tulostaPelitilanne() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 7; i >= 0; i++) {
             System.out.print((i+1) + " ║");
             for (int j = 0; j < 8; j++) {
                 if (peli[i][j] == null) {
@@ -31,7 +31,9 @@ public class tekstiKaytto implements Kayttoliittyma {
                 }
             }
         }
-        System.out.print("");
+        System.out.print("—╚═══════════════");
+        System.out.println("——a   b   c   d   e   f   g   h");
+        System.out.println((int) '♟');
         //    
 //    8 ║♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜
 //7 ║♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟

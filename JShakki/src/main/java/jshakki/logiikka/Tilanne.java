@@ -1,5 +1,5 @@
 
-package jshakki.domain;
+package jshakki.logiikka;
 
 import java.util.ArrayList;
 

@@ -1,17 +1,22 @@
-package jshakki.domain;
+package jshakki.logiikka;
+
+import jshakki.logiikka.liikkeet.Askel;
+import jshakki.logiikka.liikkeet.Liike;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
- *
+ * 
  * @author termanty
  */
 public class Kuningas implements Nappula{
     private final char nimi = 'k';
     private final Vari vari;
-    private final int[][] liikkeet = {{0,0,1,1,1,-1,-1,-1},
-                                      {1,-1,1,0,-1,1,0,-1}};
+    private ArrayList<Liike> liikkeet;
 
     public Kuningas(Vari vari) {
         this.vari = vari;
+        liikkeet.addAll(Arrays.asList(Askel.values()));
     }
 
     @Override
@@ -25,10 +30,8 @@ public class Kuningas implements Nappula{
     }
 
     @Override
-    public int[][] liikkeet() {
+    public ArrayList<Liike> liikkeet() {
         return liikkeet;
     }
-    
-
     
 }

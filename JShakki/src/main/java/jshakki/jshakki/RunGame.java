@@ -2,10 +2,10 @@
 
 package jshakki.jshakki;
 
-import jshakki.domain.Kuningas;
-import jshakki.domain.Nappula;
-import jshakki.domain.Tilanne;
-import jshakki.domain.Vari;
+import jshakki.logiikka.Kuningas;
+import jshakki.logiikka.Nappula;
+import jshakki.logiikka.Tilanne;
+import jshakki.logiikka.Vari;
 
 /**
  *
@@ -38,6 +38,7 @@ public class RunGame {
             }
             System.out.println("");
         }
+        System.out.println((int) '♟');
         
     }
     
