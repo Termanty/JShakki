@@ -10,27 +10,23 @@ package jshakki.logiikka.liikkeet;
  *
  * @author termanty
  */
-public enum Hyppy implements Liike {
-    YLOSOIKEA(2,1),
-    YLOSVASEN(2,-1),
-    ALASOIKEA(-2,1),
-    ALASVASEN(-2,-1),
-    OIKEAYLOS(1,2),
-    OIKEAALAS(-1,2),
-    VASENYLOS(-1,2),
-    VASENALAS(-1,-2);
+public enum ValkeaSotilas implements Liike {
+    YLOS(1,0,2), 
+    YLOSOIKEA(1,1,1), 
+    YLOSVASEN(1,-1,1);
     
     private final int[][] LIIKKEET;
         
-    Hyppy(int pystyLiike, int vaakaLiike) {
-        LIIKKEET = new int[2][1];
-        LIIKKEET[0][0] = pystyLiike;
-        LIIKKEET[1][0] = vaakaLiike; 
+    ValkeaSotilas(int pystyLiike, int vaakaLiike, int maara) {
+        LIIKKEET = new int[2][maara];
+        for (int i = 0; i < maara; i++) {
+            LIIKKEET[0][i] = pystyLiike * (i+1);
+            LIIKKEET[1][i] = vaakaLiike * (i+1);
+        }
     }
 
     @Override
     public int[][] siirrot() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    } 
 }

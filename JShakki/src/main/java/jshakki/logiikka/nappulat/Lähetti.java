@@ -1,25 +1,24 @@
 
-package jshakki.logiikka;
+package jshakki.logiikka.nappulat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import jshakki.logiikka.Vari;
 import jshakki.logiikka.liikkeet.Liike;
-import jshakki.logiikka.liikkeet.Vaaka;
 import jshakki.logiikka.liikkeet.Vino;
-
 
 /**
  *
  * @author termanty
  */
-public class Kuningatar implements Nappula {
-    private final char nimi = 'q';
+public class Lähetti implements Ruutu {
+    private final char nimi = 'l';
     private final Vari vari;
-    private ArrayList<Liike> liikkeet;
+    private final ArrayList<Liike> liikkeet;
 
-    public Kuningatar (Vari vari) {
-        this.vari = vari;      
-        liikkeet.addAll(Arrays.asList(Vaaka.values()));
+    public Lähetti (Vari vari) {
+        this.vari = vari;
+        liikkeet = new ArrayList<>();
         liikkeet.addAll(Arrays.asList(Vino.values()));
     }
 

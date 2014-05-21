@@ -17,11 +17,12 @@ public enum Askel implements Liike {
     ALASOIKEA(-1,1), 
     ALASVASEN(-1,-1);
     
-    private int[][] liikkeet;
+    private final int[][] LIIKKEET;
         
     Askel(int pystyLiike, int vaakaLiike) {
-        liikkeet[0][0] = pystyLiike;
-        liikkeet[1][0] = vaakaLiike; 
+        LIIKKEET = new int[2][1];
+        LIIKKEET[0][0] = pystyLiike;
+        LIIKKEET[1][0] = vaakaLiike; 
     }
 
     @Override
