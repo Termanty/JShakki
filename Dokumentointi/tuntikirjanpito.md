@@ -5,6 +5,8 @@ Olin matkoilla. Ei tehtyjä töitä.
 
 ## viikko II
 ma 19.5.
-  Repon luonti, projektin luonti, aihemäärittelyn kirjoitus.
-  6 h
-	
+  Repon luonti, projektin luonti, aihemäärittelyn kirjoitus. 6 h
+ti 20.5.
+  Koodin kirjoittelua. 6 h
+to 20.5.
+  Testien kirjoitus, pit, luokkakaavion piirto. 4 h
