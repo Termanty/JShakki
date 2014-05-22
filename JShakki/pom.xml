@@ -51,10 +51,10 @@
             <version>0.30</version>
             <configuration>
                 <targetClasses>
-                    <param>jshakki.jshakki.*</param>
+                    <param>jshakki.logiikka.*</param>
                 </targetClasses>
                 <targetTests>
-                    <param>jshakki.jshakki.*</param>
+                    <param>jshakki.logiikka.*</param>
                 </targetTests>
             </configuration>
         </plugin>

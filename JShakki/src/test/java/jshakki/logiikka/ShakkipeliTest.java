@@ -2,7 +2,6 @@
 package jshakki.logiikka;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import jshakki.logiikka.nappulat.Kuningas;
 import jshakki.logiikka.nappulat.Kuningatar;
 import jshakki.logiikka.nappulat.Lähetti;
@@ -36,32 +35,77 @@ public class ShakkipeliTest {
     }
     
     @Test
-    public void testaaKORjaLEVmuuttujat() {
+    public void muutujatKORkeusjaLEVeysOikein() {
         assertEquals("Shakkilaudan ruutujen määrä korkeussuunnassa väärin", 8, testattava.KOR);
         assertEquals("Shakkilaudan ruutujen määrä leveysssuunnassa väärin", 8, testattava.LEV);
     }
     
     @Test
-    public void testaaLoppujenLuokkamuutujienArvot() {
-        assertFalse("Muutujan peliPaattyi arvo ei ollut false", testattava.loppu());
+    public void loputLuokkamuutujatOiken() {
+        assertFalse("Muutujan peliPäättyi arvo ei ollut false", testattava.loppu());
         assertEquals("Muutujan vuoroNro arvo ei ollut nolla", 1, testattava.vuoroNro());
         assertEquals("Muuttujan Vari arvo ei ollut Vari.VALKOINEN", "VALKOINEN", testattava.vuoro());
     }
     
     @Test
-    public void testaaPelitilanteenAlustus() {
+    public void shakkinappulatOikeillaPaikoillaPelinAlussa() {
         sijainnit();
         for (Ruutu r : paikat.keySet()) {
             int[] sijainnit = paikat.get(r);
             for (int i = 0; i < sijainnit.length; i = i + 2) {
                 assertEquals(r.nimi() + " väärässä paikassa "+i, r.nimi(), testattava.ruutu(sijainnit[i],sijainnit[i+1]).nimi());
-//                if (r.vari() != null) {
-                    assertEquals(r.nimi() + " väärässä paikassa "+i, r.vari(), testattava.ruutu(sijainnit[i],sijainnit[i+1]).vari());
-//                }
+                assertEquals(r.nimi() + " väärässä paikassa "+i, r.vari(), testattava.ruutu(sijainnit[i],sijainnit[i+1]).vari());
             }
         }       
     }
     
+    @Test
+    public void vaihdaVuoroMetodiVaihtaaValkoisestaMustaan() {
+        testattava.vaihdaVuoro();
+        assertEquals("Väriä ei vaihdettu valkoisesta mustaan", "MUSTA", testattava.vuoro());   
+    }
+    
+    @Test
+    public void vaihdaVuoroMetodiVaihtaaMustastaValkoiseen() {
+        testattava.vaihdaVuoro();
+        testattava.vaihdaVuoro();
+        assertEquals("Väriä ei vaihdettu mustasta vakoiseen", "VALKOINEN", testattava.vuoro());
+        
+    }
+    
+    @Test
+    public void vaihdaVuoroMetodiKasvattaaVuoroNroOikein() {
+        testattava = new Shakkipeli();
+        System.out.println(testattava.vuoroNro());
+        testattava.vaihdaVuoro();
+        assertEquals("Vuoronumero ei olisi pitänyt vaihtaa siirryttäessä valkoisesta mustaan", 1, testattava.vuoroNro());
+        testattava.vaihdaVuoro();
+        assertEquals("Vuoronumeroa ei vaihdettu oikein", 2, testattava.vuoroNro());         
+    }
+    
+    @Test
+    public void siirtoMetodiMuuttaLahtoruudunTyhjaksi() {
+        testattava.siirto("a2a3");
+        assertEquals("Ruutua a2 ei muutettu tyhjäksi", 'x', testattava.ruutu(1,0).nimi());
+    }
+    
+    @Test
+    public void valkoisenSotilaanSiirtoA2A3oikein() {
+        testattava.siirto("a2a3");
+        assertEquals("Sotilas ei liikkunut oikein ruutuun a3", 's', testattava.ruutu(2,0).nimi());
+    }
+    
+    @Test
+    public void valkoisenSotilaanTuplasiirtoA2A4oikein() {
+        testattava.siirto("a2a4");
+        assertEquals("Sotilas ei liikkunut oikein ruutuun a4", 's', testattava.ruutu(3,0).nimi());
+    }
+    
+//    @Test
+//    public void valkoisenSotilaanTuplasiirtoEstettyEnsimmaisenSiirronJalkeen() {
+//        testattava.siirto("a2a3");
+//        assertFalse("Aikaisemmin liikkuneen sotilaan tuplasiirtymistä ei estetty", testattava.siirto("a3a5"));
+//    }
     
     HashMap<Ruutu, int[]> paikat = new HashMap<>();
     private void sijainnit() {
@@ -93,7 +137,6 @@ public class ShakkipeliTest {
                 tyhjatRuudut[index++] = j;         
             }
         }
-        System.out.println(index);
         paikat.put(new Tyhja(), tyhjatRuudut);
     }
     
