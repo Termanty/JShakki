@@ -101,11 +101,11 @@ public class ShakkipeliTest {
         assertEquals("Sotilas ei liikkunut oikein ruutuun a4", 's', testattava.ruutu(3,0).nimi());
     }
     
-//    @Test
-//    public void valkoisenSotilaanTuplasiirtoEstettyEnsimmaisenSiirronJalkeen() {
-//        testattava.siirto("a2a3");
-//        assertFalse("Aikaisemmin liikkuneen sotilaan tuplasiirtymistä ei estetty", testattava.siirto("a3a5"));
-//    }
+    @Test
+    public void valkoisenSotilaanTuplasiirtoEstettyEnsimmaisenSiirronJalkeen() {
+        testattava.siirto("a2a3");
+        assertFalse("Aikaisemmin liikkuneen sotilaan tuplasiirtymistä ei estetty", testattava.siirto("a3a5"));
+    }
     
     HashMap<Ruutu, int[]> paikat = new HashMap<>();
     private void sijainnit() {
