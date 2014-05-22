@@ -1,8 +1,8 @@
 package jshakki.jshakki;
 
 import jshakki.kayttoliittyma.Kayttoliittyma;
-import jshakki.kayttoliittyma.TekstiKaytto;
-import jshakki.logiikka.ShakkiPeli;
+import jshakki.kayttoliittyma.Tekstikaytto;
+import jshakki.logiikka.Shakkipeli;
 
 /**
  * 
@@ -12,10 +12,10 @@ public class App
 {
     public static void main( String[] args )
     {
-        ShakkiPeli peli = new ShakkiPeli();
-        TekstiKaytto liittyma  = new TekstiKaytto(peli);
+        Shakkipeli peli = new Shakkipeli();
+        Tekstikaytto liittyma  = new Tekstikaytto(peli);
         if (args.length == 0) {
-            liittyma = new TekstiKaytto(peli);
+            liittyma = new Tekstikaytto(peli);
         }
         
         liittyma.run();

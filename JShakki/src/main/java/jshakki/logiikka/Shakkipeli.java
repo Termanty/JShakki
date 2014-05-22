@@ -8,7 +8,7 @@ import jshakki.logiikka.nappulat.*;
  *
  * @author termanty
  */
-public class ShakkiPeli {
+public class Shakkipeli {
     private final Ruutu[][] PELILAUTA;
     private final Tyhja TYHJA = new Tyhja();
     private Vari vuoro;
@@ -18,16 +18,12 @@ public class ShakkiPeli {
     public final int LEV = 8;
     public final int KOR = 8;
 
-    public ShakkiPeli() {
+    public Shakkipeli() {
         this.PELILAUTA = new Ruutu[KOR][LEV];
         pelitilanteenAlustus();
         this.vuoro = Vari.VALKOINEN;
         this.vuoroNro = 1;
         this.peliPaattyi = false;
-    }
-
-    public void aloitaPeli() {
-        
     }
     
     public void vaihdaVuoro() {

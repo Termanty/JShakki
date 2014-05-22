@@ -2,7 +2,7 @@
 package jshakki.kayttoliittyma;
 
 import java.util.Scanner;
-import jshakki.logiikka.ShakkiPeli;
+import jshakki.logiikka.Shakkipeli;
 import jshakki.logiikka.nappulat.Ruutu;
 import jshakki.logiikka.Vari;
 
@@ -10,11 +10,11 @@ import jshakki.logiikka.Vari;
  *
  * @author termanty
  */
-public class TekstiKaytto implements Kayttoliittyma, Runnable {
-    private final ShakkiPeli PELI;
+public class Tekstikaytto implements Kayttoliittyma, Runnable {
+    private final Shakkipeli PELI;
     Scanner lukija;
     
-    public TekstiKaytto(ShakkiPeli uusi) {
+    public Tekstikaytto(Shakkipeli uusi) {
         lukija = new Scanner(System.in);
         this.PELI = uusi;
     }
