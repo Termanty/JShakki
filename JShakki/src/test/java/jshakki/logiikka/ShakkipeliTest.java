@@ -90,22 +90,30 @@ public class ShakkipeliTest {
     }
     
     @Test
-    public void valkoisenSotilaanSiirtoA2A3oikein() {
+    public void sotilaanSiirtoSuoraanEteenSaantojenMukainen() {
         testattava.siirto("a2a3");
+        testattava.siirto("b7b6");
+        testattava.siirto("c2c4");
+        testattava.siirto("d7d5");
+        testattava.siirto("g1h3");
         assertEquals("Sotilas ei liikkunut oikein ruutuun a3", 's', testattava.ruutu(2,0).nimi());
-    }
-    
-    @Test
-    public void valkoisenSotilaanTuplasiirtoA2A4oikein() {
-        testattava.siirto("a2a4");
-        assertEquals("Sotilas ei liikkunut oikein ruutuun a4", 's', testattava.ruutu(3,0).nimi());
-    }
-    
-    @Test
-    public void valkoisenSotilaanTuplasiirtoEstettyEnsimmaisenSiirronJalkeen() {
-        testattava.siirto("a2a3");
+        assertEquals("Sotilas ei liikkunut oikein ruutuun b6", 's', testattava.ruutu(5,1).nimi());
+        assertEquals("Sotilas ei liikkunut oikein ruutuun c4", 's', testattava.ruutu(3,2).nimi());
+        assertEquals("Sotilas ei liikkunut oikein ruutuun d6", 's', testattava.ruutu(4,3).nimi());
         assertFalse("Aikaisemmin liikkuneen sotilaan tuplasiirtymistä ei estetty", testattava.siirto("a3a5"));
     }
+    
+    @Test
+    public void sotilaanSiirtoVinoonSaantojenMukainen() {
+        
+    }
+    
+    @Test
+    public void siirtoOmanNappulanHallitsemaanRuutuunEstetty() {
+        assertFalse("Siiro c1d2 oman nappulan päälle", testattava.siirto("c1d2"));
+    }
+    
+    
     
     HashMap<Ruutu, int[]> paikat = new HashMap<>();
     private void sijainnit() {

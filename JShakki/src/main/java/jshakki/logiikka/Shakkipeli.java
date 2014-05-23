@@ -47,15 +47,23 @@ public class Shakkipeli {
     }
     
     public boolean siirto(String mj) {
-        int levMista = (int) (mj.charAt(0) - 'a');
-        int korMista = (int) (mj.charAt(1) - '1');
-        int levMinne = (int) (mj.charAt(2) - 'a');
-        int korMinne = (int) (mj.charAt(3) - '1');
-        return siirto(korMista, levMista, korMinne, levMinne);
+        return siirto(kir(mj,0), num(mj,1), kir(mj,2), num(mj,3));
     }  
 
     public Ruutu ruutu(int kor, int lev) {
         return PELILAUTA[kor][lev];
+    }
+    
+    public Ruutu ruutu(String mj) {
+        return ruutu(kir(mj,0), num(mj,1));
+    }
+    
+    private int kir(String mj, int i) {
+        return (int) (mj.charAt(i) - 'a');
+    }
+    
+    private int num(String mj, int i) {
+        return (int) (mj.charAt(i) - '1');
     }
     
     public boolean loppu() {
@@ -87,10 +95,18 @@ public class Shakkipeli {
         PELILAUTA[7][5] = new Lähetti(Vari.MUSTA);
         PELILAUTA[7][6] = new Ratsu(Vari.MUSTA);
         PELILAUTA[7][7] = new Torni(Vari.MUSTA);
+        sotilaat();
+        tyhjat();
+    }
+    
+    private void sotilaat() {
         for (int i = 0; i < LEV; i++) {
             PELILAUTA[1][i] = new Sotilas(Vari.VALKOINEN);
             PELILAUTA[6][i] = new Sotilas(Vari.MUSTA);
         }
+    }
+    
+    private void tyhjat() {
         for (int i = 0; i < LEV; i++) {
             for (int j = 2; j < 6; j++) {
                 PELILAUTA[j][i] = TYHJA;
