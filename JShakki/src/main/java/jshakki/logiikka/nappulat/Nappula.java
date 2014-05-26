@@ -3,10 +3,8 @@
 package jshakki.logiikka.nappulat;
 
 import java.util.ArrayList;
-import jshakki.logiikka.Shakkipeli;
 import jshakki.logiikka.Vari;
 import jshakki.logiikka.liikkeet.Liike;
-import jshakki.logiikka.liikkeet.Siirto;
 
 /**
  *

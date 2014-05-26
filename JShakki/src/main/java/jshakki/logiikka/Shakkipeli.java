@@ -3,7 +3,6 @@ package jshakki.logiikka;
 
 import java.util.ArrayList;
 import jshakki.logiikka.liikkeet.Liike;
-import jshakki.logiikka.liikkeet.Siirto;
 import jshakki.logiikka.nappulat.*;
 
 /**

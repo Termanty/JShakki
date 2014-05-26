@@ -90,28 +90,43 @@ public class ShakkipeliTest {
     }
     
     @Test
-    public void sotilaanSiirtoSuoraanEteenSaantojenMukainen() {
-        testattava.siirto("a2a3");
-        testattava.siirto("b7b6");
-        testattava.siirto("c2c4");
-        testattava.siirto("d7d5");
-        testattava.siirto("g1h3");
-        assertEquals("Sotilas ei liikkunut oikein ruutuun a3", 's', testattava.ruutu(2,0).nimi());
-        assertEquals("Sotilas ei liikkunut oikein ruutuun b6", 's', testattava.ruutu(5,1).nimi());
-        assertEquals("Sotilas ei liikkunut oikein ruutuun c4", 's', testattava.ruutu(3,2).nimi());
-        assertEquals("Sotilas ei liikkunut oikein ruutuun d6", 's', testattava.ruutu(4,3).nimi());
-        assertFalse("Aikaisemmin liikkuneen sotilaan tuplasiirtymistä ei estetty", testattava.siirto("a3a5"));
+    public void siirtoOmanNappulanHallitsemaanRuutuunEstetty() {
+        assertFalse("Siiro c1d2 oman nappulan päälle", testattava.siirto("c1d2"));
+    }
+    
+    @Test
+    public void sotilaanSiirtoSuoraanEteenpain() {
+        teeSiirrot("a2a3 b7b6 c2c4 d7d5 a3a4");
+        assertEquals("Sotilas ei liikkunut oikein ruutuun a4", 's', testattava.ruutu("a4").nimi());
+        assertEquals("Sotilas ei liikkunut oikein ruutuun b6", 's', testattava.ruutu("b6").nimi());
+        assertEquals("Sotilas ei liikkunut oikein ruutuun c4", 's', testattava.ruutu("c4").nimi());
+        assertEquals("Sotilas ei liikkunut oikein ruutuun d6", 's', testattava.ruutu("d5").nimi());
+    }
+    
+    @Test
+    public void sotilaanVirheellisetSiirrotSuoraanEteenEstetty() {
+        teeSiirrot("a2a4 a7a5 b2b3 c7c6 e7e6");
+        testaaSiirrot("a4a5 a4a6 b3b5 c2c5 d2d6 e2e7 f2f8", "Virheelline siirto hyväksyttiin", false);
+        teeSiirrot("e2e4");
+        testaaSiirrot("a5a4 a5a3 c6c3 e6e3 f7f2 h7h1", "Virheelline siirto hyväksyttiin", false);
     }
     
     @Test
     public void sotilaanSiirtoVinoonSaantojenMukainen() {
-        
+        testaaSiirrot("a2a3 a7a5 b2b4 h7h5 g2g4 g7g6", "Virhe siirrossa suoraan eteen", true);
+        testaaSiirrot("g4h5 a5b4 h5g6 b4a3", "Virhe siirrossa vinoon eteen", true);
     }
     
     @Test
-    public void siirtoOmanNappulanHallitsemaanRuutuunEstetty() {
-        assertFalse("Siiro c1d2 oman nappulan päälle", testattava.siirto("c1d2"));
+    public void sotilaanVirheelisetSiirtoVinoonSaantojenMukainen() {
+        teeSiirrot("a2a4 b7b5 c2c4 d7d6 e2e4");
+        testaaSiirrot("b2a3 b2c3 c4d5 c4d5", "Virhe siirrossa", false);
+        teeSiirrot("a4a5");
+        testaaSiirrot("d6c5 d6e5", "Virhe siirrossa", false);
     }
+    
+    
+    
     
     
     
@@ -146,6 +161,32 @@ public class ShakkipeliTest {
             }
         }
         paikat.put(new Tyhja(), tyhjatRuudut);
+    }
+    
+    private void teeSiirrot(String mj) {
+        String[] siirrot = mj.split(" ");
+        for (String s : siirrot) {
+            testattava.siirto(s);
+        }
+    }
+    
+    private void testaaSiirrot(String mj, String viesti, Boolean b) {
+        String[] siirrot = mj.split(" ");
+        for (String s : siirrot) {
+            if (b) {
+                lailisenTarkistus(s, viesti);
+            } else {
+                virheelisyydenTarkistus(s, viesti);
+            }
+        }
+    }
+    
+    private void lailisenTarkistus(String s, String viesti) {
+        assertTrue(viesti+" "+s, testattava.siirto(s));
+    }
+
+    private void virheelisyydenTarkistus(String s, String viesti) {
+        assertFalse(viesti+" "+s, testattava.siirto(s));
     }
     
     
