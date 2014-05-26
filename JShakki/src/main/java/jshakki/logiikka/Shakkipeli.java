@@ -3,7 +3,6 @@ package jshakki.logiikka;
 
 import jshakki.logiikka.nappulat.*;
 
-
 /**
  *
  * @author termanty
@@ -39,7 +38,7 @@ public class Shakkipeli {
         return null;
     }
     
-    public boolean siirto(int korMista, int levMista, int korMinne, int levMinne) {
+    public boolean siirto(int levMista, int korMista, int levMinne, int korMinne) {
         PELILAUTA[korMinne][levMinne] = PELILAUTA[korMista][levMista];
         PELILAUTA[korMista][levMista] = TYHJA;
         vaihdaVuoro();
@@ -55,7 +54,7 @@ public class Shakkipeli {
     }
     
     public Ruutu ruutu(String mj) {
-        return ruutu(kir(mj,0), num(mj,1));
+        return ruutu(num(mj,1),kir(mj,0));
     }
     
     private int kir(String mj, int i) {
@@ -79,24 +78,23 @@ public class Shakkipeli {
     }
     
     private void pelitilanteenAlustus() {
-        PELILAUTA[0][0] = new Torni(Vari.VALKOINEN);
-        PELILAUTA[0][1] = new Ratsu(Vari.VALKOINEN);
-        PELILAUTA[0][2] = new Lähetti(Vari.VALKOINEN);
-        PELILAUTA[0][3] = new Kuningatar(Vari.VALKOINEN);
-        PELILAUTA[0][4] = new Kuningas(Vari.VALKOINEN);
-        PELILAUTA[0][5] = new Lähetti(Vari.VALKOINEN);
-        PELILAUTA[0][6] = new Ratsu(Vari.VALKOINEN);
-        PELILAUTA[0][7] = new Torni(Vari.VALKOINEN);
-        PELILAUTA[7][0] = new Torni(Vari.MUSTA);
-        PELILAUTA[7][1] = new Ratsu(Vari.MUSTA);
-        PELILAUTA[7][2] = new Lähetti(Vari.MUSTA);
-        PELILAUTA[7][3] = new Kuningatar(Vari.MUSTA);
-        PELILAUTA[7][4] = new Kuningas(Vari.MUSTA);
-        PELILAUTA[7][5] = new Lähetti(Vari.MUSTA);
-        PELILAUTA[7][6] = new Ratsu(Vari.MUSTA);
-        PELILAUTA[7][7] = new Torni(Vari.MUSTA);
+        korkeaArvoiset(Vari.VALKOINEN, 0);
+        korkeaArvoiset(Vari.MUSTA, 7);
         sotilaat();
         tyhjat();
+    }
+    
+    private void korkeaArvoiset(Vari vari, int rivi) {
+        PELILAUTA[rivi][3] = new Kuningatar(vari);
+        PELILAUTA[rivi][4] = new Kuningas(vari);
+        aliupseerit(vari, rivi, 0);
+        aliupseerit(vari, rivi, 5);
+    }
+    
+    private void aliupseerit(Vari vari, int rivi, int alku) {
+        PELILAUTA[rivi][alku] = new Torni(vari);
+        PELILAUTA[rivi][alku+1] = new Ratsu(vari);
+        PELILAUTA[rivi][alku+2] = new Lähetti(vari);
     }
     
     private void sotilaat() {
