@@ -26,5 +26,19 @@ public class Tyhja implements Ruutu {
     public ArrayList<Liike> liikkeet() {
         return null;
     }
+
+    @Override
+    public int siirtojenMaara() {
+        return -1;
+    }
+
+    @Override
+    public void kasvataSiirtoLaskuria() {
+    }
+
+    @Override
+    public boolean vastustaja(Ruutu r) {
+        return false;
+    }
     
 }

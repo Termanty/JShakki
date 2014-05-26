@@ -44,7 +44,7 @@ public class Tekstikaytto implements Kayttoliittyma, Runnable {
     @Override
     public void run() {
         System.out.println("UUSI PELI\n");   
-        for (int i = 0; i < 10; i++) {
+        while (!PELI.loppu()) {
             tulostaPelitilanne();
             System.out.print("Anna siirto: ");
             String siirto = lukija.nextLine().trim().toLowerCase();
@@ -52,6 +52,7 @@ public class Tekstikaytto implements Kayttoliittyma, Runnable {
                 System.out.println("Virheellinen syöte. Anna siirto muodossa a2a3");
             }
         }
+        System.out.println("PELI PÄÄTTYI");
     }
 
     private boolean syotteenTarkistus(String siirto) {

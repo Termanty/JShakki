@@ -24,5 +24,4 @@ public enum Vari {
         return NIMI;
     }
     
-    
 }
