@@ -133,8 +133,8 @@ public class Shakkipeli {
         }
         ArrayList<int[]> mahdSiirrot = sallitutLiikkeet(kor, lev);
         sotilaanKorottaminen(kor, lev, korMinne, levMinne, mahdSiirrot);
-        for (int[] is : mahdSiirrot) {
-            if (is[0] == korMinne && is[1] == levMinne) {
+        for (int[] s : mahdSiirrot) {
+            if (s[0] == korMinne && s[1] == levMinne) {
                 return true;
             }
         }
@@ -183,11 +183,8 @@ public class Shakkipeli {
         }
         for (int i = 1; i < 3; i++) {
             s = ruutu(kor,lev).liikkeet().get(i).siirrot();
-            if (!(laudalla(kor + s[0][0]) && laudalla(lev + s[1][0]))) {
-                    break;
-                }
-            if (ruutu(kor,lev).vastustaja(ruutu(kor+s[0][0],lev+s[1][0]))) {
-                mahdSiirrot.add(new int[]{kor + s[0][0], lev + s[1][0]});
+            if (laudalla(kor+s[0][0]) && laudalla(lev+s[1][0]) && ruutu(kor,lev).vastustaja(ruutu(kor+s[0][0], lev+s[1][0]))) {
+                mahdSiirrot.add(new int[]{kor+s[0][0], lev+s[1][0]});
             }
         }
     }
