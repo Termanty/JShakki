@@ -52,6 +52,7 @@ public class Tekstikaytto implements Kayttoliittyma, Runnable {
                 System.out.println("Virheellinen syöte. Anna siirto muodossa a2a3");
             }
         }
+        tulostaPelitilanne();
         System.out.println("PELI PÄÄTTYI");
     }
 

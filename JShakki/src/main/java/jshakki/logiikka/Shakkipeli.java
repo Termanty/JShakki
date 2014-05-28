@@ -190,10 +190,7 @@ public class Shakkipeli {
     }
     
     private boolean laudalla(int paikka) {
-        if (paikka < 0 || paikka > 7) {
-            return false;
-        }
-        return true;
+        return paikka >= 0 && paikka <= 7;
     }
     
     private boolean tyhja(int kor, int lev) {
