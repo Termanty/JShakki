@@ -17,5 +17,4 @@ public class Ratsu extends Nappula {
         super(vari, 'r');
         liikkeet.addAll(Arrays.asList(Hyppy.values()));
     }
-
 }

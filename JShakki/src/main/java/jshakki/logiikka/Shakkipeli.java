@@ -36,10 +36,6 @@ public class Shakkipeli {
         }
     }
     
-    public int[][] mahdollisetSiirrot(int kor, int lev) {
-        return null;
-    }
-    
     public boolean siirto(int kor, int lev, int korMinne, int levMinne) {
         if (tarkistaSiirto(kor, lev, korMinne, levMinne)) {
             ruutu(kor,lev).kasvataSiirtoLaskuria();
@@ -90,7 +86,6 @@ public class Shakkipeli {
         return (int) (mj.charAt(i) - '1');
     }
     
-    
     private void pelitilanteenAlustus() {
         korkeaArvoiset(Vari.VALKOINEN, 0);
         korkeaArvoiset(Vari.MUSTA, 7);
@@ -108,7 +103,7 @@ public class Shakkipeli {
     private void aliupseerit(Vari vari, int rivi, int alku, int suunta) {
         PELILAUTA[rivi][alku] = new Torni(vari);
         PELILAUTA[rivi][alku+(1*suunta)] = new Ratsu(vari);
-        PELILAUTA[rivi][alku+(2*suunta)] = new Lähetti(vari);
+        PELILAUTA[rivi][alku+(2*suunta)] = new Lahetti(vari);
     }
     
     private void sotilaat() {
@@ -128,7 +123,6 @@ public class Shakkipeli {
 
     private boolean tarkistaSiirto(int kor, int lev, int korMinne, int levMinne) {
         if (!(this.vuoro == ruutu(kor, lev).vari())) {
-            System.out.println("et siirrä omaa nappulaasi");
             return false;
         }
         ArrayList<int[]> mahdSiirrot = sallitutLiikkeet(kor, lev);
@@ -138,8 +132,6 @@ public class Shakkipeli {
                 return true;
             }
         }
-
-        System.out.println("siirtoa ei hyväksytty");
         return false;
     }
 
@@ -196,7 +188,6 @@ public class Shakkipeli {
     private boolean tyhja(int kor, int lev) {
         return ruutu(kor,lev) == TYHJA;
     }
-
   
     private void sotilaanKorottaminen(int kor, int lev, int korMinne, int levMinne, ArrayList<int[]> mahdSiirrot) {
         if (ruutu(kor, lev).nimi() == 's') {
@@ -214,7 +205,6 @@ public class Shakkipeli {
         }
         return peliPaattyi;
     }
-    
-    
+   
     
 }

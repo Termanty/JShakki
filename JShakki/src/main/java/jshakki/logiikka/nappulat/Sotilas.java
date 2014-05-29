@@ -1,10 +1,8 @@
 
 package jshakki.logiikka.nappulat;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import jshakki.logiikka.Vari;
-import jshakki.logiikka.liikkeet.Liike;
 import jshakki.logiikka.liikkeet.MustaSotilas;
 import jshakki.logiikka.liikkeet.ValkeaSotilas;
 

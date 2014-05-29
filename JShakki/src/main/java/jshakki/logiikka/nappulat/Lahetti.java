@@ -9,9 +9,9 @@ import jshakki.logiikka.liikkeet.Vino;
  *
  * @author termanty
  */
-public class Lähetti extends Nappula {
+public class Lahetti extends Nappula {
 
-    public Lähetti (Vari vari) {
+    public Lahetti (Vari vari) {
         super(vari, 'l');
         liikkeet.addAll(Arrays.asList(Vino.values()));
     }

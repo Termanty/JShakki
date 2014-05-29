@@ -4,14 +4,12 @@ package jshakki.logiikka;
 import java.util.HashMap;
 import jshakki.logiikka.nappulat.Kuningas;
 import jshakki.logiikka.nappulat.Kuningatar;
-import jshakki.logiikka.nappulat.Lähetti;
+import jshakki.logiikka.nappulat.Lahetti;
 import jshakki.logiikka.nappulat.Ratsu;
 import jshakki.logiikka.nappulat.Ruutu;
 import jshakki.logiikka.nappulat.Sotilas;
 import jshakki.logiikka.nappulat.Torni;
 import jshakki.logiikka.nappulat.Tyhja;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,14 +23,6 @@ public class ShakkipeliTest {
     public ShakkipeliTest() {
         testattava = new Shakkipeli();
     }    
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
     
     @Test
     public void muutujatKORkeusjaLEVeysOikein() {
@@ -145,6 +135,17 @@ public class ShakkipeliTest {
     }
     
     @Test
+    public void kuningattarenLaillisetSiirrotOikein() {
+        testaaSiirrot("d2d4 e7e6 d1d3 d8g5 d3h3 g5a5 h3h7 a5c3 h7g8 c3b2 g8f8 b2c2", "Virhe siirrossa", true);
+    }
+    
+    @Test
+    public void kuningattarenVirheelisetSiirrotEstetty() {
+        teeSiirrot("d2d4 e7e5 d1d3 d8g5");
+        testaaSiirrot("d3c2 d3e2 d3d4 d3b1 d3c5 d3e5", "Virhe siirrossa", false);
+    }
+    
+    @Test
     public void lahetinLaillisetSiirrotOikein() {
         testaaSiirrot("e2e3 a7a5 f1e2 e7e6 e2f3 f8e7 f3h5 e7c5 h5f7 c5e3 f7e6", "Virhe siirrossa", true);
     }
@@ -153,6 +154,17 @@ public class ShakkipeliTest {
     public void lahetinVirheelisetSiirrotEstetty() {
         teeSiirrot("e2e3 e6e7 f1e2 f8e7");
         testaaSiirrot("e2d1 e2e3 e2c5", "Virhe siirrossa", false);
+    }
+    
+    @Test
+    public void torninLaillisetSiirrotOikein() {
+        testaaSiirrot("a2a4 h7h5 a1a3 h8h6 a3h3 h6a6 h3h5 a6a4 h5g5 a4a1 g5g4 a1b1", "Virhe siirrossa", true);
+    }
+    
+    @Test
+    public void torninVirheelisetSiirrotEstetty() {
+        teeSiirrot("a2a4 h7h5 a1a3 h8h6 a3f3 h5h4");
+        testaaSiirrot("f3f2 f3f8 f3g2 f3e2 f3g4 f3e4", "Virhe siirrossa", false);
     }
     
     @Test
@@ -173,6 +185,12 @@ public class ShakkipeliTest {
         assertTrue("Pelin päättyminen ei toiminut", testattava.loppu());
     }
     
+ 
+    
+    
+    
+// APUMETODIT
+    
     HashMap<Ruutu, int[]> paikat = new HashMap<>();
     private void sijainnit() {
         upseerit(Vari.VALKOINEN, 0);
@@ -185,7 +203,7 @@ public class ShakkipeliTest {
     private void upseerit(Vari vari, int rivi) {
         paikat.put(new Torni(vari), new int[]{rivi,0,rivi,7});
         paikat.put(new Ratsu(vari), new int[]{rivi,1,rivi,6});
-        paikat.put(new Lähetti(vari), new int[]{rivi,2,rivi,5});
+        paikat.put(new Lahetti(vari), new int[]{rivi,2,rivi,5});
         paikat.put(new Kuningatar(vari), new int[]{rivi,3});
         paikat.put(new Kuningas(vari), new int[]{rivi,4});
     }
@@ -231,7 +249,5 @@ public class ShakkipeliTest {
     private void virheelisenTarkistus(String s, String viesti) {
         assertFalse(viesti+" "+s, testattava.siirto(s));
     }
-    
-    
-    
+
 }
