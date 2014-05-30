@@ -1,7 +1,9 @@
 package jshakki.jshakki;
 
+import javax.swing.SwingUtilities;
 import jshakki.kayttoliittyma.Kayttoliittyma;
 import jshakki.kayttoliittyma.Tekstikaytto;
+import jshakki.kayttoliittyma.graafinen.GraafinenKayttoliittyma;
 import jshakki.logiikka.Shakkipeli;
 
 /**
@@ -18,10 +20,11 @@ public class App
             liittyma = new Tekstikaytto(peli);
         }
         
-        liittyma.run();
-       
+//        liittyma.run();
         
-        
+        GraafinenKayttoliittyma liit = new GraafinenKayttoliittyma(peli);
+        SwingUtilities.invokeLater(liit);
+
        
     }
 }
