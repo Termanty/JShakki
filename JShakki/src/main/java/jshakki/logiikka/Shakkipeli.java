@@ -138,7 +138,7 @@ public class Shakkipeli {
         return false;
     }
 
-    private List<int[]> sallitutLiikkeet(int kor, int lev) {
+    public List<int[]> sallitutLiikkeet(int kor, int lev) {
         List<int[]> mahdSiirrot = new ArrayList<>();
         if (nappula[kor][lev].nimi() == 's') {
             sotilaanSiirrot(kor, lev, mahdSiirrot);
@@ -202,7 +202,7 @@ public class Shakkipeli {
         return paikka >= 0 && paikka <= 7;
     }
     
-    private boolean tyhjaRuutu(int kor, int lev) {
+    public boolean tyhjaRuutu(int kor, int lev) {
         return PELILAUTA[kor][lev] == TYHJA;
     }
   
