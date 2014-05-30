@@ -10,7 +10,7 @@ package jshakki.logiikka.liikkeet;
  *
  * @author termanty
  */
-public enum MustaSotilas implements Liike { 
+public enum MustaSotilas implements Liikesuunta { 
     ALAS(-1,0,2),  
     ALASOIKEA(-1,1,1), 
     ALASVASEN(-1,-1,1);
@@ -26,7 +26,7 @@ public enum MustaSotilas implements Liike {
     }
 
     @Override
-    public int[][] siirrot() {
+    public int[][] suunnat() {
         return LIIKKEET;
     } 
     

@@ -2,7 +2,8 @@
 package jshakki.logiikka;
 
 import java.util.ArrayList;
-import jshakki.logiikka.liikkeet.Liike;
+import java.util.List;
+import jshakki.logiikka.liikkeet.Liikesuunta;
 import jshakki.logiikka.nappulat.*;
 
 /**
@@ -10,7 +11,8 @@ import jshakki.logiikka.nappulat.*;
  * @author termanty
  */
 public class Shakkipeli {
-    final Ruutu[][] PELILAUTA;
+    private final Ruutu[][] PELILAUTA;
+    private Ruutu[][] nappula;
     private final Tyhja TYHJA = new Tyhja();
     private Vari vuoro;
     private int vuoroNro;
@@ -21,6 +23,7 @@ public class Shakkipeli {
 
     public Shakkipeli() {
         this.PELILAUTA = new Ruutu[KOR][LEV];
+        this.nappula = this.PELILAUTA;
         pelitilanteenAlustus();
         this.vuoro = Vari.VALKOINEN;
         this.vuoroNro = 1;
@@ -28,22 +31,23 @@ public class Shakkipeli {
     }
     
     public void vaihdaVuoro() {
-        if (this.vuoro == Vari.VALKOINEN) {
-            this.vuoro = Vari.MUSTA;
-        } else {
-            this.vuoro = Vari.VALKOINEN;
-            this.vuoroNro++;
+        if (!peliPaattyi) {
+            if (this.vuoro == Vari.VALKOINEN) {
+                this.vuoro = Vari.MUSTA;
+            } else {
+                this.vuoro = Vari.VALKOINEN;
+                this.vuoroNro++;
+            }
         }
     }
     
     public boolean siirto(int kor, int lev, int korMinne, int levMinne) {
         if (tarkistaSiirto(kor, lev, korMinne, levMinne)) {
-            ruutu(kor,lev).kasvataSiirtoLaskuria();
-            if (!syotiinkoKuningas(korMinne, levMinne)) {
-                vaihdaVuoro();
-            }
-            PELILAUTA[korMinne][levMinne] = PELILAUTA[kor][lev];
-            PELILAUTA[kor][lev] = TYHJA;
+            syodaankoKuningas(korMinne, levMinne);
+            nappula[kor][lev].kasvataSiirtoLaskuria();
+            PELILAUTA[korMinne][levMinne] = nappula[kor][lev];
+            PELILAUTA[kor][lev] = TYHJA;        
+            vaihdaVuoro();
             return true;
         }
         return false;
@@ -96,11 +100,11 @@ public class Shakkipeli {
     private void korkeaArvoiset(Vari vari, int rivi) {
         PELILAUTA[rivi][3] = new Kuningatar(vari);
         PELILAUTA[rivi][4] = new Kuningas(vari);
-        aliupseerit(vari, rivi, 0, 1);
-        aliupseerit(vari, rivi, 7, -1);
+        upseerit(vari, rivi, 0, 1);
+        upseerit(vari, rivi, 7, -1);
     }
     
-    private void aliupseerit(Vari vari, int rivi, int alku, int suunta) {
+    private void upseerit(Vari vari, int rivi, int alku, int suunta) {
         PELILAUTA[rivi][alku] = new Torni(vari);
         PELILAUTA[rivi][alku+(1*suunta)] = new Ratsu(vari);
         PELILAUTA[rivi][alku+(2*suunta)] = new Lahetti(vari);
@@ -122,23 +126,21 @@ public class Shakkipeli {
     }
 
     private boolean tarkistaSiirto(int kor, int lev, int korMinne, int levMinne) {
-        if (!(this.vuoro == ruutu(kor, lev).vari())) {
-            return false;
-        }
-        ArrayList<int[]> mahdSiirrot = sallitutLiikkeet(kor, lev);
-        sotilaanKorottaminen(kor, lev, korMinne, levMinne, mahdSiirrot);
-        for (int[] s : mahdSiirrot) {
-            if (s[0] == korMinne && s[1] == levMinne) {
-                return true;
+        if (nappula[kor][lev].vari() == vuoro) {
+            List<int[]> mahdSiirrot = sallitutLiikkeet(kor, lev);
+            sotilaanKorottaminen(kor, lev, korMinne, levMinne, mahdSiirrot);
+            for (int[] s : mahdSiirrot) {
+                if (s[0] == korMinne && s[1] == levMinne) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    private ArrayList<int[]> sallitutLiikkeet(int kor, int lev) {
-        ArrayList<int[]> mahdSiirrot = new ArrayList<>();
-        Ruutu siirettava = ruutu(kor,lev);
-        if (siirettava.nimi() == 's') {
+    private List<int[]> sallitutLiikkeet(int kor, int lev) {
+        List<int[]> mahdSiirrot = new ArrayList<>();
+        if (nappula[kor][lev].nimi() == 's') {
             sotilaanSiirrot(kor, lev, mahdSiirrot);
         } else {
             upseerienSiirrot(kor, lev, mahdSiirrot);
@@ -146,38 +148,53 @@ public class Shakkipeli {
         return mahdSiirrot;
     }
 
-    private void upseerienSiirrot(int kor, int lev, ArrayList<int[]> mahdSiirrot) {
-        for (Liike l : ruutu(kor,lev).liikkeet()) {
-            int[][] s = l.siirrot();
+    private void upseerienSiirrot(int kor, int lev, List<int[]> mahdSiirrot) {
+        for (Liikesuunta liike : nappula[kor][lev].liikkeet()) {
+            int[][] s = liike.suunnat();
             for (int i = 0; i < s[0].length; i++) {
-                if (!(laudalla(kor+s[0][i]) && laudalla(lev+s[1][i]))) {
-                    break;
-                }
-                Ruutu minne = ruutu(kor+s[0][i], lev+s[1][i]);
-                if (ruutu(kor,lev).vari() == minne.vari()) {
-                    break;
-                }
-                mahdSiirrot.add(new int[]{kor + s[0][i], lev + s[1][i]});
-                if (minne != TYHJA) {
+                if (!lisaaSiirtolistalle(kor, lev, kor + s[0][i], lev + s[1][i], mahdSiirrot)) {
                     break;
                 }
             }
         }
     }
 
-    private void sotilaanSiirrot(int kor, int lev, ArrayList<int[]> mahdSiirrot) {
-        int[][] s = ruutu(kor,lev).liikkeet().get(0).siirrot();
-        if (tyhja(kor+s[0][0],lev+s[1][0])) {
+    private void sotilaanSiirrot(int kor, int lev, List<int[]> mahdSiirrot) {
+        for (int i = 0; i < nappula[kor][lev].liikkeet().size(); i++) {
+            int[][] s = nappula[kor][lev].liikkeet().get(i).suunnat();
+            if (i == 0) {
+                lisaaSotilaanSuoratLiikkeetSiirtolistalle(kor, lev, s, mahdSiirrot);
+            } else {
+                lisaaSotilaanVinoLiikeSiirtolistalle(kor, lev, kor + s[0][0], lev + s[1][0], mahdSiirrot);
+            }
+        }
+    }
+    
+    private boolean lisaaSiirtolistalle(int kor, int lev,int korMin, int levMin, List<int[]> mahdSiirrot) {
+        if (laudalla(korMin) && laudalla(levMin)) {
+            if (nappula[kor][lev].vari() == nappula[korMin][levMin].vari()) {
+                return false;
+            }
+            mahdSiirrot.add(new int[]{korMin, levMin});
+            if (!tyhjaRuutu(korMin, levMin)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private void lisaaSotilaanSuoratLiikkeetSiirtolistalle(int kor, int lev,int[][] s, List<int[]> mahdSiirrot) {
+        if (tyhjaRuutu(kor + s[0][0],lev + s[1][0])) {
             mahdSiirrot.add(new int[]{kor + s[0][0], lev + s[1][0]});
-            if (ruutu(kor,lev).siirtojenMaara() == 0 && tyhja(kor+s[0][1],lev+s[1][1])) {
+            if (nappula[kor][lev].siirtojenMaara() == 0 && tyhjaRuutu(kor+s[0][1],lev+s[1][1])) {
                 mahdSiirrot.add(new int[]{kor + s[0][1], lev + s[1][1]});
             }
         }
-        for (int i = 1; i < 3; i++) {
-            s = ruutu(kor,lev).liikkeet().get(i).siirrot();
-            if (laudalla(kor+s[0][0]) && laudalla(lev+s[1][0]) && ruutu(kor,lev).vastustaja(ruutu(kor+s[0][0], lev+s[1][0]))) {
-                mahdSiirrot.add(new int[]{kor+s[0][0], lev+s[1][0]});
-            }
+    }
+    
+    private void lisaaSotilaanVinoLiikeSiirtolistalle(int kor, int lev, int korMin, int levMin, List<int[]> mahdSiirrot) {
+        if (laudalla(korMin) && laudalla(levMin) && nappula[kor][lev].vastustaja(nappula[korMin][levMin])) {
+            mahdSiirrot.add(new int[]{korMin, levMin});
         }
     }
     
@@ -185,26 +202,31 @@ public class Shakkipeli {
         return paikka >= 0 && paikka <= 7;
     }
     
-    private boolean tyhja(int kor, int lev) {
-        return ruutu(kor,lev) == TYHJA;
+    private boolean tyhjaRuutu(int kor, int lev) {
+        return PELILAUTA[kor][lev] == TYHJA;
     }
   
-    private void sotilaanKorottaminen(int kor, int lev, int korMinne, int levMinne, ArrayList<int[]> mahdSiirrot) {
-        if (ruutu(kor, lev).nimi() == 's') {
+    private void sotilaanKorottaminen(int kor, int lev, int korMinne, int levMinne, List<int[]> mahdSiirrot) {
+        if (nappula[kor][lev].nimi() == 's') {
             for (int[] s : mahdSiirrot) {
                 if (s[0] == korMinne && s[1] == levMinne && (korMinne == 0 || korMinne == 7)) {
-                    PELILAUTA[kor][lev] = new Kuningatar(ruutu(kor,lev).vari());
+                    PELILAUTA[kor][lev] = new Kuningatar(nappula[kor][lev].vari());
                 }
             }
         }
     }
 
-    private boolean syotiinkoKuningas(int kor, int lev) {
-        if (ruutu(kor,lev).nimi() == 'k') {
+    private void syodaankoKuningas(int kor, int lev) {
+        if (nappula[kor][lev].nimi() == 'k') {
             peliPaattyi = true;
         }
-        return peliPaattyi;
     }
+
+    
+
+    
+
+   
    
     
 }

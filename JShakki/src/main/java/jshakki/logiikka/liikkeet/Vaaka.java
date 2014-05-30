@@ -5,7 +5,7 @@ package jshakki.logiikka.liikkeet;
  *
  * @author termanty
  */
-public enum Vaaka implements Liike {
+public enum Vaaka implements Liikesuunta {
     YLOS(1,0), 
     ALAS(-1,0), 
     OIKEA(0,1), 
@@ -23,7 +23,7 @@ public enum Vaaka implements Liike {
     }
 
     @Override
-    public int[][] siirrot() {
+    public int[][] suunnat() {
         return LIIKKEET;
     }
 }

@@ -17,8 +17,8 @@ public class VaakaTest {
     
     @Test
     public void vaakaAskeltenMaaraLiikesuuntaanOikein() {
-        for (Liike l : Vaaka.values()) {
-            int[][] s = l.siirrot();
+        for (Liikesuunta l : Vaaka.values()) {
+            int[][] s = l.suunnat();
             assertEquals("Siirrot eivät ole kaksiulotteisia. HMM outoa!", 2, s.length);
             assertEquals("Askeleita väärä määrä samaan suuntaan" + l, 7, s[0].length);
         }

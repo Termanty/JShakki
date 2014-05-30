@@ -4,7 +4,7 @@ package jshakki.logiikka.nappulat;
 
 import java.util.ArrayList;
 import jshakki.logiikka.Vari;
-import jshakki.logiikka.liikkeet.Liike;
+import jshakki.logiikka.liikkeet.Liikesuunta;
 
 /**
  *
@@ -13,7 +13,7 @@ import jshakki.logiikka.liikkeet.Liike;
 public class Nappula implements Ruutu {
     private final char nimi;
     private final Vari vari;
-    final ArrayList<Liike> liikkeet;
+    final ArrayList<Liikesuunta> liikkeet;
     private int liikeLaskuri;
 
     public Nappula(Vari vari, char nimi) {
@@ -34,7 +34,7 @@ public class Nappula implements Ruutu {
     }
 
     @Override
-    public ArrayList<Liike> liikkeet() {
+    public ArrayList<Liikesuunta> liikkeet() {
         return liikkeet;
     }    
 

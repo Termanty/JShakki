@@ -1,13 +1,13 @@
 
 package jshakki.logiikka.liikkeet;
 
-import jshakki.logiikka.liikkeet.Liike;
+import jshakki.logiikka.liikkeet.Liikesuunta;
 
 /**
  *
  * @author termanty
  */
-public enum Askel implements Liike {
+public enum Askel implements Liikesuunta {
     YLOS(1,0), 
     ALAS(-1,0), 
     OIKEA(0,1), 
@@ -26,7 +26,7 @@ public enum Askel implements Liike {
     }
 
     @Override
-    public int[][] siirrot() {
+    public int[][] suunnat() {
         return LIIKKEET;
     }
 }

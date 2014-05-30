@@ -5,7 +5,7 @@ package jshakki.logiikka.liikkeet;
  *
  * @author termanty
  */
-public enum Vino implements Liike {
+public enum Vino implements Liikesuunta {
     YLOSOIKEA(1,1), 
     YLOSVASEN(1,-1), 
     ALASOIKEA(-1,1), 
@@ -23,7 +23,7 @@ public enum Vino implements Liike {
     }
 
     @Override
-    public int[][] siirrot() {
+    public int[][] suunnat() {
         return LIIKKEET;
     }
 

@@ -17,8 +17,8 @@ public class HyppyTest {
     
     @Test
     public void kuninkaanAskeltenMaaraLiikesuuntaanOikein() {
-        for (Liike l : Hyppy.values()) {
-            int[][] s = l.siirrot();
+        for (Liikesuunta l : Hyppy.values()) {
+            int[][] s = l.suunnat();
             assertEquals("Siirrot eivät ole kaksiulotteisia. HMM outoa!", 2, s.length);
             assertEquals("Hyppyjä useita samaan suuntaan" + l, 1, s[0].length);
         }

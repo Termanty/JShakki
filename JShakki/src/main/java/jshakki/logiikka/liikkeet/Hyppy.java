@@ -5,7 +5,7 @@ package jshakki.logiikka.liikkeet;
  *
  * @author termanty
  */
-public enum Hyppy implements Liike {
+public enum Hyppy implements Liikesuunta {
     YLOSOIKEA(2,1),
     YLOSVASEN(2,-1),
     ALASOIKEA(-2,1),
@@ -24,7 +24,7 @@ public enum Hyppy implements Liike {
     }
 
     @Override
-    public int[][] siirrot() {
+    public int[][] suunnat() {
         return LIIKKEET;
     }
     

@@ -22,8 +22,8 @@ public class ValkeaSotilasTest {
     
     @Test
     public void valkeanSotilaanAskeltenMaaraLiikesuuntaanOikein() {
-        for (Liike l : ValkeaSotilas.values()) {
-            int[][] s = l.siirrot();
+        for (Liikesuunta l : ValkeaSotilas.values()) {
+            int[][] s = l.suunnat();
             assertEquals("Siirrot eivät ole kaksiulotteisia. HMM outoa!", 2, s.length);
             assertEquals("Askeleita väärä määrä samaan suuntaan" + l, l.toString().equals("YLOS") ? 2 : 1, s[0].length);
         }

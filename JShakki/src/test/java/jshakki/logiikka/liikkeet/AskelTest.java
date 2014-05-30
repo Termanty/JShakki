@@ -17,8 +17,8 @@ public class AskelTest {
     
     @Test
     public void kuninkaanAskeltenMaaraLiikesuuntaanOikein() {
-        for (Liike l : Askel.values()) {
-            int[][] s = l.siirrot();
+        for (Liikesuunta l : Askel.values()) {
+            int[][] s = l.suunnat();
             assertEquals("Siirrot eivät ole kaksiulotteisia. HMM outoa!", 2, s.length);
             assertEquals("Kuninkaalla useita askelia suuntaan" + l, 1, s[0].length);
         }
