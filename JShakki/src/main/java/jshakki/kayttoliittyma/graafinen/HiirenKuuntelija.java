@@ -63,6 +63,7 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
                 for (Iterator<Gnappula> it = piirtoalusta.nappulat.iterator(); it.hasNext();) {
                     Gnappula g = it.next();
                     if (g.kor == kor && g.lev == lev) {
+                        piirtoalusta.syodytNappulat.add(g);
                         it.remove();
                     }
                 }
