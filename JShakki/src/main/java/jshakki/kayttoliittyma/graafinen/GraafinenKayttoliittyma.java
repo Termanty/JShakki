@@ -32,6 +32,7 @@ public class GraafinenKayttoliittyma implements Runnable {
     public void run() {
         frame = new JFrame("JShakki");
         frame.setPreferredSize(new Dimension(1000, 600));
+        frame.setResizable(false);
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
