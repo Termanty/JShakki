@@ -31,7 +31,7 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         Point p = e.getPoint();
-        piirtoalusta.x = p.x;
+        piirtoalusta.x = p.x - 10;
         piirtoalusta.y = p.y - 30;
         piirtoalusta.repaint();
     }
@@ -95,7 +95,7 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     }
     
     private boolean pelilaudalla(Point p) {
-        return !(p.y - 70 < 0 || p.y - 70 > 400 || p.x - 40 < 0 || p.x - 40  > 400);
+        return !(p.y - 70 < 0 || p.y - 70 > 400 || p.x - 300 < 0 || p.x - 300  > 400);
     }
     
     private int ykoordinaatti(int y) {
@@ -103,7 +103,7 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     }
     
     private int xkoordinaatti(int x) {
-        return (x - 40) / 50;
+        return (x - 300) / 50;
     }
     
     

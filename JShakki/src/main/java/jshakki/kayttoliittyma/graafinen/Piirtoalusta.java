@@ -39,8 +39,8 @@ public class Piirtoalusta extends JPanel {
     protected void paintComponent(Graphics grafiikka) {
         super.paintComponent(grafiikka);
         
-        
-        grafiikka.drawImage(hae.kuva("Board black.jpg"), 20, 20, null);
+        grafiikka.drawImage(hae.kuva("Black background.jpg"), 0, 0, null);
+        grafiikka.drawImage(hae.kuva("Board black.jpg"), 280, 20, null);
         sijoitaNappulatLaudalle(grafiikka);
         piirraMahdolliset(grafiikka);
         grafiikka.setColor(Color.red);
@@ -49,17 +49,17 @@ public class Piirtoalusta extends JPanel {
 
     private void sijoitaNappulatLaudalle(Graphics grafiikka) {   
         for (Gnappula n : nappulat) {
-            grafiikka.drawImage(n.img, 40+(n.lev*50), 40+(n.kor*50), null);
+            grafiikka.drawImage(n.img, 300+(n.lev*50), 40+(n.kor*50), null);
         }
     }
     
     private void piirraMahdolliset(Graphics grafiikka) {
         if (korosta) {
             grafiikka.setColor(Color.green);
-            grafiikka.drawRect(40+(xKorostus*50), 40+(yKorostus*50), 50, 50);
+            grafiikka.drawRect(300+(xKorostus*50), 40+(yKorostus*50), 50, 50);
             for (int[] s : siirrot) {
                 grafiikka.setColor(new Color(0,255,0,70));
-                grafiikka.fillRect(40+((s[1])*50), 40+((7-s[0])*50), 50, 50);
+                grafiikka.fillRect(300+((s[1])*50), 40+((7-s[0])*50), 50, 50);
             }
         }
     }
