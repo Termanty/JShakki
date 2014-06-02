@@ -24,8 +24,7 @@ public class GraafinenKayttoliittyma implements Runnable {
     private Shakkipeli peli;
 
     public GraafinenKayttoliittyma(Shakkipeli peli) {
-        this.peli = peli;
-        
+        this.peli = peli;     
     }
 
     @Override
@@ -50,6 +49,7 @@ public class GraafinenKayttoliittyma implements Runnable {
     
     private void lisaaKuuntelijat() {
         frame.addMouseListener(new HiirenKuuntelija(peli, piirtoalusta));
+        frame.addMouseMotionListener(new HiirenKuuntelija(peli, piirtoalusta));
     }
 
     public JFrame getFrame() {
