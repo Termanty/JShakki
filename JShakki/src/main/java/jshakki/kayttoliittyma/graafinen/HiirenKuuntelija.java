@@ -2,6 +2,7 @@
 
 package jshakki.kayttoliittyma.graafinen;
 
+import jshakki.kayttoliittyma.graafinen.elementit.Oikeudet;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -32,9 +33,6 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     public void mouseClicked(MouseEvent e) {
         Point p = e.getPoint();
         elementtiaKlikattu(p);
-        
-//        piirtoalusta.x = p.x + X_SOVITA;
-//        piirtoalusta.y = p.y + Y_SOVITA;
         piirtoalusta.repaint();
     }
 
@@ -45,7 +43,7 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
             korMis = ykoordinaatti(p.y);
             levMis = xkoordinaatti(p.x);
             if (!peli.tyhjaRuutu(7-korMis, levMis) &&
-                    peli.vuoro().equals(peli.ruutu(7 - korMis, levMis).vari().name())) {
+                peli.vuoro().equals(peli.ruutu(7 - korMis, levMis).vari().name())) {
                 piirtoalusta.korostaRuutu = true;
                 piirtoalusta.yKorostus = korMis;
                 piirtoalusta.xKorostus = levMis;
@@ -57,26 +55,7 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        Point p = e.getPoint();
-        if (pelilaudalla(p)) {
-            int kor = ykoordinaatti(p.y);
-            int lev = xkoordinaatti(p.x);
-            if (peli.siirto(7-korMis, levMis, 7-kor, lev)) {
-                for (Iterator<Gnappula> it = piirtoalusta.nappulat.iterator(); it.hasNext();) {
-                    Gnappula g = it.next();
-                    if (g.kor == kor && g.lev == lev) {
-                        piirtoalusta.syodytNappulat.add(g);
-                        it.remove();
-                    }
-                }
-                for (Gnappula g : piirtoalusta.nappulat) {
-                    if (g.kor == korMis && g.lev == levMis) {
-                        g.kor = kor;
-                        g.lev = lev;
-                    }
-                }
-            }
-        }
+        siirraNappula(e.getPoint());
         piirtoalusta.korostaRuutu = false;
         piirtoalusta.repaint();
     }
@@ -111,43 +90,37 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     }
 
     private void elementtienTunnistus(Point p) {
-        Teema.korosta = Teema.hiiriPaalla(p, X_SOVITA, Y_SOVITA);
+        Vaihtaja.korosta = Vaihtaja.hiiriPaalla(p, X_SOVITA, Y_SOVITA);
         Oikeudet.korosta = Oikeudet.hiiriPaalla(p, X_SOVITA, Y_SOVITA);
         piirtoalusta.repaint();
     }
 
     private void elementtiaKlikattu(Point p) {
-        if (Teema.hiiriPaalla(p, X_SOVITA, Y_SOVITA)) {
-            vaihdaTeema();
+        if (Vaihtaja.hiiriPaalla(p, X_SOVITA, Y_SOVITA)) {
+            piirtoalusta.teema.vaihdaTeema();
         }
     }
-
-    private void vaihdaTeema() {
-        if(Teema.nimi.equals("Black&White")) {
-            Teema.nimi = "Ocean Blue";
-            Teema.tausta = "images/backrounds/Blue Ocean.jpg";
-            Teema.shakkilauta = "images/boards/Board blue.jpg";
-            Teema.nappulat = "images/pieces/Blue ";
-            Teema.vaaleaPohja = MyColor.VAALEA_SININEN_KUULTAVA;
-            Teema.korostettuVaaleaPohja = MyColor.VAALEA_SININEN_VAHAKUULTAVA;
-            Teema.tummaPohja = MyColor.SININEN_KUULTAVA;
-            Teema.vaaleaTeksti = MyColor.VAALEA_SININEN_VAHAKUULTAVA;
-            Teema.tummaTeksti = MyColor.SININEN_VAHAKUULTAVA;
-        } else {
-            Teema.nimi = "Black&White";
-            Teema.tausta = "images/backround/Black backround.jpg";
-            Teema.shakkilauta = "images/boards/Board black.jpg";
-            Teema.nappulat = "images/pieces/";
-            Teema.vaaleaPohja = MyColor.VALKOINEN_KUULTAVA;
-            Teema.korostettuVaaleaPohja = MyColor.VALKOINEN_VAHAKUULTAVA;
-            Teema.tummaPohja = MyColor.MUSTA_KUULTAVA;
-            Teema.vaaleaTeksti = MyColor.VALKOINEN_VAHAKUULTAVA;
-            Teema.tummaTeksti = MyColor.MUSTA_VAHAKUULTAVA;
-            Teema.ruudunKorostus = MyColor.VIHREA_LAPIKUULTAVA;
-            
+    
+    private void siirraNappula(Point p) {
+        if (pelilaudalla(p)) {
+            int kor = ykoordinaatti(p.y);
+            int lev = xkoordinaatti(p.x);
+            if (peli.siirto(7-korMis, levMis, 7-kor, lev)) {
+                for (Iterator<Gnappula> it = piirtoalusta.nappulat.iterator(); it.hasNext();) {
+                    Gnappula g = it.next();
+                    if (g.kor == kor && g.lev == lev) {
+                        piirtoalusta.syodytNappulat.add(g);
+                        it.remove();
+                    }
+                }
+                for (Gnappula g : piirtoalusta.nappulat) {
+                    if (g.kor == korMis && g.lev == levMis) {
+                        g.kor = kor;
+                        g.lev = lev;
+                    }
+                }
+            }
         }
     }
-
-
     
 }

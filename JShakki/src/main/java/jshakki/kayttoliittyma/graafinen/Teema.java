@@ -1,39 +1,76 @@
 
-
 package jshakki.kayttoliittyma.graafinen;
 
 import java.awt.Color;
-import java.awt.Point;
 
 /**
  *
  * @author termanty
  */
 public class Teema {
+    private int teemaNum;
+    final private int MAARA = 2;
     
-    public static final int X = 740;
-    public static final int Y = 480;
-    public static final int LEV = 220;
-    public static final int KOR = 40;
-    public static final int X_LOPPU = X + LEV;
-    public static final int Y_LOPPU = Y + KOR;
+    public boolean vaihdettu = true;
     
-    public static boolean vaihdettu = true;
-    public static boolean korosta = false;
+    public String nimi;
+    public String tausta;
+    public String shakkilauta;
+    public String nappulat;
+    public Color vaaleaPohja;
+    public Color korostettuVaaleaPohja;
+    public Color tummaPohja;
+    public Color vaaleaTeksti;
+    public Color tummaTeksti;
+    public Color ruudunKorostus;
     
-    public static String nimi = "Black&White";
-    public static String tausta = "images/backrounds/Black&White.jpg";
-    public static String shakkilauta = "images/boards/Board black.jpg";
-    public static String nappulat = "images/pieces/";
-    public static Color vaaleaPohja = MyColor.VALKOINEN_KUULTAVA;
-    public static Color korostettuVaaleaPohja = MyColor.VALKOINEN_VAHAKUULTAVA;
-    public static Color tummaPohja = MyColor.MUSTA_KUULTAVA;
-    public static Color vaaleaTeksti = MyColor.VALKOINEN_VAHAKUULTAVA;
-    public static Color tummaTeksti = MyColor.MUSTA_VAHAKUULTAVA;
-    public static Color ruudunKorostus = MyColor.VIHREA_LAPIKUULTAVA;
+    public Teema() {
+        teemaNum = 0;
+        alustaTeema();
+    }
     
-    public static boolean hiiriPaalla(Point p, int X_SOVITA, int Y_SOVITA) {
-        return p.x >= X && p.x <= X_LOPPU && p.y + Y_SOVITA >= Y && p.y + Y_SOVITA <= Y_LOPPU;
+    public void vaihdaTeema() {
+        teemaNum = (teemaNum + 1) % MAARA;
+        alustaTeema();
+        vaihdettu = true;
     }
 
+    private void alustaTeema() {
+        switch (teemaNum) {
+            case 0:
+                teemaBlackWhite();
+                break;
+            case 1:
+                teemaOceanBlue();
+                break;   
+        }
+    }
+
+    private void teemaBlackWhite() {
+        nimi = "Black&White";
+        tausta = "images/backrounds/Black&White.jpg";
+        shakkilauta = "images/boards/Board black.jpg";
+        nappulat = "images/pieces/";
+        vaaleaPohja = MyColor.VALKOINEN_KUULTAVA;
+        korostettuVaaleaPohja = MyColor.VALKOINEN_VAHAKUULTAVA;
+        tummaPohja = MyColor.MUSTA_KUULTAVA;
+        vaaleaTeksti = MyColor.VALKOINEN_VAHAKUULTAVA;
+        tummaTeksti = MyColor.MUSTA_VAHAKUULTAVA;
+        ruudunKorostus = MyColor.VIHREA_LAPIKUULTAVA;
+    }
+
+    private void teemaOceanBlue() {
+        nimi = "Ocean Blue";
+        tausta = "images/backrounds/Blue Ocean.jpg";
+        shakkilauta = "images/boards/Board blue.jpg";
+        nappulat = "images/pieces/Blue ";
+        vaaleaPohja = MyColor.VAALEA_SININEN_KUULTAVA;
+        korostettuVaaleaPohja = MyColor.VAALEA_SININEN_VAHAKUULTAVA;
+        tummaPohja = MyColor.SININEN_KUULTAVA;
+        vaaleaTeksti = MyColor.VAALEA_SININEN_VAHAKUULTAVA;
+        tummaTeksti = MyColor.SININEN_VAHAKUULTAVA;
+        ruudunKorostus = MyColor.VIHREA_LAPIKUULTAVA;
+    }
+    
+    
 }

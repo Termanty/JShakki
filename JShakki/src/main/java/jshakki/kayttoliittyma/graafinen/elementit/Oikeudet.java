@@ -1,5 +1,5 @@
 
-package jshakki.kayttoliittyma.graafinen;
+package jshakki.kayttoliittyma.graafinen.elementit;
 
 import java.awt.Point;
 

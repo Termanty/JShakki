@@ -17,6 +17,7 @@ public class Lataa {
         try {
             img = ImageIO.read(new File(fileName));
         } catch (IOException e) {
+            System.err.println(fileName);
         }
         return img;
     }

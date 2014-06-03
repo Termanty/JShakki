@@ -12,15 +12,22 @@ import jshakki.logiikka.nappulat.Ruutu;
 public class Gnappula {
     private final Ruutu r;
     BufferedImage img;
-    Vari vari;
+    String vari;
     int kor;
     int lev;
 
-    public Gnappula(Ruutu r, BufferedImage img, int kor, int lev, Vari v) {
+    public Gnappula(Ruutu r, int kor, int lev, String vari) {
         this.r = r;
-        this.img = img;
         this.kor = kor;
         this.lev = lev;
-        this.vari = v;
-    } 
+        this.vari = vari;
+    }
+    
+    public void vaihdaTeema(BufferedImage image) {
+        this.img = image;
+    }
+    
+    public String nimi() {
+        return " "+r.nimi();
+    }
 }
