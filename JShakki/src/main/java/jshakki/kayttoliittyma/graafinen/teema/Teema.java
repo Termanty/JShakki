@@ -1,11 +1,10 @@
 
-package jshakki.kayttoliittyma.graafinen;
+package jshakki.kayttoliittyma.graafinen.teema;
 
 import java.awt.Color;
 
 /**
- *
- * @author termanty
+ * Teema luokka tarjoaa teemat ja vaihtaa tarvittaessa sitä.
  */
 public class Teema {
     private int teemaNum;
@@ -22,6 +21,7 @@ public class Teema {
     public Color tummaPohja;
     public Color vaaleaTeksti;
     public Color tummaTeksti;
+    public Color siirettavaNappula;
     public Color ruudunKorostus;
     
     public Teema() {
@@ -56,6 +56,7 @@ public class Teema {
         tummaPohja = MyColor.MUSTA_KUULTAVA;
         vaaleaTeksti = MyColor.VALKOINEN_VAHAKUULTAVA;
         tummaTeksti = MyColor.MUSTA_VAHAKUULTAVA;
+        siirettavaNappula = Color.GREEN;
         ruudunKorostus = MyColor.VIHREA_LAPIKUULTAVA;
     }
 
@@ -69,8 +70,7 @@ public class Teema {
         tummaPohja = MyColor.SININEN_KUULTAVA;
         vaaleaTeksti = MyColor.VAALEA_SININEN_VAHAKUULTAVA;
         tummaTeksti = MyColor.SININEN_VAHAKUULTAVA;
-        ruudunKorostus = MyColor.VIHREA_LAPIKUULTAVA;
-    }
-    
-    
+        siirettavaNappula = Color.YELLOW;
+        ruudunKorostus = MyColor.KELTAINEN_LAPIKUULTAVA;
+    }  
 }
