@@ -8,7 +8,7 @@ import java.awt.Color;
  */
 public class Teema {
     private int teemaNum;
-    final private int MAARA = 2;
+    final private int MAARA = 3;
     
     public boolean vaihdettu = true;
     
@@ -42,7 +42,10 @@ public class Teema {
                 break;
             case 1:
                 teemaOceanBlue();
-                break;   
+                break;
+            case 2:
+                teemaGrandCanyon();
+                break;
         }
     }
 
@@ -72,5 +75,19 @@ public class Teema {
         tummaTeksti = MyColor.SININEN_VAHAKUULTAVA;
         siirettavaNappula = Color.YELLOW;
         ruudunKorostus = MyColor.KELTAINEN_LAPIKUULTAVA;
-    }  
+    }
+    
+    private void teemaGrandCanyon() {
+        nimi = "Crand Canyon";
+        tausta = "images/backrounds/Grand Canyon.jpg";
+        shakkilauta = "images/boards/Board brown.jpg";
+        nappulat = "images/pieces/Brown ";
+        vaaleaPohja = MyColor.VAALEA_SININEN_KUULTAVA;
+        korostettuVaaleaPohja = MyColor.VAALEA_SININEN_VAHAKUULTAVA;
+        tummaPohja = MyColor.SININEN_KUULTAVA;
+        vaaleaTeksti = MyColor.VAALEA_SININEN_VAHAKUULTAVA;
+        tummaTeksti = MyColor.SININEN_VAHAKUULTAVA;
+        siirettavaNappula = Color.YELLOW;
+        ruudunKorostus = MyColor.KELTAINEN_LAPIKUULTAVA;
+    } 
 }
