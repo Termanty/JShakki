@@ -22,7 +22,6 @@ public class Piirtoalusta extends JPanel {
  
     public Piirtoalusta(Shakkipeli peli) {
         super();
-        super.setBackground(Color.WHITE);
         this.peli = peli;
         this.hae = new Lataa();
         this.teema = new Teema();

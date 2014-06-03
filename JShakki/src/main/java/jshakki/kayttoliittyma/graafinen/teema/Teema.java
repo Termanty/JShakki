@@ -80,7 +80,7 @@ public class Teema {
     private void teemaGrandCanyon() {
         nimi = "Crand Canyon";
         tausta = "images/backrounds/Grand Canyon.jpg";
-        shakkilauta = "images/boards/Board brown.jpg";
+        shakkilauta = "images/boards/Board brown_transparent.jpg";
         nappulat = "images/pieces/Brown ";
         vaaleaPohja = MyColor.VAALEA_SININEN_KUULTAVA;
         korostettuVaaleaPohja = MyColor.VAALEA_SININEN_VAHAKUULTAVA;
