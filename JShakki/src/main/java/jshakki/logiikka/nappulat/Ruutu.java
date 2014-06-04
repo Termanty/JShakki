@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import jshakki.logiikka.Vari;
 
 /**
- *
- * @author termanty
+ * Interface ruudussa oleville erilaisille nappuloille ja tyhjalle ruudulle.
  */
 public interface Ruutu {
     

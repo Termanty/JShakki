@@ -6,8 +6,6 @@ import java.awt.Color;
 /**
  * MyColor luokassa määritellään graafisen käyttöliittymän 
  * käyttämät custom värit.
- *
- * @author termanty
  */
 public class MyColor {
     

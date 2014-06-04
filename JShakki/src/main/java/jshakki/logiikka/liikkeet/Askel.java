@@ -1,11 +1,8 @@
 
 package jshakki.logiikka.liikkeet;
 
-import jshakki.logiikka.liikkeet.Liikesuunta;
-
 /**
- *
- * @author termanty
+ * Askel enum sisältää Kuninkaan liikkeet.
  */
 public enum Askel implements Liikesuunta {
     YLOS(1,0), 

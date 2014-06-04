@@ -2,7 +2,7 @@
 package jshakki.jshakki;
 
 /**
- * OS luokka tekee käyttöjärjestelmä sidonnaisia muutoksia käyttöliittymään.
+ * OS luokka tekee käyttöjärjestelmä sidonnaisia muutoksia GUI:hin.
  */
 public final class OS {
    private static final String NAME = System.getProperty("os.name");

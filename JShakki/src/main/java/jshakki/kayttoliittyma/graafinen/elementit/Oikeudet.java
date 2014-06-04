@@ -29,6 +29,12 @@ public class Oikeudet {
         return p.x + OS.X >= X && p.x + OS.X <= X_LOPPU && p.y + OS.Y >= Y && p.y + OS.Y <= Y_LOPPU;
     }
     
+    /**
+     * piirra metodi piirtää vaihtaja elementin.
+     * Elementti piirretaan korostetus, jos hiiri on sen päällä.
+     * @param g on otus joka osaa piirtää elementtejä.
+     * @param teema tietää minkä tyylin mukaisesti elementti piirretään.
+     */
     public static void piirra(Graphics g, Teema teema) {
         g.setFont(new Font("Ariel", Font.BOLD, 18));
         if (korosta) {
@@ -37,7 +43,11 @@ public class Oikeudet {
             elementti(g, teema.vaaleaPohja, teema.tummaTeksti, "copyright", 20);
         }  
     }
-        
+    
+    /**
+     * elementti metodi on apumetodi, 
+     * joka suorittaa varsinaisen elementin piirtamiesen.
+     */
     private static void elementti(Graphics g, Color pohja, Color tekstinVari, String teksti, int tekstinAlku) {
         g.setColor(pohja);
         g.fillRect(X, Y, LEV, KOR);

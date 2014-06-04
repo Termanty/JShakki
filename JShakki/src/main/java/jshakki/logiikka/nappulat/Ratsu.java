@@ -1,15 +1,12 @@
 
 package jshakki.logiikka.nappulat;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import jshakki.logiikka.Vari;
-import jshakki.logiikka.liikkeet.Liikesuunta;
 import jshakki.logiikka.liikkeet.Hyppy;
 
 /**
- *
- * @author termanty
+ * Ratsu shakkinappula.
  */
 public class Ratsu extends Nappula {
 

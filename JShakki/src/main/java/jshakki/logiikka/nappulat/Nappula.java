@@ -1,5 +1,4 @@
 
-
 package jshakki.logiikka.nappulat;
 
 import java.util.ArrayList;
@@ -7,8 +6,7 @@ import jshakki.logiikka.Vari;
 import jshakki.logiikka.liikkeet.Liikesuunta;
 
 /**
- *
- * @author termanty
+ * Nappula luokka on yliluokka shakkinappuloille.
  */
 public class Nappula implements Ruutu {
     private final char nimi;

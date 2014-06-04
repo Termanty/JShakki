@@ -5,8 +5,7 @@ import java.util.Arrays;
 import jshakki.logiikka.Vari;
 
 /**
- * 
- * @author termanty
+ * Kuningas shakkinappula.
  */
 public class Kuningas extends Nappula {
 

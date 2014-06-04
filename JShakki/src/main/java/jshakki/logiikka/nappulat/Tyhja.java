@@ -6,8 +6,7 @@ import jshakki.logiikka.Vari;
 import jshakki.logiikka.liikkeet.Liikesuunta;
 
 /**
- *
- * @author termanty
+ * Tyhjaa ruutua laudalla edusta tyhjaruutu elementti.
  */
 public class Tyhja implements Ruutu {
     private final char nimi = 'x';
@@ -39,6 +38,5 @@ public class Tyhja implements Ruutu {
     @Override
     public boolean vastustaja(Ruutu r) {
         return false;
-    }
-    
+    }   
 }

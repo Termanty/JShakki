@@ -4,11 +4,11 @@ package jshakki.kayttoliittyma.graafinen.teema;
 import java.awt.Color;
 
 /**
- * Teema luokka tarjoaa teemat ja vaihtaa tarvittaessa sitä.
+ * Teema luokka tarjoaa teemat ja teeman vaihdon toiminnallisuuden.
  */
 public class Teema {
     private int teemaNum;
-    final private int MAARA = 3;
+    final private int TEEMOJEN_MAARA = 3;
     
     public boolean vaihdettu = true;
     
@@ -24,13 +24,20 @@ public class Teema {
     public Color siirettavaNappula;
     public Color ruudunKorostus;
     
+    /**
+     * Tässä määritellään aloitus teema ja alustetaan se.
+     */
     public Teema() {
         teemaNum = 0;
         alustaTeema();
     }
     
+    /**
+     * vaihdaTeema metodi suorittaa teeman vaihdon.
+     * Muuttuja teemaNum maaraa mikä teema kulloinkin on käytössä.
+     */
     public void vaihdaTeema() {
-        teemaNum = (teemaNum + 1) % MAARA;
+        teemaNum = (teemaNum + 1) % TEEMOJEN_MAARA;
         alustaTeema();
         vaihdettu = true;
     }

@@ -7,8 +7,7 @@ import jshakki.logiikka.liikkeet.MustaSotilas;
 import jshakki.logiikka.liikkeet.ValkeaSotilas;
 
 /**
- *
- * @author termanty
+ * Sotilas shakkinappula.
  */
 public class Sotilas extends Nappula {
 

@@ -6,8 +6,7 @@ import jshakki.logiikka.Vari;
 import jshakki.logiikka.liikkeet.Vaaka;
 
 /**
- *
- * @author termanty
+ * Torni shakkinappula.
  */
 public class Torni extends Nappula {
 
@@ -15,5 +14,4 @@ public class Torni extends Nappula {
         super(vari, 't');
         liikkeet.addAll(Arrays.asList(Vaaka.values()));
     }
-
 }

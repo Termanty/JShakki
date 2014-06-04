@@ -6,8 +6,7 @@ import jshakki.logiikka.Vari;
 import jshakki.logiikka.liikkeet.Vino;
 
 /**
- *
- * @author termanty
+ * Lähetti shakkinappula.
  */
 public class Lahetti extends Nappula {
 
@@ -15,6 +14,4 @@ public class Lahetti extends Nappula {
         super(vari, 'l');
         liikkeet.addAll(Arrays.asList(Vino.values()));
     }
-
- 
 }

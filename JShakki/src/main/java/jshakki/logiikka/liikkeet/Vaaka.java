@@ -2,8 +2,8 @@
 package jshakki.logiikka.liikkeet;
 
 /**
- *
- * @author termanty
+ * Luokkassa on vaaka- ja pystysuuntaiset liikkeet.
+ * Näitä liikkeitä käyttävät torni ja kuningatar.
  */
 public enum Vaaka implements Liikesuunta {
     YLOS(1,0), 

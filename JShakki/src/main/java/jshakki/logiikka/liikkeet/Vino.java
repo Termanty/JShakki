@@ -2,8 +2,8 @@
 package jshakki.logiikka.liikkeet;
 
 /**
- *
- * @author termanty
+ * Luokkassa on vinot liikkeet.
+ * Näitä liikkeitä käyttävät lähetti ja kuningatar.
  */
 public enum Vino implements Liikesuunta {
     YLOSOIKEA(1,1), 
@@ -26,5 +26,4 @@ public enum Vino implements Liikesuunta {
     public int[][] suunnat() {
         return LIIKKEET;
     }
-
 }

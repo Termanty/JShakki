@@ -8,10 +8,14 @@ import javax.imageio.ImageIO;
 
 /**
  * Lataa luokka lukee kuva tiedostoja image kansiosta.
- * @author termanty
  */
 public class Lataa {
-    
+
+    /**
+     * kuva metodi lukee kuvan tiedostosta.
+     * @param fileName muutujassa on avattavan tiedoston nimi.
+     * @return palautetaan kuva BufferImage muodossa.
+     */
     public BufferedImage kuva(String fileName) {
         BufferedImage img = null;
         try {

@@ -1,17 +1,21 @@
 
-package jshakki.kayttoliittyma;
+package jshakki.kayttoliittyma.teksti;
 
 import jshakki.logiikka.Vari;
 import jshakki.logiikka.nappulat.Ruutu;
 
 /**
- *
- * @author termanty
+ * Muuta luokka vaihtaa shakkinappulan nimen kuvaksi.
  */
 public class Muuta {
     
-    public static char kuvaksi(Ruutu n) {
-        switch (merkki(n)) {
+    /**
+     * Tässä muutetaan shakkinappulan nimi kuvaksi.
+     * @param nappula on shakkinappula
+     * @return palauttaa ascii kuvan shakkinappulasta.
+     */
+    public static char kuvaksi(Ruutu nappula) {
+        switch (merkki(nappula)) {
             case 's':
                 return '♙';
             case 'S':
@@ -35,9 +39,7 @@ public class Muuta {
             case 'k':
                 return '♔';
             case 'K':
-                return '♚';
-                
-                
+                return '♚';     
         }
         return '…';
     }

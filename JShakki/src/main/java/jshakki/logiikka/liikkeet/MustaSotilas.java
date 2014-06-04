@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package jshakki.logiikka.liikkeet;
 
 /**
- *
- * @author termanty
+ * Luokkassa on mustan sotilaan liikkeet.
  */
 public enum MustaSotilas implements Liikesuunta { 
     ALAS(-1,0,2),  
@@ -29,5 +24,4 @@ public enum MustaSotilas implements Liikesuunta {
     public int[][] suunnat() {
         return LIIKKEET;
     } 
-    
 }

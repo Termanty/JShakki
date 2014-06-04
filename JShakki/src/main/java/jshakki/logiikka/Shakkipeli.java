@@ -7,13 +7,14 @@ import jshakki.logiikka.liikkeet.Liikesuunta;
 import jshakki.logiikka.nappulat.*;
 
 /**
- *
- * @author termanty
+ * Shakkipeli luokka huolehtii pelin logiikasta.
  */
 public class Shakkipeli {
+    
     private final Ruutu[][] PELILAUTA;
-    private Ruutu[][] nappula;
-    private final Tyhja TYHJA = new Tyhja();
+    private final Ruutu[][] nappula; // sama kuin PELILAUTA. Tarkoituksena selkeyttää koodia jäljempänä. 
+    
+    private final Tyhja TYHJA;
     private Vari vuoro;
     private int vuoroNro;
     private boolean peliPaattyi;
@@ -21,15 +22,25 @@ public class Shakkipeli {
     public final int LEV = 8;
     public final int KOR = 8;
 
+    /**
+     * Konstruktori alustaa tärkeimmät luokkamuuttujat.
+     */
     public Shakkipeli() {
         this.PELILAUTA = new Ruutu[KOR][LEV];
         this.nappula = this.PELILAUTA;
+        this.TYHJA = new Tyhja();
         pelitilanteenAlustus();
         this.vuoro = Vari.VALKOINEN;
         this.vuoroNro = 1;
         this.peliPaattyi = false;
     }
     
+    /**
+     * Tässä huolehditaan pelivuoron vaihtamisesta.
+     * Vuorot vaihtelevat valkoisen ja mustan pelaajan välillä.
+     * Muutuja vuoroNro kasvaa vasta kun sekä valkoinen että musta ovat
+     * tehneet siirtonsa.
+     */
     public void vaihdaVuoro() {
         if (!peliPaattyi) {
             if (this.vuoro == Vari.VALKOINEN) {
@@ -40,7 +51,15 @@ public class Shakkipeli {
             }
         }
     }
-    
+
+    /**
+     * Tässä suoritetaan shakkinappulan siirto.
+     * @param kor on nappulan nykyinen ruutu korkeussuunnassa.
+     * @param lev on nappulan nykyinen ruutu leveyssuunnassa.
+     * @param korMin on uusi ruutu korkeussuunnassa.
+     * @param levMin on uusi ruutu leveyssuunnassa.
+     * @return palautaa true jos siirto hyväksyttiin, muulloin false.
+     */
     public boolean siirto(int kor, int lev, int korMin, int levMin) {
         if (tarkistaSiirto(kor, lev, korMin, levMin)) {
             syodaankoKuningas(korMin, levMin);
@@ -53,14 +72,32 @@ public class Shakkipeli {
         return false;
     }
     
+    /**
+     * Tässä suoritetaan shakkinappulan siirto.
+     * @param mj on tekstinä tehvä siirto. Esim. a2a3.
+     * @return palautaa true jos siirto hyväksyttiin, muulloin false.
+     */
     public boolean siirto(String mj) {
         return siirto(num(mj,1), kir(mj,0), num(mj,3), kir(mj,2));
     }  
 
+    /**
+     * Hakee shakkilaudan tietyssä ruudussa olevan nappulan.
+     * Jos ruutu on tyhjä niin palautetaan tyhjä ruutu.
+     * @param kor on ruudun sijainti korkeussuunnassa.
+     * @param lev on ruudun sijainti leveyssuunnassa.
+     * @return palauttaa joko ruudussa olevan Shakkinappulan tai tyhjän ruudun.
+     */
     public Ruutu ruutu(int kor, int lev) {
         return PELILAUTA[kor][lev];
     }
     
+    /**
+     * Hakee shakkilaudan tietyssä ruudussa olevan nappulan.
+     * Jos ruutu on tyhjä niin palautetaan tyhjä ruutu.
+     * @param mj on ruutu tekstinä. Esim. a2.
+     * @return palauttaa joko ruudussa olevan Shakkinappulan tai tyhjän ruudun.
+     */
     public Ruutu ruutu(String mj) {
         return ruutu(num(mj,1),kir(mj,0));
     }
@@ -77,10 +114,39 @@ public class Shakkipeli {
         return this.vuoroNro;
     }
     
- 
+    /**
+     * Tässä haetaan shakkinappulan kaikki mahdolliset siirot 
+     * tämänhetkisessä asetelmassa.
+     * @param kor on shakkinappulan sijainti korkeussuunnassa.
+     * @param lev on shakkinappulan sijainti leveyssuunnassa.
+     * @return palautta listan sallituista liikkeistä.
+     */
+    public List<int[]> sallitutLiikkeet(int kor, int lev) {
+        List<int[]> mahdSiirrot = new ArrayList<>();
+        if (nappula[kor][lev].nimi() == 's') {
+            sotilaanSiirrot(kor, lev, mahdSiirrot);
+        } else {
+            upseerienSiirrot(kor, lev, mahdSiirrot);
+        }
+        return mahdSiirrot;
+    }
+
+    /**
+     * Tarkistetaan onko tietty ruutu tyhjä.
+     * @param kor tarkistettavan ruudun korkeussuunta.
+     * @param lev tarkistettavan ruudun leveyssuunta.
+     * @return true jos ruutu tyhjä, muulloin false.
+     */
+    public boolean tyhjaRuutu(int kor, int lev) {
+        return PELILAUTA[kor][lev] == TYHJA;
+    }
     
     
-    /// PRIVATE METODIT
+    
+    
+/// PRIVATE METODIT ******************************************************************
+    
+    
     
     private int kir(String mj, int i) {
         return (int) (mj.charAt(i) - 'a');
@@ -138,16 +204,6 @@ public class Shakkipeli {
         return false;
     }
 
-    public List<int[]> sallitutLiikkeet(int kor, int lev) {
-        List<int[]> mahdSiirrot = new ArrayList<>();
-        if (nappula[kor][lev].nimi() == 's') {
-            sotilaanSiirrot(kor, lev, mahdSiirrot);
-        } else {
-            upseerienSiirrot(kor, lev, mahdSiirrot);
-        }
-        return mahdSiirrot;
-    }
-
     private void upseerienSiirrot(int kor, int lev, List<int[]> mahdSiirrot) {
         for (Liikesuunta liike : nappula[kor][lev].liikkeet()) {
             int[][] s = liike.suunnat();
@@ -200,10 +256,6 @@ public class Shakkipeli {
     
     private boolean laudalla(int paikka) {
         return paikka >= 0 && paikka <= 7;
-    }
-    
-    public boolean tyhjaRuutu(int kor, int lev) {
-        return PELILAUTA[kor][lev] == TYHJA;
     }
   
     private void sotilaanKorottaminen(int kor, int lev, int korMin, int levMin, List<int[]> mahdSiirrot) {

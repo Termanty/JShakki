@@ -2,8 +2,7 @@
 package jshakki.logiikka.liikkeet;
 
 /**
- *
- * @author termanty
+ * Hyppy enum sisältää ratsu liikkeet.
  */
 public enum Hyppy implements Liikesuunta {
     YLOSOIKEA(2,1),
@@ -26,6 +25,5 @@ public enum Hyppy implements Liikesuunta {
     @Override
     public int[][] suunnat() {
         return LIIKKEET;
-    }
-    
+    }  
 }

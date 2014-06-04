@@ -6,7 +6,6 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
 
 /**
  * Luokka piirtää pohja elementin syödyille nappuloille.
- * @author termanty
  */
 public class SyodytPohja {
     private static final int X = 740;

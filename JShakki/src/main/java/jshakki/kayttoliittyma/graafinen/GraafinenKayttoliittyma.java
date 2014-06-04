@@ -9,19 +9,25 @@ import javax.swing.WindowConstants;
 import jshakki.logiikka.Shakkipeli;
 
 /**
- *
- * @author termanty
+ * Luokka GraafinenKayttoliittyma maarittelee GUI perustoiminnallisuudet.
  */
 public class GraafinenKayttoliittyma implements Runnable {
     private JFrame frame;
     Piirtoalusta piirtoalusta;
     BufferedImage img;
-    private Shakkipeli peli;
+    final private Shakkipeli peli;
 
+    /**
+     * Konstruktori luokalle.
+     * @param peli sisältää pelilogiikan.
+     */
     public GraafinenKayttoliittyma(Shakkipeli peli) {
         this.peli = peli;     
     }
 
+    /**
+     * Tässä metodissa on perusinformaatio luotavasta ikkunasta.
+     */
     @Override
     public void run() {
         frame = new JFrame("JShakki");

@@ -2,11 +2,9 @@
 package jshakki.logiikka.liikkeet;
 
 /**
- *
- * @author termanty
+ * Interface shakkinappuloiden erilaisia liikkeitä varten.
  */
 public interface Liikesuunta {
     
     public int[][] suunnat();
-    
 }

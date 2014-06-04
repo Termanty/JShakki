@@ -1,5 +1,5 @@
 
-package jshakki.kayttoliittyma;
+package jshakki.kayttoliittyma.teksti;
 
 import java.util.Scanner;
 import jshakki.logiikka.Shakkipeli;
@@ -7,14 +7,15 @@ import jshakki.logiikka.nappulat.Ruutu;
 import jshakki.logiikka.Vari;
 
 /**
- *
- * @author termanty
+ * TekstiUI on teksti pohjainen käyttöliittymä JShakki-peliin.
+ * Tätä luokkaa on käyttetty ainoastaan ohjelman kehityksen alkuvaiheessa
+ * pelilogiikan koodaamiseen.
  */
-public class Tekstikaytto implements Kayttoliittyma, Runnable {
+public class TekstiUI implements Runnable {
     private final Shakkipeli PELI;
     Scanner lukija;
     
-    public Tekstikaytto(Shakkipeli uusi) {
+    public TekstiUI(Shakkipeli uusi) {
         lukija = new Scanner(System.in);
         this.PELI = uusi;
     }
