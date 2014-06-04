@@ -87,7 +87,7 @@ public class Teema {
         tummaPohja = MyColor.RUSKEA_KUULTAVA;
         vaaleaTeksti = MyColor.KELTAINEN_VAHAKUULTAVA;
         tummaTeksti = MyColor.RUSKEA;
-        siirettavaNappula = Color.YELLOW;
-        ruudunKorostus = MyColor.KELTAINEN_LAPIKUULTAVA;
+        siirettavaNappula = Color.RED;
+        ruudunKorostus = MyColor.RUSKEA_KUULTAVA;
     } 
 }

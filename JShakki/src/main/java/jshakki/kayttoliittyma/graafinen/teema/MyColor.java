@@ -37,5 +37,6 @@ public class MyColor {
     final public static Color KELTAINEN_VAHAKUULTAVA = new Color(255,204,0,200); 
     final public static Color KELTAINEN_KUULTAVA = new Color(255,204,0,128); 
     final public static Color KELTAINEN_HYVINKUULTAVA = new Color(255,204,0,80);
+    final public static Color PUNAINEN_LAPIKUULTAVA = new Color(0,0,255,80);
 
 }
