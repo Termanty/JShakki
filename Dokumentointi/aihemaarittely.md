@@ -1,7 +1,7 @@
 # JShakki 
 simppeli shakkiohjelma
 
-Tämä shakkiohjelma on yksinkertaisella graafisella käyttöliittymällä toteutettu shakkipelin versio. Ohjelma mahdollistaa kahden pelaajan pelaamisen toisiaan vastaan. Toteutus saattaa myös sisältää mahdollisuuden pelata tietokonetta vastaa.
+Tämä shakkiohjelma on kauniilla graafisella käyttöliittymällä toteutettu shakkipelin versio. Ohjelma mahdollistaa kahden pelaajan pelaamisen toisiaan vastaan. Toteutus saattaa myös sisältää mahdollisuuden pelata tietokonetta vastaa.
 
 ## Pelin toiminnot
 - pelitavan valita: kaksin peli tai yksinpeli tietokonetta vastaan.
@@ -9,3 +9,4 @@ Tämä shakkiohjelma on yksinkertaisella graafisella käyttöliittymällä toteu
 - vuorotellen tapahtuva shakkinappuloiden siirtely.
 - pelitilanteen talletus levylle.
 - vanhan pelin lataus levyltä.
+- Käyttöliittymän graaffisen teeman vaihto klikkaamalla teeman vaihto elementiä.
