@@ -18,6 +18,7 @@ public class Shakkipeli {
     private Vari vuoro;
     private int vuoroNro;
     private boolean peliPaattyi;
+    private boolean sotilasKorotettiin;
     
     public final int LEV = 8;
     public final int KOR = 8;
@@ -33,6 +34,7 @@ public class Shakkipeli {
         this.vuoro = Vari.VALKOINEN;
         this.vuoroNro = 1;
         this.peliPaattyi = false;
+        this.sotilasKorotettiin = false;
     }
     
     /**
@@ -138,6 +140,21 @@ public class Shakkipeli {
      */
     public boolean tyhjaRuutu(int kor, int lev) {
         return PELILAUTA[kor][lev] == TYHJA;
+    }
+    
+    /**
+     * Metodi palauttaa tiedon sotilaan muuttumisesta kuningattareksi.
+     * @return true jos sotilas on korotettu kuningattareksi, muutoin false;
+     */
+    public boolean sotilasKorotettu() {
+        return sotilasKorotettiin;
+    }
+    
+    /**
+     * Käyttöliittymä voi kuitata että se on päivittänyt sotilaan muuttumisen.
+     */
+    public void kuittaaSotilaanKorotus() {
+        sotilasKorotettiin = false;
     }
     
     
@@ -262,6 +279,7 @@ public class Shakkipeli {
             for (int[] s : mahdSiirrot) {
                 if (s[0] == korMin && s[1] == levMin && (korMin == 0 || korMin == 7)) {
                     PELILAUTA[kor][lev] = new Kuningatar(nappula[kor][lev].vari(), kor, lev);
+                    sotilasKorotettiin = true;
                 }
             }
         }

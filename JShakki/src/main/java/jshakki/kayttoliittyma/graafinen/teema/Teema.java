@@ -29,7 +29,6 @@ public class Teema {
      */
     public Teema() {
         teemaNum = 0;
-        alustaTeema();
     }
     
     /**
@@ -42,7 +41,7 @@ public class Teema {
         vaihdettu = true;
     }
 
-    private void alustaTeema() {
+    public void alustaTeema() {
         switch (teemaNum) {
             case 0:
                 teemaBlackWhite();

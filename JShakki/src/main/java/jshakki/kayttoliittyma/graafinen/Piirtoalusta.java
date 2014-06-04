@@ -26,6 +26,7 @@ public class Piirtoalusta extends JPanel {
         this.teema = new Teema();
         this.nappulat = new ArrayList<>();
         this.syodytNappulat = new ArrayList<>();
+        teema.alustaTeema();
         alustaPelimerkit();
     }
  
@@ -38,15 +39,19 @@ public class Piirtoalusta extends JPanel {
     
     private void teema() {
         if (teema.vaihdettu) {
-            Taustakuva.img = hae.kuva(teema.tausta);
-            Pelilauta.img = hae.kuva(teema.shakkilauta);
-            for (NappulanKuva nappula : nappulat) {
-                nappula.img = hae.kuva(teema.nappulat + nappula.vari + nappula.nimi() + ".png");
-            }
-            for (NappulanKuva nappula : syodytNappulat) {
-                nappula.img = hae.kuva(teema.nappulat + nappula.vari + nappula.nimi() + ".png");
-            }
+            vaihdaKuvat();
             teema.vaihdettu = false;
+        }
+    }
+    
+    private void vaihdaKuvat() {
+        Taustakuva.img = hae.kuva(teema.tausta);
+        Pelilauta.img = hae.kuva(teema.shakkilauta);
+        for (NappulanKuva nappula : nappulat) {
+            nappula.img = hae.kuva(teema.nappulat + nappula.vari + nappula.nimi() + ".png");
+        }
+        for (NappulanKuva nappula : syodytNappulat) {
+            nappula.img = hae.kuva(teema.nappulat + nappula.vari + nappula.nimi() + ".png");
         }
     }
     
@@ -60,7 +65,13 @@ public class Piirtoalusta extends JPanel {
         Oikeudet.piirra(g, teema);
     }
 
-    private void piirraNappulat(Graphics g) {   
+    private void piirraNappulat(Graphics g) {
+        if (peli.sotilasKorotettu()) {
+            nappulat.clear();
+            alustaPelimerkit();
+            vaihdaKuvat();
+            peli.kuittaaSotilaanKorotus();
+        }
         for (NappulanKuva nappula : nappulat) {
             nappula.piirra(g);
         }
