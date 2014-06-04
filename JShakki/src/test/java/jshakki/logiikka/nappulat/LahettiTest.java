@@ -22,7 +22,7 @@ public class LahettiTest {
     
 @Test
     public void onOikeaNimi() {
-        Ruutu nappula = new Lahetti(Vari.MUSTA);
+        Ruutu nappula = new Lahetti(Vari.MUSTA, 0, 0);
         assertEquals("Väärä tunnus", 'l', nappula.nimi());
     }
 }

@@ -13,7 +13,7 @@ public class KuningasTest {
     
     @Test
     public void kuninkaallaOnOikeaNimi() {
-        Ruutu king = new Kuningas(Vari.MUSTA);
+        Ruutu king = new Kuningas(Vari.MUSTA, 0, 0);
         assertEquals("Kuninkaala väärä tunnus", 'k', king.nimi());
     }
 }

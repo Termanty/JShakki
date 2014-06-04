@@ -64,8 +64,7 @@ public class Shakkipeli {
         if (tarkistaSiirto(kor, lev, korMin, levMin)) {
             syodaankoKuningas(korMin, levMin);
             nappula[kor][lev].kasvataSiirtoLaskuria();
-            PELILAUTA[korMin][levMin] = nappula[kor][lev];
-            PELILAUTA[kor][lev] = TYHJA;        
+            vaihdaPaikat(kor, lev, korMin, levMin);
             vaihdaVuoro();
             return true;
         }
@@ -164,22 +163,22 @@ public class Shakkipeli {
     }
     
     private void korkeaArvoiset(Vari vari, int rivi) {
-        PELILAUTA[rivi][3] = new Kuningatar(vari);
-        PELILAUTA[rivi][4] = new Kuningas(vari);
+        PELILAUTA[rivi][3] = new Kuningatar(vari, rivi, 3);
+        PELILAUTA[rivi][4] = new Kuningas(vari, rivi, 4);
         upseerit(vari, rivi, 0, 1);
         upseerit(vari, rivi, 7, -1);
     }
     
     private void upseerit(Vari vari, int rivi, int alku, int suunta) {
-        PELILAUTA[rivi][alku] = new Torni(vari);
-        PELILAUTA[rivi][alku+(1*suunta)] = new Ratsu(vari);
-        PELILAUTA[rivi][alku+(2*suunta)] = new Lahetti(vari);
+        PELILAUTA[rivi][alku] = new Torni(vari, rivi, alku);
+        PELILAUTA[rivi][alku+(1*suunta)] = new Ratsu(vari, rivi, alku+(1*suunta));
+        PELILAUTA[rivi][alku+(2*suunta)] = new Lahetti(vari, rivi, alku+(2*suunta));
     }
     
     private void sotilaat() {
         for (int i = 0; i < LEV; i++) {
-            PELILAUTA[1][i] = new Sotilas(Vari.VALKOINEN);
-            PELILAUTA[6][i] = new Sotilas(Vari.MUSTA);
+            PELILAUTA[1][i] = new Sotilas(Vari.VALKOINEN, 1, i);
+            PELILAUTA[6][i] = new Sotilas(Vari.MUSTA, 6, i);
         }
     }
     
@@ -262,7 +261,7 @@ public class Shakkipeli {
         if (nappula[kor][lev].nimi() == 's') {
             for (int[] s : mahdSiirrot) {
                 if (s[0] == korMin && s[1] == levMin && (korMin == 0 || korMin == 7)) {
-                    PELILAUTA[kor][lev] = new Kuningatar(nappula[kor][lev].vari());
+                    PELILAUTA[kor][lev] = new Kuningatar(nappula[kor][lev].vari(), kor, lev);
                 }
             }
         }
@@ -274,4 +273,9 @@ public class Shakkipeli {
         }
     }
 
+    private void vaihdaPaikat(int kor, int lev, int korMin, int levMin) {
+        nappula[kor][lev].uusiSijainti(korMin, levMin);
+        PELILAUTA[korMin][levMin] = nappula[kor][lev];
+        PELILAUTA[kor][lev] = TYHJA;  
+    }
 }

@@ -11,8 +11,8 @@ import jshakki.logiikka.liikkeet.Vino;
  */
 public class Kuningatar extends Nappula {
 
-    public Kuningatar (Vari vari) {
-        super(vari, 'q');
+    public Kuningatar (Vari vari, int kor, int lev) {
+        super(vari, 'q', kor, lev);
         liikkeet.addAll(Arrays.asList(Vaaka.values()));
         liikkeet.addAll(Arrays.asList(Vino.values()));
     }

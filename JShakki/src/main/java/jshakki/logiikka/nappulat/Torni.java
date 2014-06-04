@@ -10,8 +10,8 @@ import jshakki.logiikka.liikkeet.Vaaka;
  */
 public class Torni extends Nappula {
 
-    public Torni (Vari vari) {
-        super(vari, 't');
+    public Torni (Vari vari, int kor, int lev) {
+        super(vari, 't', kor, lev);
         liikkeet.addAll(Arrays.asList(Vaaka.values()));
     }
 }

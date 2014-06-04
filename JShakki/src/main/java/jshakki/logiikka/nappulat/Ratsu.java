@@ -10,8 +10,8 @@ import jshakki.logiikka.liikkeet.Hyppy;
  */
 public class Ratsu extends Nappula {
 
-    public Ratsu (Vari vari) {
-        super(vari, 'r');
+    public Ratsu (Vari vari, int kor, int lev) {
+        super(vari, 'r', kor, lev);
         liikkeet.addAll(Arrays.asList(Hyppy.values()));
     }
 }

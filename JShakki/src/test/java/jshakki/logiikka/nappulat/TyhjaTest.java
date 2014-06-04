@@ -38,8 +38,8 @@ public class TyhjaTest {
     
     @Test
     public void palauttaaVastustajaNull() {
-        assertFalse(nappula.vastustaja(new Torni(Vari.MUSTA)));
-        assertFalse(nappula.vastustaja(new Torni(Vari.VALKOINEN)));
+        assertFalse(nappula.vastustaja(new Torni(Vari.MUSTA, 0, 0)));
+        assertFalse(nappula.vastustaja(new Torni(Vari.VALKOINEN, 0, 0)));
     }
     
     @Test

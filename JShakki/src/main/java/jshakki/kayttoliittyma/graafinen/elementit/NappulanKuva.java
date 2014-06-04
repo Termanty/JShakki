@@ -9,16 +9,12 @@ import jshakki.logiikka.nappulat.Ruutu;
  * NappulanKuva luokka sisältää tarvittavat tiedot sen piirtämiseen.
  */
 public class NappulanKuva {
-    private final Ruutu nappula;
+    public final Ruutu nappula;
     public String vari;
-    public int kor;
-    public int lev;
     public BufferedImage img;
 
-    public NappulanKuva(Ruutu nappula, int kor, int lev, String vari) {
+    public NappulanKuva(Ruutu nappula, String vari) {
         this.nappula = nappula;
-        this.kor = kor;
-        this.lev = lev;
         this.vari = vari;
     }
     
@@ -31,7 +27,7 @@ public class NappulanKuva {
     }
     
     public void piirra(Graphics g) {
-        g.drawImage(img, 300+(lev*50), 40+(kor*50), null);
+        g.drawImage(img, 300+(nappula.lev()*50), 40+((7-nappula.kor())*50), null);
     }
     
     public void piirra(Graphics g, int x, int y) {

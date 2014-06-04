@@ -9,6 +9,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.Iterator;
 import jshakki.jshakki.OS;
 import jshakki.logiikka.Shakkipeli;
+import jshakki.logiikka.nappulat.Ruutu;
 
 /**
  * Hiirenkuuntelija luokka seuraa hiiren toimintoja.
@@ -79,7 +80,7 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
             korMis = ykoordinaatti(p.y);
             levMis = xkoordinaatti(p.x);
             if (!peli.tyhjaRuutu(7-korMis, levMis) &&
-                    peli.vuoro().equals(peli.ruutu(7 - korMis, levMis).vari().name())) {
+                peli.vuoro().equals(peli.ruutu(7 - korMis, levMis).vari().name())) {
                 RuudunKorostaja.korosta = true;
                 RuudunKorostaja.y = korMis;
                 RuudunKorostaja.x = levMis;
@@ -93,18 +94,18 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
         if (Pelilauta.hiiriPaalla(p)) {
             int kor = ykoordinaatti(p.y);
             int lev = xkoordinaatti(p.x);
+            Ruutu poistettava = null;
+            if (!peli.tyhjaRuutu(7-kor, lev)) {
+                poistettava = peli.ruutu(7-kor, lev);
+            }
             if (peli.siirto(7-korMis, levMis, 7-kor, lev)) {
-                for (Iterator<NappulanKuva> it = piirtoalusta.nappulat.iterator(); it.hasNext();) {
-                    NappulanKuva g = it.next();
-                    if (g.kor == kor && g.lev == lev) {
-                        piirtoalusta.syodytNappulat.add(g);
-                        it.remove();
-                    }
-                }
-                for (NappulanKuva g : piirtoalusta.nappulat) {
-                    if (g.kor == korMis && g.lev == levMis) {
-                        g.kor = kor;
-                        g.lev = lev;
+                if (poistettava != null) {
+                    for (Iterator<NappulanKuva> it = piirtoalusta.nappulat.iterator(); it.hasNext();) {
+                        NappulanKuva nk = it.next();
+                        if (poistettava.equals(nk.nappula)) {
+                            piirtoalusta.syodytNappulat.add(nk);
+                            it.remove();
+                        }
                     }
                 }
             }

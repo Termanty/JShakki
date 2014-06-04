@@ -201,15 +201,15 @@ public class ShakkipeliTest {
     }
 
     private void upseerit(Vari vari, int rivi) {
-        paikat.put(new Torni(vari), new int[]{rivi,0,rivi,7});
-        paikat.put(new Ratsu(vari), new int[]{rivi,1,rivi,6});
-        paikat.put(new Lahetti(vari), new int[]{rivi,2,rivi,5});
-        paikat.put(new Kuningatar(vari), new int[]{rivi,3});
-        paikat.put(new Kuningas(vari), new int[]{rivi,4});
+        paikat.put(new Torni(vari, 0, 0), new int[]{rivi,0,rivi,7});
+        paikat.put(new Ratsu(vari, 0, 0), new int[]{rivi,1,rivi,6});
+        paikat.put(new Lahetti(vari, 0, 0), new int[]{rivi,2,rivi,5});
+        paikat.put(new Kuningatar(vari, 0, 0), new int[]{rivi,3});
+        paikat.put(new Kuningas(vari, 0, 0), new int[]{rivi,4});
     }
     
     private void soltut(Vari vari, int rivi) {
-        paikat.put(new Sotilas(vari), new int[]{rivi,0,rivi,1,rivi,2,rivi,3,rivi,4,rivi,5,rivi,6,rivi,7});
+        paikat.put(new Sotilas(vari, 0, 0), new int[]{rivi,0,rivi,1,rivi,2,rivi,3,rivi,4,rivi,5,rivi,6,rivi,7});
     }
 
     private void tyhjat() {

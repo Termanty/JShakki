@@ -9,8 +9,8 @@ import jshakki.logiikka.Vari;
  */
 public class Kuningas extends Nappula {
 
-    public Kuningas(Vari vari) {
-        super(vari, 'k');
+    public Kuningas(Vari vari, int kor, int lev) {
+        super(vari, 'k', kor, lev);
         liikkeet.addAll(Arrays.asList(Askel.values()));
     }
     

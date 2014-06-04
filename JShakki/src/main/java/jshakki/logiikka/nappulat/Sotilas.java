@@ -11,8 +11,8 @@ import jshakki.logiikka.liikkeet.ValkeaSotilas;
  */
 public class Sotilas extends Nappula {
 
-    public Sotilas (Vari vari) {
-        super(vari, 's');
+    public Sotilas (Vari vari, int kor, int lev) {
+        super(vari, 's', kor, lev);
         if (vari == Vari.VALKOINEN) {
             liikkeet.addAll(Arrays.asList(ValkeaSotilas.values()));
         } else {

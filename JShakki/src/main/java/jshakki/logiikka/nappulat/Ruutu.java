@@ -13,6 +13,9 @@ public interface Ruutu {
     Vari vari();
     ArrayList<Liikesuunta> liikkeet();
     int siirtojenMaara();
+    void uusiSijainti(int kor, int lev);
     void kasvataSiirtoLaskuria();
     boolean vastustaja(Ruutu r);
+    int kor();
+    int lev();
 }

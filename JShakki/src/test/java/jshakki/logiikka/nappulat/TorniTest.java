@@ -13,7 +13,7 @@ public class TorniTest {
     
 @Test
     public void onOikeaNimi() {
-        Ruutu nappula = new Torni(Vari.MUSTA);
+        Ruutu nappula = new Torni(Vari.MUSTA, 0, 0);
         assertEquals("Väärä tunnus", 't', nappula.nimi());
     }
 }

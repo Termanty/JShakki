@@ -39,4 +39,18 @@ public class Tyhja implements Ruutu {
     public boolean vastustaja(Ruutu r) {
         return false;
     }   
+
+    @Override
+    public void uusiSijainti(int kor, int lev) {
+    }
+
+    @Override
+    public int kor() {
+        return 0;
+    }
+
+    @Override
+    public int lev() {
+        return 0;
+    }
 }

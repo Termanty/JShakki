@@ -17,7 +17,7 @@ public class NappulaTest {
     Nappula testattava;
     
     public NappulaTest() {
-        testattava = new Nappula(Vari.MUSTA, 'z');
+        testattava = new Nappula(Vari.MUSTA, 'z', 0, 0);
     }
     
     @Test
@@ -48,9 +48,9 @@ public class NappulaTest {
     
     @Test
     public void vastustajaPalauttaaOikeanArvon() {
-        assertTrue(" ", testattava.vastustaja(new Nappula(Vari.VALKOINEN, 'x')));
-        assertFalse(" ", testattava.vastustaja(new Nappula(Vari.MUSTA, 'x')));
-        assertFalse(" ", new Nappula(Vari.VALKOINEN, 'x').vastustaja(new Nappula(Vari.VALKOINEN, 'x')));
-        assertTrue(" ", new Nappula(Vari.VALKOINEN, 'x').vastustaja(new Nappula(Vari.MUSTA, 'x')));
+        assertTrue(" ", testattava.vastustaja(new Nappula(Vari.VALKOINEN, 'x', 0, 0)));
+        assertFalse(" ", testattava.vastustaja(new Nappula(Vari.MUSTA, 'x', 0, 0)));
+        assertFalse(" ", new Nappula(Vari.VALKOINEN, 'x', 0, 0).vastustaja(new Nappula(Vari.VALKOINEN, 'x', 0, 0)));
+        assertTrue(" ", new Nappula(Vari.VALKOINEN, 'x', 0, 0).vastustaja(new Nappula(Vari.MUSTA, 'x', 0, 0)));
     }  
 }

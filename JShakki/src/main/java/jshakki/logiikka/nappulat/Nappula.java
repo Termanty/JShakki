@@ -11,12 +11,18 @@ import jshakki.logiikka.liikkeet.Liikesuunta;
 public class Nappula implements Ruutu {
     private final char nimi;
     private final Vari vari;
+    
+    public int kor;
+    public int lev;
+    
     final ArrayList<Liikesuunta> liikkeet;
     private int liikeLaskuri;
 
-    public Nappula(Vari vari, char nimi) {
-        this.vari = vari;
+    public Nappula(Vari vari, char nimi, int kor, int lev) {
         this.nimi = nimi;
+        this.vari = vari;
+        this.kor = kor;
+        this.lev = lev;
         this.liikeLaskuri = 0;
         liikkeet = new ArrayList<>();
     }
@@ -54,5 +60,21 @@ public class Nappula implements Ruutu {
             if (r.vari() == Vari.VALKOINEN) return true;
         }
         return false;
+    }
+
+    @Override
+    public void uusiSijainti(int kor, int lev) {
+        this.kor = kor;
+        this.lev = lev;
+    }
+
+    @Override
+    public int kor() {
+        return this.kor;
+    }
+
+    @Override
+    public int lev() {
+        return this.lev;
     }
 }

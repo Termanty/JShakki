@@ -13,7 +13,7 @@ public class SotilasTest {
     
 @Test
     public void onOikeaNimi() {
-        Ruutu nappula = new Sotilas(Vari.MUSTA);
+        Ruutu nappula = new Sotilas(Vari.MUSTA, 0, 0);
         assertEquals("Väärä tunnus", 's', nappula.nimi());
     }
 }

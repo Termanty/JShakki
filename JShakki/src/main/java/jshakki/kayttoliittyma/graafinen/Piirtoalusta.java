@@ -88,7 +88,7 @@ public class Piirtoalusta extends JPanel {
                 Ruutu nappula = peli.ruutu(kor, lev);
                 if (nappula.vari() != null) {
                     String vari = nappula.vari() == Vari.VALKOINEN ? "White" : "Black";
-                    nappulat.add(new NappulanKuva(nappula, 7 - kor, lev, vari));
+                    nappulat.add(new NappulanKuva(nappula, vari));
                 }
             }
         }
