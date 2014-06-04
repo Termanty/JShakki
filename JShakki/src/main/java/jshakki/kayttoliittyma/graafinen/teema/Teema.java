@@ -80,13 +80,13 @@ public class Teema {
     private void teemaGrandCanyon() {
         nimi = "Crand Canyon";
         tausta = "images/backrounds/Grand Canyon.jpg";
-        shakkilauta = "images/boards/Board brown_transparent.jpg";
+        shakkilauta = "images/boards/Board brown.jpg";
         nappulat = "images/pieces/Brown ";
-        vaaleaPohja = MyColor.VAALEA_SININEN_KUULTAVA;
-        korostettuVaaleaPohja = MyColor.VAALEA_SININEN_VAHAKUULTAVA;
-        tummaPohja = MyColor.SININEN_KUULTAVA;
-        vaaleaTeksti = MyColor.VAALEA_SININEN_VAHAKUULTAVA;
-        tummaTeksti = MyColor.SININEN_VAHAKUULTAVA;
+        vaaleaPohja = MyColor.KELTAINEN_KUULTAVA;
+        korostettuVaaleaPohja = MyColor.KELTAINEN_VAHAKUULTAVA;
+        tummaPohja = MyColor.RUSKEA_KUULTAVA;
+        vaaleaTeksti = MyColor.KELTAINEN_VAHAKUULTAVA;
+        tummaTeksti = MyColor.RUSKEA;
         siirettavaNappula = Color.YELLOW;
         ruudunKorostus = MyColor.KELTAINEN_LAPIKUULTAVA;
     } 
