@@ -68,7 +68,7 @@ public class Piirtoalusta extends JPanel {
         Siirrot.piirra(g, teema, peli.historia);
         Alakolmio.piirra(g, teema);
         Ylakolmio.piirra(g, teema);
-        Slider.piirra(g, teema, peli);
+        Slider.piirra(g, teema, peli.historia);
         Tallenna.piirra(g, teema);
         Lopeta.piirra(g, teema);
     }

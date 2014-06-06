@@ -78,6 +78,12 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
         if (Vaihtaja.hiiriPaalla(p)) {
             piirtoalusta.teema.vaihdaTeema();
         }
+        if (Ylakolmio.hiiriPaalla(p)) {
+            Slider.kasvata();
+        }
+        if (Alakolmio.hiiriPaalla(p)) {
+            Slider.vahenna();
+        }
     }
     
     private void nappulanJaSiirtojenKorostus(Point p) {

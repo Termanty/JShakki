@@ -31,8 +31,9 @@ public class Siirrot {
         if (siirrot.size() > 24) {
             alku = siirrot.size() - 24;
             alku = alku % 2 == 0 ? alku : alku + 1;
+            alku -= (Slider.sliderPos * 2);
         }
-        for (int i = alku; i < siirrot.size(); i++) {
+        for (int i = alku; i < siirrot.size() && i < alku + 24; i++) {
             if (i % 2 == 0) {
                 g.drawString("" + (i < 18 ? " ":"")+(i/2+1)+".", X + 10, Y + ((i-alku)*14));
                 g.drawString(siirrot.get(i), X + 50, Y + ((i-alku)*14));
@@ -40,6 +41,5 @@ public class Siirrot {
                 g.drawString(siirrot.get(i), X + 120, Y + ((i-alku-1)*14));
             }
         }
-
     }
 }
