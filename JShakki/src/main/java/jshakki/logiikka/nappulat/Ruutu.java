@@ -2,7 +2,6 @@ package jshakki.logiikka.nappulat;
 
 import jshakki.logiikka.liikkeet.Liikesuunta;
 import java.util.ArrayList;
-import jshakki.logiikka.Vari;
 
 /**
  * Interface ruudussa oleville erilaisille nappuloille ja tyhjalle ruudulle.

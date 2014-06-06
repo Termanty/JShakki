@@ -1,7 +1,7 @@
 
 package jshakki.kayttoliittyma.teksti;
 
-import jshakki.logiikka.Vari;
+import jshakki.logiikka.nappulat.Vari;
 import jshakki.logiikka.nappulat.Ruutu;
 
 /**

@@ -1,7 +1,6 @@
 
 package jshakki.logiikka.nappulat;
 
-import jshakki.logiikka.Vari;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

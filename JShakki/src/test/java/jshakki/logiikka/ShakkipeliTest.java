@@ -1,7 +1,9 @@
 
 package jshakki.logiikka;
 
+import jshakki.logiikka.nappulat.Vari;
 import java.util.HashMap;
+import jshakki.jshakki.Pelihistoria;
 import jshakki.logiikka.nappulat.Kuningas;
 import jshakki.logiikka.nappulat.Kuningatar;
 import jshakki.logiikka.nappulat.Lahetti;
@@ -18,10 +20,10 @@ import static org.junit.Assert.*;
  * @author termanty
  */
 public class ShakkipeliTest {
-    Shakkipeli testattava;
+    Logiikka testattava;
     
     public ShakkipeliTest() {
-        testattava = new Shakkipeli();
+        testattava = new Logiikka(new Pelihistoria());
     }    
     
     @Test
@@ -65,7 +67,7 @@ public class ShakkipeliTest {
     
     @Test
     public void vaihdaVuoroMetodiKasvattaaVuoroNroOikein() {
-        testattava = new Shakkipeli();
+        testattava = new Logiikka(new Pelihistoria());
         System.out.println(testattava.vuoroNro());
         testattava.vaihdaVuoro();
         assertEquals("Vuoronumero ei olisi pitänyt vaihtaa siirryttäessä valkoisesta mustaan", 1, testattava.vuoroNro());

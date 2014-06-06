@@ -2,7 +2,6 @@
 package jshakki.logiikka.nappulat;
 
 import java.util.ArrayList;
-import jshakki.logiikka.Vari;
 import jshakki.logiikka.liikkeet.Liikesuunta;
 
 /**

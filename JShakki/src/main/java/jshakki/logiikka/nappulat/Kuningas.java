@@ -2,7 +2,6 @@ package jshakki.logiikka.nappulat;
 
 import jshakki.logiikka.liikkeet.Askel;
 import java.util.Arrays;
-import jshakki.logiikka.Vari;
 
 /**
  * Kuningas shakkinappula.

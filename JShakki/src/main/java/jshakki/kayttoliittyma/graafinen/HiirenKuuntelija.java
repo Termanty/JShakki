@@ -7,8 +7,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.Iterator;
+import jshakki.jshakki.JShakkirunko;
 import jshakki.jshakki.OS;
-import jshakki.logiikka.Shakkipeli;
 import jshakki.logiikka.nappulat.Ruutu;
 
 /**
@@ -18,12 +18,12 @@ import jshakki.logiikka.nappulat.Ruutu;
  * korostetaan tarvittaessa.
  */
 public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
-    private final Shakkipeli peli;
+    private final JShakkirunko peli;
     private final Piirtoalusta piirtoalusta;
     private int korMis;
     private int levMis;
     
-    public HiirenKuuntelija(Shakkipeli peli, Piirtoalusta piirtoalusta) {
+    public HiirenKuuntelija(JShakkirunko peli, Piirtoalusta piirtoalusta) {
         this.peli = peli;
         this.piirtoalusta = piirtoalusta;
     }
@@ -66,6 +66,11 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     private void elementtienTunnistus(Point p) {
         Vaihtaja.korosta = Vaihtaja.hiiriPaalla(p);
         Oikeudet.korosta = Oikeudet.hiiriPaalla(p);
+        Ylakolmio.korosta = Ylakolmio.hiiriPaalla(p);
+        Alakolmio.korosta = Alakolmio.hiiriPaalla(p);
+        Slider.korosta = Slider.hiiriPaalla(p);
+        Tallenna.korosta = Tallenna.hiiriPaalla(p);
+        Lopeta.korosta = Lopeta.hiiriPaalla(p);
         piirtoalusta.repaint();
     }
 
@@ -79,12 +84,12 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
         if (Pelilauta.hiiriPaalla(p)) {
             korMis = ykoordinaatti(p.y);
             levMis = xkoordinaatti(p.x);
-            if (!peli.tyhjaRuutu(7-korMis, levMis) &&
-                peli.vuoro().equals(peli.ruutu(7 - korMis, levMis).vari().name())) {
+            if (!peli.logiikka.tyhjaRuutu(7-korMis, levMis) &&
+                peli.logiikka.vuoro().equals(peli.logiikka.ruutu(7 - korMis, levMis).vari().name())) {
                 RuudunKorostaja.korosta = true;
                 RuudunKorostaja.y = korMis;
                 RuudunKorostaja.x = levMis;
-                RuudunKorostaja.siirrot = peli.sallitutLiikkeet(7 - korMis, levMis);
+                RuudunKorostaja.siirrot = peli.logiikka.sallitutLiikkeet(7 - korMis, levMis);
                 piirtoalusta.repaint();
             }
         }
@@ -95,10 +100,10 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
             int kor = ykoordinaatti(p.y);
             int lev = xkoordinaatti(p.x);
             Ruutu poistettava = null;
-            if (!peli.tyhjaRuutu(7-kor, lev)) {
-                poistettava = peli.ruutu(7-kor, lev);
+            if (!peli.logiikka.tyhjaRuutu(7-kor, lev)) {
+                poistettava = peli.logiikka.ruutu(7-kor, lev);
             }
-            if (peli.siirto(7-korMis, levMis, 7-kor, lev)) {
+            if (peli.logiikka.siirto(7-korMis, levMis, 7-kor, lev)) {
                 if (poistettava != null) {
                     for (Iterator<NappulanKuva> it = piirtoalusta.nappulat.iterator(); it.hasNext();) {
                         NappulanKuva nk = it.next();

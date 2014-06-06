@@ -2,9 +2,9 @@
 package jshakki.kayttoliittyma.teksti;
 
 import java.util.Scanner;
-import jshakki.logiikka.Shakkipeli;
+import jshakki.logiikka.Logiikka;
 import jshakki.logiikka.nappulat.Ruutu;
-import jshakki.logiikka.Vari;
+import jshakki.logiikka.nappulat.Vari;
 
 /**
  * TekstiUI on teksti pohjainen käyttöliittymä JShakki-peliin.
@@ -12,10 +12,10 @@ import jshakki.logiikka.Vari;
  * pelilogiikan koodaamiseen.
  */
 public class TekstiUI implements Runnable {
-    private final Shakkipeli PELI;
+    private final Logiikka PELI;
     Scanner lukija;
     
-    public TekstiUI(Shakkipeli uusi) {
+    public TekstiUI(Logiikka uusi) {
         lukija = new Scanner(System.in);
         this.PELI = uusi;
     }

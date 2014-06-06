@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-import jshakki.logiikka.Shakkipeli;
+import jshakki.jshakki.JShakkirunko;
 
 /**
  * Luokka GraafinenKayttoliittyma maarittelee GUI perustoiminnallisuudet.
@@ -15,13 +15,13 @@ public class GraafinenKayttoliittyma implements Runnable {
     private JFrame frame;
     Piirtoalusta piirtoalusta;
     BufferedImage img;
-    final private Shakkipeli peli;
+    final private JShakkirunko peli;
 
     /**
      * Konstruktori luokalle.
      * @param peli sisältää pelilogiikan.
      */
-    public GraafinenKayttoliittyma(Shakkipeli peli) {
+    public GraafinenKayttoliittyma(JShakkirunko peli) {
         this.peli = peli;     
     }
 

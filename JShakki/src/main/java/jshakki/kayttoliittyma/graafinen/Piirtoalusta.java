@@ -1,25 +1,26 @@
 package jshakki.kayttoliittyma.graafinen;
 
+import jshakki.logiikka.nappulat.Vari;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+import jshakki.jshakki.JShakkirunko;
 import jshakki.kayttoliittyma.graafinen.elementit.*;
 import jshakki.kayttoliittyma.graafinen.teema.*;
-import jshakki.logiikka.*;
 import jshakki.logiikka.nappulat.Ruutu;
 
 /**
  * Piirtoalusta luokka toimii pohjana koko shakkipelin piirtamiselle.
  */
 public class Piirtoalusta extends JPanel {
-    private final Shakkipeli peli;
+    private final JShakkirunko peli;
     private final Lataa hae;
     public final Teema teema;
     public List<NappulanKuva> nappulat;
     public List<NappulanKuva> syodytNappulat; 
  
-    public Piirtoalusta(Shakkipeli peli) {
+    public Piirtoalusta(JShakkirunko peli) {
         super();
         this.peli = peli;
         this.hae = new Lataa();
@@ -60,17 +61,24 @@ public class Piirtoalusta extends JPanel {
         Pelilauta.piirra(g);
         piirraNappulat(g);
         piirraSyodytNappulat(g);
-        Vuoro.piirra(g, teema, peli);
+        Vuoro.piirra(g, teema, peli.logiikka);
         Vaihtaja.piirra(g, teema);
         Oikeudet.piirra(g, teema);
+        SiirrotPohja.piirra(g, teema);
+        Siirrot.piirra(g, teema, peli.historia);
+        Alakolmio.piirra(g, teema);
+        Ylakolmio.piirra(g, teema);
+        Slider.piirra(g, teema, peli);
+        Tallenna.piirra(g, teema);
+        Lopeta.piirra(g, teema);
     }
 
     private void piirraNappulat(Graphics g) {
-        if (peli.sotilasKorotettu()) {
+        if (peli.logiikka.sotilasKorotettu()) {
             nappulat.clear();
             alustaPelimerkit();
             vaihdaKuvat();
-            peli.kuittaaSotilaanKorotus();
+            peli.logiikka.kuittaaSotilaanKorotus();
         }
         for (NappulanKuva nappula : nappulat) {
             nappula.piirra(g);
@@ -96,7 +104,7 @@ public class Piirtoalusta extends JPanel {
     private void alustaPelimerkit() {
         for (int kor = 0; kor < 8; kor++) {
             for (int lev = 0; lev < 8; lev++) {
-                Ruutu nappula = peli.ruutu(kor, lev);
+                Ruutu nappula = peli.logiikka.ruutu(kor, lev);
                 if (nappula.vari() != null) {
                     String vari = nappula.vari() == Vari.VALKOINEN ? "White" : "Black";
                     nappulat.add(new NappulanKuva(nappula, vari));

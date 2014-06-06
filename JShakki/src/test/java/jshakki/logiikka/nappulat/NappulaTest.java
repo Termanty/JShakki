@@ -1,7 +1,6 @@
 
 package jshakki.logiikka.nappulat;
 
-import jshakki.logiikka.Vari;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

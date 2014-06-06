@@ -1,5 +1,5 @@
 
-package jshakki.logiikka;
+package jshakki.logiikka.nappulat;
 
 /**
  * Vari enum osaa shakkinappuloiden värit.

@@ -2,7 +2,6 @@
 package jshakki.logiikka.nappulat;
 
 import java.util.Arrays;
-import jshakki.logiikka.Vari;
 import jshakki.logiikka.liikkeet.Vaaka;
 import jshakki.logiikka.liikkeet.Vino;
 

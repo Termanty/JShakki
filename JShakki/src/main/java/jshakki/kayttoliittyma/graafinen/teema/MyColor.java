@@ -33,8 +33,8 @@ public class MyColor {
     final public static Color RUSKEA_KUULTAVA = new Color(220,95,0,128); 
     final public static Color RUSKEA_HYVINKUULTAVA = new Color(220,95,0,80);
     final public static Color KELTAINEN_VAHAKUULTAVA = new Color(255,204,0,200); 
-    final public static Color KELTAINEN_KUULTAVA = new Color(255,204,0,128); 
-    final public static Color KELTAINEN_HYVINKUULTAVA = new Color(255,204,0,80);
+    final public static Color KELTAINEN_KUULTAVA = new Color(255,204,0,100); 
+    final public static Color KELTAINEN_HYVINKUULTAVA = new Color(255,204,0,60);
     final public static Color PUNAINEN_LAPIKUULTAVA = new Color(0,0,255,80);
 
 }

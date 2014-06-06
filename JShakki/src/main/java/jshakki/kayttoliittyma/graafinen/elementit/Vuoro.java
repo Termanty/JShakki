@@ -5,8 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import jshakki.kayttoliittyma.graafinen.teema.Teema;
-import jshakki.logiikka.Shakkipeli;
-import jshakki.logiikka.Vari;
+import jshakki.logiikka.Logiikka;
+import jshakki.logiikka.nappulat.Vari;
 
 /**
  * Vuoro luokka piirtää elementin, joka kertoo vuorossa olevan pelaajan.
@@ -25,7 +25,7 @@ public class Vuoro {
      * @param teema tietää minkä tyylin mukaisesti elementti piirretään.
      * @param peli tuo tiedon pelivuorosta.
      */
-    public static void piirra(Graphics g, Teema teema, Shakkipeli peli) {
+    public static void piirra(Graphics g, Teema teema, Logiikka peli) {
         g.setFont(new Font("Ariel", Font.BOLD, 28));
         if (peli.vuoro().equals(Vari.VALKOINEN.name())) {
             elemetti(g, "VALKOINEN", teema.tummaTeksti, teema.vaaleaPohja, 50);

@@ -1,15 +1,19 @@
 
 package jshakki.logiikka;
 
+import jshakki.logiikka.nappulat.Vari;
 import java.util.ArrayList;
 import java.util.List;
+import jshakki.jshakki.Pelihistoria;
 import jshakki.logiikka.liikkeet.Liikesuunta;
 import jshakki.logiikka.nappulat.*;
 
 /**
  * Shakkipeli luokka huolehtii pelin logiikasta.
  */
-public class Shakkipeli {
+public class Logiikka {
+    
+    Pelihistoria historia;
     
     private final Ruutu[][] PELILAUTA;
     private final Ruutu[][] nappula; // sama kuin PELILAUTA. Tarkoituksena selkeyttää koodia jäljempänä. 
@@ -26,7 +30,8 @@ public class Shakkipeli {
     /**
      * Konstruktori alustaa tärkeimmät luokkamuuttujat.
      */
-    public Shakkipeli() {
+    public Logiikka(Pelihistoria historia) {
+        this.historia = historia;
         this.PELILAUTA = new Ruutu[KOR][LEV];
         this.nappula = this.PELILAUTA;
         this.TYHJA = new Tyhja();
@@ -67,6 +72,7 @@ public class Shakkipeli {
             syodaankoKuningas(korMin, levMin);
             nappula[kor][lev].kasvataSiirtoLaskuria();
             vaihdaPaikat(kor, lev, korMin, levMin);
+            historia.tallennaSiirto(kor, lev, korMin, levMin);
             vaihdaVuoro();
             return true;
         }
