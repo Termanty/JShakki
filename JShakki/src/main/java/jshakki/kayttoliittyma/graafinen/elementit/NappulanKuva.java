@@ -23,7 +23,7 @@ public class NappulanKuva {
     }
     
     public String nimi() {
-        return " "+nappula.nimi();
+        return " " + nappula.nimi();
     }
     
     public void piirra(Graphics g) {

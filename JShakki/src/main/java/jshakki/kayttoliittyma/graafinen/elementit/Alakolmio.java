@@ -8,19 +8,17 @@ import jshakki.jshakki.OS;
 import jshakki.kayttoliittyma.graafinen.teema.Teema;
 
 /**
- *
+ * Alakolmio luokka piirtää kolmio elementin.
+ * Elementtiä klikkaamalla pystyy siirto listalla liikkumaan alaspäin.
  */
-public class Alakolmio {
-    
+public class Alakolmio {    
     public static final int X = 230;
     public static final int Y = 435;
     public static final int LEV = 30;
     public static final int KOR = 20;
-    public static final int X_LOPPU = X + LEV;
-    public static final int Y_LOPPU = Y + KOR;
     
-    private static final int kolmioX[] = {X,X+(LEV/2),X_LOPPU};
-    private static final int kolmioY[] = {Y,Y_LOPPU,Y};
+    private static final int kolmioX[] = {X,X+(LEV/2),X + LEV};
+    private static final int kolmioY[] = {Y,Y + KOR,Y};
     
     public static boolean korosta = false;
     
@@ -38,7 +36,7 @@ public class Alakolmio {
      * @return palautetaan true, jos elementin päällä tai päivastoin.
      */
     public static boolean hiiriPaalla(Point p) {
-        return p.x + OS.X >= X && p.x + OS.X <= X_LOPPU && p.y + OS.Y >= Y && p.y + OS.Y <= Y_LOPPU;
+        return p.x + OS.X >= X && p.x + OS.X <= X + LEV && p.y + OS.Y >= Y && p.y + OS.Y <= Y + KOR;
     }
     
     private static void alaKolmio(Graphics g, Color color) {

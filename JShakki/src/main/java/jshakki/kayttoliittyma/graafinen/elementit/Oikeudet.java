@@ -17,8 +17,6 @@ public class Oikeudet {
     public static final int Y = 535;
     public static final int LEV = 220;
     public static final int KOR = 40;
-    public static final int X_LOPPU = X + LEV;
-    public static final int Y_LOPPU = Y + KOR;
     
     public static final String teksti = "copyright";
     public static final String korostettuTeksti = "Tero Mäntylä 2014";
@@ -26,7 +24,7 @@ public class Oikeudet {
     public static boolean korosta = false;
     
     public static boolean hiiriPaalla(Point p) {
-        return p.x + OS.X >= X && p.x + OS.X <= X_LOPPU && p.y + OS.Y >= Y && p.y + OS.Y <= Y_LOPPU;
+        return p.x + OS.X >= X && p.x + OS.X <= X + LEV && p.y + OS.Y >= Y && p.y + OS.Y <= Y + KOR;
     }
     
     /**

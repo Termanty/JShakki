@@ -6,8 +6,8 @@ package jshakki.jshakki;
  */
 public final class OS {
    private static final String NAME = System.getProperty("os.name");
-   public static final int X = onLinux() ? 0 : -10;
-   public static final int Y = onLinux() ? 0 : -30;
+   public static final int X = onLinux() ? 0 : -3;
+   public static final int Y = onLinux() ? 0 : -25;
    
    /**
     * onLinux metodi tarkistaa ollaanko linux käyttöjärjestelmässä.

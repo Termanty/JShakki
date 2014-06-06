@@ -1,13 +1,10 @@
 
 package jshakki.kayttoliittyma.graafinen.elementit;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.List;
 import jshakki.jshakki.Pelihistoria;
-import static jshakki.kayttoliittyma.graafinen.elementit.Lopeta.X;
-import static jshakki.kayttoliittyma.graafinen.elementit.Lopeta.Y;
 import jshakki.kayttoliittyma.graafinen.teema.Teema;
 
 /**
@@ -21,7 +18,7 @@ public class Siirrot {
      * piirra metodi piirtää siiroille pohja elementin.
      * @param g on otus joka osaa piirtää elementtejä.
      * @param teema tietää minkä tyylin mukaisesti elementti piirretään.
-     * @param siirrot on lista tehdyistä siirroista.
+     * @param historia tietää listan tehdyistä siirroista.
      */
     public static void piirra(Graphics g, Teema teema, Pelihistoria historia) {
         List<String> siirrot = historia.getSiirrot();

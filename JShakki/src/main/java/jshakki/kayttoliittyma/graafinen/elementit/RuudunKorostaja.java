@@ -1,7 +1,6 @@
 
 package jshakki.kayttoliittyma.graafinen.elementit;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
 import jshakki.kayttoliittyma.graafinen.teema.Teema;
