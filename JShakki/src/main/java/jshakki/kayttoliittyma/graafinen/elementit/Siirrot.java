@@ -3,6 +3,7 @@ package jshakki.kayttoliittyma.graafinen.elementit;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.List;
 import jshakki.jshakki.Pelihistoria;
 import jshakki.kayttoliittyma.graafinen.teema.Teema;
@@ -21,7 +22,7 @@ public class Siirrot {
      * @param historia tietää listan tehdyistä siirroista.
      */
     public static void piirra(Graphics g, Teema teema, Pelihistoria historia) {
-        List<String> siirrot = historia.getSiirrot();
+        List<String> siirrot = historia == null ? new ArrayList<String>() : historia.getSiirrot();
         g.setFont(new Font("Ariel", Font.BOLD, 18));
         g.setColor(teema.tummaTeksti);
         int alku = 0;

@@ -9,19 +9,26 @@ import jshakki.logiikka.Logiikka;
  * @author termanty
  */
 public class JShakkirunko {
-    public Logiikka logiikka;
-    public Pelihistoria historia;
+    public Logiikka logiikka = null;
+    public Pelihistoria historia = null;
     private HistoriatiedostonKasittelija tiedostonkasittelija;
+    
+    public boolean aloitustila = true;
     
 
     public JShakkirunko() {
         tiedostonkasittelija = new HistoriatiedostonKasittelija();
-        historia = new Pelihistoria();
-        uusiPeli();
+//        uusiPeli();
     }
 
     public void uusiPeli() {
-        this.logiikka = new Logiikka(historia);
+        historia = new Pelihistoria();
+        logiikka = new Logiikka(historia);
+        aloitustila = false;
+    }
+    
+    public void lopetaPeli() {
+        aloitustila = true;
     }
     
     public void lataaTallennettuPeli() {

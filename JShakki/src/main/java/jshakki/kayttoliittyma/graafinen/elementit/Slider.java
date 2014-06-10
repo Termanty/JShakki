@@ -32,7 +32,7 @@ public class Slider {
      * @param teema tietää minkä tyylin mukaisesti elementti piirretään.
      */
     public static void piirra(Graphics g, Teema teema, Pelihistoria historia) {
-        int maara = historia.getSiirrot().size();
+        int maara = historia == null ? 0 : historia.getSiirrot().size();
         jako = (maara+1)/2;
         if (maara > 18) {
             kor = 12 * KOR / jako;

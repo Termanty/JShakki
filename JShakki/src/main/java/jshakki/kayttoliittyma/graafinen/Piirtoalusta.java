@@ -18,7 +18,9 @@ public class Piirtoalusta extends JPanel {
     private final Lataa hae;
     public final Teema teema;
     public List<NappulanKuva> nappulat;
-    public List<NappulanKuva> syodytNappulat; 
+    public List<NappulanKuva> syodytNappulat;
+    
+    private boolean nappulatAlustettu = true;
  
     public Piirtoalusta(JShakkirunko peli) {
         super();
@@ -28,7 +30,7 @@ public class Piirtoalusta extends JPanel {
         this.nappulat = new ArrayList<>();
         this.syodytNappulat = new ArrayList<>();
         teema.alustaTeema();
-        alustaPelimerkit();
+//        alustaPelimerkit();
     }
  
     @Override
@@ -59,8 +61,6 @@ public class Piirtoalusta extends JPanel {
     private void piirraElementit(Graphics g) {
         Taustakuva.piirra(g);
         Pelilauta.piirra(g);
-        piirraNappulat(g);
-        piirraSyodytNappulat(g);
         Vuoro.piirra(g, teema, peli.logiikka);
         Vaihtaja.piirra(g, teema);
         Oikeudet.piirra(g, teema);
@@ -71,6 +71,27 @@ public class Piirtoalusta extends JPanel {
         Slider.piirra(g, teema, peli.historia);
         Tallenna.piirra(g, teema);
         Lopeta.piirra(g, teema);
+        
+        //
+        if (peli.aloitustila) {
+            AloitusPohja.piirra(g, teema, hae);
+            PelinAloittaja.piirra(g, teema);
+            LataaVanha.piirra(g, teema);
+//            Pelaajat.piirra(g, teema);
+            ValkoisenValinta.piirra(g, teema);
+            MustanValinta.piirra(g, teema);
+            nappulatAlustettu = false;
+        } else {
+            if (!nappulatAlustettu) {
+                nappulat.clear();
+                syodytNappulat.clear();
+                alustaPelimerkit();
+                vaihdaKuvat();
+                teema.alustaTeema();
+            }
+            piirraNappulat(g);
+            piirraSyodytNappulat(g);
+        }
     }
 
     private void piirraNappulat(Graphics g) {
@@ -111,6 +132,7 @@ public class Piirtoalusta extends JPanel {
                 }
             }
         }
+        nappulatAlustettu = true;
     }
 }
 

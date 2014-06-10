@@ -27,7 +27,7 @@ public class Vuoro {
      */
     public static void piirra(Graphics g, Teema teema, Logiikka peli) {
         g.setFont(new Font("Ariel", Font.BOLD, 28));
-        if (peli.vuoro().equals(Vari.VALKOINEN.name())) {
+        if (peli != null && peli.vuoro().equals(Vari.VALKOINEN.name())) {
             elemetti(g, "VALKOINEN", teema.tummaTeksti, teema.vaaleaPohja, 50);
         } else {
             elemetti(g, "MUSTA", teema.vaaleaTeksti, teema.tummaPohja, 85);

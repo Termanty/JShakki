@@ -30,19 +30,27 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        elementtiaKlikattu(e.getPoint());
+        if (peli.aloitustila) {
+            aloitusElementtiaKlikattu(e.getPoint());
+        } else {
+            elementtiaKlikattu(e.getPoint());
+        }
         piirtoalusta.repaint();
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        nappulanJaSiirtojenKorostus(e.getPoint());
+        if (!peli.aloitustila) {
+            nappulanJaSiirtojenKorostus(e.getPoint());
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        siirraNappula(e.getPoint());
-        RuudunKorostaja.korosta = false;
+        if (!peli.aloitustila) {
+            siirraNappula(e.getPoint());
+            RuudunKorostaja.korosta = false;
+        }
         piirtoalusta.repaint();
     }
 
@@ -64,13 +72,20 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     }
     
     private void elementtienTunnistus(Point p) {
-        Vaihtaja.korosta = Vaihtaja.hiiriPaalla(p);
-        Oikeudet.korosta = Oikeudet.hiiriPaalla(p);
-        Ylakolmio.korosta = Ylakolmio.hiiriPaalla(p);
-        Alakolmio.korosta = Alakolmio.hiiriPaalla(p);
-        Slider.korosta = Slider.hiiriPaalla(p);
-        Tallenna.korosta = Tallenna.hiiriPaalla(p);
-        Lopeta.korosta = Lopeta.hiiriPaalla(p);
+        if (peli.aloitustila) {
+            PelinAloittaja.korosta = PelinAloittaja.hiiriPaalla(p);
+            LataaVanha.korosta = LataaVanha.hiiriPaalla(p);
+            ValkoisenValinta.korosta = ValkoisenValinta.hiiriPaalla(p);
+            MustanValinta.korosta = MustanValinta.hiiriPaalla(p);        
+        } else {
+            Vaihtaja.korosta = Vaihtaja.hiiriPaalla(p);
+            Oikeudet.korosta = Oikeudet.hiiriPaalla(p);
+            Ylakolmio.korosta = Ylakolmio.hiiriPaalla(p);
+            Alakolmio.korosta = Alakolmio.hiiriPaalla(p);
+            Slider.korosta = Slider.hiiriPaalla(p);
+            Tallenna.korosta = Tallenna.hiiriPaalla(p);
+            Lopeta.korosta = Lopeta.hiiriPaalla(p);
+        }
         piirtoalusta.repaint();
     }
 
@@ -83,6 +98,15 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
         }
         if (Alakolmio.hiiriPaalla(p)) {
             Slider.vahenna();
+        }
+        if (Lopeta.hiiriPaalla(p)) {
+            peli.lopetaPeli();
+        }
+    }
+    
+    private void aloitusElementtiaKlikattu(Point p) {
+        if (PelinAloittaja.hiiriPaalla(p)) {
+            peli.uusiPeli();
         }
     }
     
