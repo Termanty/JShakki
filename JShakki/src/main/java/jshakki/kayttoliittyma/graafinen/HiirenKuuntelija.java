@@ -30,6 +30,9 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (Vaihtaja.hiiriPaalla(e.getPoint())) {
+            piirtoalusta.teema.vaihdaTeema();
+        }
         if (peli.aloitustila) {
             aloitusElementtiaKlikattu(e.getPoint());
         } else {
@@ -72,14 +75,14 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     }
     
     private void elementtienTunnistus(Point p) {
+        Vaihtaja.korosta = Vaihtaja.hiiriPaalla(p);
+        Oikeudet.korosta = Oikeudet.hiiriPaalla(p);
         if (peli.aloitustila) {
             PelinAloittaja.korosta = PelinAloittaja.hiiriPaalla(p);
             LataaVanha.korosta = LataaVanha.hiiriPaalla(p);
             ValkoisenValinta.korosta = ValkoisenValinta.hiiriPaalla(p);
             MustanValinta.korosta = MustanValinta.hiiriPaalla(p);        
         } else {
-            Vaihtaja.korosta = Vaihtaja.hiiriPaalla(p);
-            Oikeudet.korosta = Oikeudet.hiiriPaalla(p);
             Ylakolmio.korosta = Ylakolmio.hiiriPaalla(p);
             Alakolmio.korosta = Alakolmio.hiiriPaalla(p);
             Slider.korosta = Slider.hiiriPaalla(p);
@@ -90,9 +93,6 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     }
 
     private void elementtiaKlikattu(Point p) {
-        if (Vaihtaja.hiiriPaalla(p)) {
-            piirtoalusta.teema.vaihdaTeema();
-        }
         if (Ylakolmio.hiiriPaalla(p)) {
             Slider.kasvata();
         }

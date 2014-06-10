@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package jshakki.kayttoliittyma.graafinen.elementit;
 
@@ -19,7 +14,7 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
 public class Tallenna {
     public static final int X = 25;
     public static final int Y = 480;
-    public static final int LEV = 235;
+    public static final int LEV = 190;
     public static final int KOR = 40;
         
     public static boolean korosta = false;
@@ -35,7 +30,7 @@ public class Tallenna {
         if (korosta) {
             elementti(g, teema.korostettuVaaleaPohja, teema.tummaTeksti, "ei toteutettu vielä");
         } else {
-            elementti(g, teema.vaaleaPohja, teema.tummaTeksti, "     tallenna");
+            elementti(g, teema.vaaleaPohja, teema.tummaTeksti, "tallenna");
         }  
     }
     

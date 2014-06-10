@@ -14,7 +14,7 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
 public class Lopeta {
     public static final int X = 25;
     public static final int Y = 535;
-    public static final int LEV = 235;
+    public static final int LEV = 190;
     public static final int KOR = 40;
         
     public static boolean korosta = false;
@@ -28,9 +28,9 @@ public class Lopeta {
     public static void piirra(Graphics g, Teema teema) {
         g.setFont(new Font("Ariel", Font.BOLD, 20));
         if (korosta) {
-            elementti(g, teema.korostettuVaaleaPohja, teema.tummaTeksti, "ei toimi viel");
+            elementti(g, teema.korostettuVaaleaPohja, teema.tummaTeksti, "lopeta");
         } else {
-            elementti(g, teema.vaaleaPohja, teema.tummaTeksti, "     lopeta");
+            elementti(g, teema.vaaleaPohja, teema.tummaTeksti, "lopeta");
         }  
     }
     

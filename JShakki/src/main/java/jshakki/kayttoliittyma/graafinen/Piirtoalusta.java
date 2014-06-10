@@ -60,21 +60,12 @@ public class Piirtoalusta extends JPanel {
     
     private void piirraElementit(Graphics g) {
         Taustakuva.piirra(g);
-        Pelilauta.piirra(g);
-        Vuoro.piirra(g, teema, peli.logiikka);
+        Pelilauta.piirra(g);   
         Vaihtaja.piirra(g, teema);
         Oikeudet.piirra(g, teema);
-        SiirrotPohja.piirra(g, teema);
-        Siirrot.piirra(g, teema, peli.historia);
-        Alakolmio.piirra(g, teema);
-        Ylakolmio.piirra(g, teema);
-        Slider.piirra(g, teema, peli.historia);
-        Tallenna.piirra(g, teema);
-        Lopeta.piirra(g, teema);
-        
         //
         if (peli.aloitustila) {
-            AloitusPohja.piirra(g, teema, hae);
+//            AloitusPohja.piirra(g, teema, hae);
             PelinAloittaja.piirra(g, teema);
             LataaVanha.piirra(g, teema);
 //            Pelaajat.piirra(g, teema);
@@ -89,6 +80,14 @@ public class Piirtoalusta extends JPanel {
                 vaihdaKuvat();
                 teema.alustaTeema();
             }
+            Vuoro.piirra(g, teema, peli.logiikka);
+            SiirrotPohja.piirra(g, teema);
+            Siirrot.piirra(g, teema, peli.historia);
+            Alakolmio.piirra(g, teema);
+            Ylakolmio.piirra(g, teema);
+            Slider.piirra(g, teema, peli.historia);
+            Tallenna.piirra(g, teema);
+            Lopeta.piirra(g, teema);
             piirraNappulat(g);
             piirraSyodytNappulat(g);
         }

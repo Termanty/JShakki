@@ -14,10 +14,10 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
  */
 public class LataaVanha {
         
-    public static final int X = 700;
-    public static final int Y = 50;
-    public static final int LEV = 150;
-    public static final int KOR = 40;
+    public static final int X = 25;
+    public static final int Y = 395;
+    public static final int LEV = 235;
+    public static final int KOR = 65;
         
     public static boolean korosta = false;
     
@@ -32,11 +32,11 @@ public class LataaVanha {
      * @param teema tietää minkä tyylin mukaisesti elementti piirretään.
      */
     public static void piirra(Graphics g, Teema teema) {
-        g.setFont(new Font("Ariel", Font.BOLD, 18));
+        g.setFont(new Font("Ariel", Font.BOLD, 28));
         if (korosta) {
-            elementti(g, teema.korostettuVaaleaPohja, teema.tummaTeksti, "lataa vanha", 15);
+            elementti(g, teema.korostettuVaaleaPohja, teema.tummaTeksti, "EI TOIMI VIEL", 15);
         } else {
-            elementti(g, teema.vaaleaPohja, teema.tummaTeksti, "lataa vanha", 15);
+            elementti(g, teema.vaaleaPohja, teema.tummaTeksti, "LATAA PELI", 15);
         }  
     }
     
@@ -48,6 +48,6 @@ public class LataaVanha {
         g.setColor(pohja);
         g.fillRect(X, Y, LEV, KOR);
         g.setColor(tekstinVari);
-        g.drawString(teksti, X + tekstinAlku, Y + 27);
+        g.drawString(teksti, X + tekstinAlku, Y + 45);
     } 
 }

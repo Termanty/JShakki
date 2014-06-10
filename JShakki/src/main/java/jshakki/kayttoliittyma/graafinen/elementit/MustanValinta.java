@@ -12,13 +12,13 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
  * MustanValinta luokka sisältää tiedot elementin piirtämiseen.
  */
 public class MustanValinta {
-    public static final int X = 515;
-    public static final int Y = 260;
+    public static final int X = 435;
+    public static final int Y = 65;
     public static final int LEV = 130;
     public static final int KOR = 40;
     
-    private static final String ihminen = " ihminen";
-    private static final String tk = "tietokone";
+    private static final String ihminen = " IHMINEN";
+    private static final String tk = "TIETOKONE";
     
     public static boolean ihminenValittu = true;
         
@@ -37,9 +37,9 @@ public class MustanValinta {
     public static void piirra(Graphics g, Teema teema) {
         g.setFont(new Font("Ariel", Font.BOLD, 18));
         if (korosta) {
-            elementti(g, Color.BLACK, Color.WHITE, !ihminenValittu ? ihminen : tk, 15);
+            elementti(g, Color.BLACK, Color.WHITE, !ihminenValittu ? ihminen : tk, 8);
         } else {
-            elementti(g, Color.DARK_GRAY, Color.WHITE, ihminenValittu ? ihminen : tk, 15);
+            elementti(g, Color.DARK_GRAY, Color.WHITE, ihminenValittu ? ihminen : tk, 8);
         }  
     }
     

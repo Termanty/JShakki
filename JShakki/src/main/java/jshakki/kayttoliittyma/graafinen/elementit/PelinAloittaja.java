@@ -13,13 +13,10 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
  */
 public class PelinAloittaja {
     
-    public static final int X = 150;
-    public static final int Y = 50;
-    public static final int LEV = 150;
-    public static final int KOR = 40;
-    
-    public static final String teksti = "copyright";
-    public static final String korostettuTeksti = "Tero Mäntylä 2014";
+    public static final int X = 25;
+    public static final int Y = 25;
+    public static final int LEV = 235;
+    public static final int KOR = 65;
     
     public static boolean korosta = false;
     
@@ -34,11 +31,11 @@ public class PelinAloittaja {
      * @param teema tietää minkä tyylin mukaisesti elementti piirretään.
      */
     public static void piirra(Graphics g, Teema teema) {
-        g.setFont(new Font("Ariel", Font.BOLD, 18));
+        g.setFont(new Font("Ariel", Font.BOLD, 28));
         if (korosta) {
-            elementti(g, teema.korostettuVaaleaPohja, teema.tummaTeksti, "aloita peli", 15);
+            elementti(g, teema.korostettuVaaleaPohja, teema.tummaTeksti, "ALOITA PELI", 15);
         } else {
-            elementti(g, teema.vaaleaPohja, teema.tummaTeksti, "aloita peli", 15);
+            elementti(g, teema.vaaleaPohja, teema.tummaTeksti, "ALOITA PELI", 15);
         }  
     }
     
@@ -50,6 +47,6 @@ public class PelinAloittaja {
         g.setColor(pohja);
         g.fillRect(X, Y, LEV, KOR);
         g.setColor(tekstinVari);
-        g.drawString(teksti, X + tekstinAlku, Y + 27);
+        g.drawString(teksti, X + tekstinAlku, 70);
     }   
 }
