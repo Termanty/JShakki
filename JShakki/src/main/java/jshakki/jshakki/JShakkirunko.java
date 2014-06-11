@@ -70,7 +70,7 @@ public class JShakkirunko {
 
 
     public void setValkoinen() {
-        if (valkoinen == null) {
+        if (valkoinen == null && musta == null) {
             valkoinen = new Tekoaly(Vari.VALKOINEN, logiikka);
         } else {
             valkoinen = null;
@@ -83,7 +83,7 @@ public class JShakkirunko {
 
 
     public void setMusta() {
-        if (musta == null) {
+        if (musta == null && valkoinen == null) {
             musta = new Tekoaly(Vari.MUSTA, logiikka);
         } else {
             musta = null;
