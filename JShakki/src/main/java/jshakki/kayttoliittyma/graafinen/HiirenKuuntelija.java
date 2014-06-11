@@ -6,10 +6,8 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.Iterator;
 import jshakki.jshakki.JShakkirunko;
 import jshakki.jshakki.OS;
-import jshakki.logiikka.nappulat.Ruutu;
 
 /**
  * Hiirenkuuntelija luokka seuraa hiiren toimintoja.
@@ -108,6 +106,14 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
         if (PelinAloittaja.hiiriPaalla(p)) {
             peli.uusiPeli();
         }
+        if (MustanValinta.hiiriPaalla(p)) {
+            peli.setMusta();
+            MustanValinta.ihminenValittu = peli.getMusta() == null;
+        }
+        if (ValkoisenValinta.hiiriPaalla(p)) {
+            peli.setValkoinen();
+            ValkoisenValinta.ihminenValittu = peli.getValkoinen() == null;
+        }
     }
     
     private void nappulanJaSiirtojenKorostus(Point p) {
@@ -126,24 +132,10 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     }
     
     private void siirraNappula(Point p) {
-        if (Pelilauta.hiiriPaalla(p)) {
+        if (!peli.logiikka.loppu() && Pelilauta.hiiriPaalla(p)) {
             int kor = ykoordinaatti(p.y);
             int lev = xkoordinaatti(p.x);
-            Ruutu poistettava = null;
-            if (!peli.logiikka.tyhjaRuutu(7-kor, lev)) {
-                poistettava = peli.logiikka.ruutu(7-kor, lev);
-            }
-            if (peli.logiikka.siirto(7-korMis, levMis, 7-kor, lev)) {
-                if (poistettava != null) {
-                    for (Iterator<NappulanKuva> it = piirtoalusta.nappulat.iterator(); it.hasNext();) {
-                        NappulanKuva nk = it.next();
-                        if (poistettava.equals(nk.nappula)) {
-                            piirtoalusta.syodytNappulat.add(nk);
-                            it.remove();
-                        }
-                    }
-                }
-            }
+            peli.siirto(7-korMis, levMis, 7-kor, lev);
         }
     }
     

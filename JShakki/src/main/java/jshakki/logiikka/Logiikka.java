@@ -22,7 +22,9 @@ public class Logiikka {
     private Vari vuoro;
     private int vuoroNro;
     private boolean peliPaattyi;
-    private boolean sotilasKorotettiin;
+    private boolean paivita;
+    
+    public List<Ruutu> syodyt;
     
     public final int LEV = 8;
     public final int KOR = 8;
@@ -34,12 +36,15 @@ public class Logiikka {
         this.historia = historia;
         this.PELILAUTA = new Ruutu[KOR][LEV];
         this.nappula = this.PELILAUTA;
+        this.syodyt = new ArrayList<>();
         this.TYHJA = new Tyhja();
         pelitilanteenAlustus();
         this.vuoro = Vari.VALKOINEN;
         this.vuoroNro = 1;
         this.peliPaattyi = false;
-        this.sotilasKorotettiin = false;
+        this.paivita = false;
+        
+        
     }
     
     /**
@@ -68,7 +73,12 @@ public class Logiikka {
      * @return palautaa true jos siirto hyväksyttiin, muulloin false.
      */
     public boolean siirto(int kor, int lev, int korMin, int levMin) {
+        Ruutu syotava = nappula[korMin][levMin];
         if (tarkistaSiirto(kor, lev, korMin, levMin)) {
+            if (syotava != TYHJA) {
+                syodyt.add(syotava);
+                paivita = true;
+            }
             syodaankoKuningas(korMin, levMin);
             nappula[kor][lev].kasvataSiirtoLaskuria();
             vaihdaPaikat(kor, lev, korMin, levMin);
@@ -152,15 +162,15 @@ public class Logiikka {
      * Metodi palauttaa tiedon sotilaan muuttumisesta kuningattareksi.
      * @return true jos sotilas on korotettu kuningattareksi, muutoin false;
      */
-    public boolean sotilasKorotettu() {
-        return sotilasKorotettiin;
+    public boolean paivita() {
+        return paivita;
     }
     
     /**
      * Käyttöliittymä voi kuitata että se on päivittänyt sotilaan muuttumisen.
      */
-    public void kuittaaSotilaanKorotus() {
-        sotilasKorotettiin = false;
+    public void kuittaa() {
+        paivita = false;
     }
     
     
@@ -285,7 +295,7 @@ public class Logiikka {
             for (int[] s : mahdSiirrot) {
                 if (s[0] == korMin && s[1] == levMin && (korMin == 0 || korMin == 7)) {
                     PELILAUTA[kor][lev] = new Kuningatar(nappula[kor][lev].vari(), kor, lev);
-                    sotilasKorotettiin = true;
+                    paivita = true;
                 }
             }
         }

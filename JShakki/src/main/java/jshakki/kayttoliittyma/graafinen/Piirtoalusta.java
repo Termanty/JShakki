@@ -50,12 +50,8 @@ public class Piirtoalusta extends JPanel {
     private void vaihdaKuvat() {
         Taustakuva.img = hae.kuva(teema.tausta);
         Pelilauta.img = hae.kuva(teema.shakkilauta);
-        for (NappulanKuva nappula : nappulat) {
-            nappula.img = hae.kuva(teema.nappulat + nappula.vari + nappula.nimi() + ".png");
-        }
-        for (NappulanKuva nappula : syodytNappulat) {
-            nappula.img = hae.kuva(teema.nappulat + nappula.vari + nappula.nimi() + ".png");
-        }
+        vaihdaNappulanKuvat(nappulat);
+        vaihdaNappulanKuvat(syodytNappulat);
     }
     
     private void piirraElementit(Graphics g) {
@@ -94,22 +90,29 @@ public class Piirtoalusta extends JPanel {
     }
 
     private void piirraNappulat(Graphics g) {
-        if (peli.logiikka.sotilasKorotettu()) {
+        if (peli.logiikka.paivita()) {
             nappulat.clear();
             alustaPelimerkit();
             vaihdaKuvat();
-            peli.logiikka.kuittaaSotilaanKorotus();
+            peli.logiikka.kuittaa();
         }
         for (NappulanKuva nappula : nappulat) {
             nappula.piirra(g);
         }
-        RuudunKorostaja.piirra(g, teema);
+        if (!peli.logiikka.loppu()) {
+            RuudunKorostaja.piirra(g, teema);
+        } else {
+            PeliLoppu.piirra(g, teema);
+        }
     }
 
     private void piirraSyodytNappulat(Graphics g) {
         SyodytPohja.piirra(g, teema);
         int vPaikka = 0;
         int mPaikka = 0;
+        if (syodytNappulat.size() != peli.logiikka.syodyt.size()) {
+            alustaSyodyt();
+        }
         for (NappulanKuva nappula : syodytNappulat) {
             if (nappula.vari.equals("White")) {
                 nappula.piirra(g, 745+(vPaikka%4*50), 390-(vPaikka/4*50));
@@ -133,5 +136,22 @@ public class Piirtoalusta extends JPanel {
         }
         nappulatAlustettu = true;
     }
+
+    private void alustaSyodyt() {
+        syodytNappulat.clear();
+        for (Ruutu nappula : peli.logiikka.syodyt) {
+            String vari = nappula.vari() == Vari.VALKOINEN ? "White" : "Black";
+            syodytNappulat.add(new NappulanKuva(nappula, vari));
+        }
+        vaihdaNappulanKuvat(syodytNappulat);
+    }
+    
+    private void vaihdaNappulanKuvat(List<NappulanKuva> list) {
+        for (NappulanKuva nappula : list) {
+            nappula.img = hae.kuva(teema.nappulat + nappula.vari + nappula.nimi() + ".png");
+        }
+    }
+    
+    
 }
 

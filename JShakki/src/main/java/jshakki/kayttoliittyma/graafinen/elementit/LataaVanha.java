@@ -14,9 +14,9 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
  */
 public class LataaVanha {
         
-    public static final int X = 25;
-    public static final int Y = 395;
-    public static final int LEV = 235;
+    public static final int X = 749;
+    public static final int Y = 25;
+    public static final int LEV = 220;
     public static final int KOR = 65;
         
     public static boolean korosta = false;
