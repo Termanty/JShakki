@@ -39,7 +39,7 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (!peli.aloitustila || !peli.tekoalynVuoro || Pelilauta.hiiriPaalla(e.getPoint())) {
+        if (!peli.aloitustila && !peli.tekoalynVuoro && Pelilauta.hiiriPaalla(e.getPoint())) {
             nappulanJaSiirtojenKorostus(e.getPoint());
             piirtoalusta.repaint();
         }
@@ -47,7 +47,7 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (!peli.aloitustila || !peli.tekoalynVuoro) {
+        if (!peli.aloitustila && !peli.tekoalynVuoro) {
             siirraNappula(e.getPoint());
             RuudunKorostaja.korosta = false;
             piirtoalusta.repaint();
@@ -113,11 +113,9 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
         }
         if (MustanValinta.hiiriPaalla(p)) {
             peli.setMusta();
-            MustanValinta.ihminenValittu = peli.getMusta() == null;
         }
         if (ValkoisenValinta.hiiriPaalla(p)) {
             peli.setValkoinen();
-            ValkoisenValinta.ihminenValittu = peli.getValkoinen() == null;
         }
     }
     

@@ -23,10 +23,10 @@ public class Pelilauta {
      * @return palautetaan true, jos elementin päällä tai päivastoin.
      */
     public static boolean hiiriPaalla(Point p) {
-        return p.x + REUNUS + OS.X >= X 
-                && p.x - REUNUS + OS.X <= X + LEV 
-                && p.y + REUNUS + OS.Y >= Y 
-                && p.y - REUNUS + OS.Y <= Y + KOR;
+        return p.x + OS.X >= X + REUNUS
+                && p.x + OS.X <= X + LEV - REUNUS
+                && p.y + OS.Y >= Y + REUNUS
+                && p.y + OS.Y <= Y + KOR - REUNUS;
     }
     
     /**

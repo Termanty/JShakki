@@ -2,6 +2,7 @@
 package jshakki.jshakki;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import jshakki.logiikka.Logiikka;
 import jshakki.logiikka.nappulat.Ruutu;
@@ -14,12 +15,34 @@ public class Tekoaly {
     public final Vari vari;
     private final Logiikka logiikka;
 
+    /**
+     * Konstruktori
+     * @param vari jota tekoäly ohjaa.
+     * @param logiikka nappuloiden paikkojen ja liikkeiden selvittämiseen.
+     */
     public Tekoaly(Vari vari, Logiikka logiikka) {
         this.vari = vari;
         this.logiikka = logiikka;
     }
 
-    void laskeSiirto() {
+    /**
+     * Tässä etsitään tekoäly siirto.
+     * Ensin arvotaan siirettä nappula. Valitaan vain nappula jota voidaan
+     * siirtää. Tämän jälkeen arvotaan nappulan siirtymispaikka.
+     */
+    public void laskeSiirto() {
+        List<Ruutu> nappulat = haeSiirrettavat();
+        Ruutu nappula;
+        List<int[]> siirrot;
+        do {
+            nappula = nappulat.get((int) (Math.random() * nappulat.size()));
+            siirrot = logiikka.sallitutLiikkeet(nappula.kor(), nappula.lev());
+        } while (siirrot.isEmpty());
+        int[] siirto = siirrot.get((int) (Math.random() * siirrot.size()));
+        logiikka.siirto(nappula.kor(), nappula.lev(), siirto[0], siirto[1]);
+    }
+    
+    private List<Ruutu> haeSiirrettavat() {
         List<Ruutu> nappulat = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -28,21 +51,6 @@ public class Tekoaly {
                 }
             }
         }
-        List<int[]> siirrot;
-        Ruutu nappula;
-        do {
-            int arvottuRuutu = (int) (Math.random() * nappulat.size());
-            nappula = nappulat.get(arvottuRuutu);
-            siirrot = logiikka.sallitutLiikkeet(nappula.kor(), nappula.lev());
-        } while (siirrot.isEmpty());
-        int arvottuSiirto = (int) (Math.random() * siirrot.size());
-        int[] siirto = siirrot.get(arvottuSiirto);
-        if (!logiikka.loppu() && logiikka.siirto(nappula.kor(), nappula.lev(), siirto[0], siirto[1])) {   
-        } else {
-            System.err.println("tekoaly siirto sucked");
-        }
+        return nappulat;
     }
-    
-    
-    
 }

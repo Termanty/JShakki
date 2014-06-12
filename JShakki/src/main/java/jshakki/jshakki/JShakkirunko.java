@@ -20,6 +20,9 @@ public class JShakkirunko {
         aloitustila();
     }
 
+    /**
+     * Uuden pelin aloittaminen.
+     */
     public void uusiPeli() {
         aloitustila = false;
         if (valkoinen != null) {
@@ -27,18 +30,24 @@ public class JShakkirunko {
         }
     }
     
+    /**
+     * Käynnissä olevan pelin lopettaminen.
+     * Siirretään peli aloitustilaan.
+     */
     public void lopetaPeli() {
         aloitustila();
     }
     
-    private void aloitustila() {
-        aloitustila = true;
-        historia = new Pelihistoria();
-        logiikka = new Logiikka(historia);
-    }
-    
+    /**
+     * Siirron toteutus ja tekoälyn siirto.
+     * @param kor mitä siirretään korkeus.
+     * @param lev mitä siirretään leveys.
+     * @param korMin minne siirretään korkeus.
+     * @param levMin minne siirretään leveys.
+     * @return true jos siirto onnistui.
+     */
     public boolean siirto(int kor, int lev, int korMin, int levMin) {
-        if (!logiikka.loppu() && logiikka.siirto(kor, lev, korMin, levMin)) {
+        if (logiikka.siirto(kor, lev, korMin, levMin)) {
             if (musta != null && logiikka.vuoro().equals(musta.vari.name())) {
                 tekoalySiirto(musta);
             }
@@ -79,5 +88,13 @@ public class JShakkirunko {
         tekoalynVuoro = true;
         vari.laskeSiirto();
         tekoalynVuoro = false;
+    }
+    
+    private void aloitustila() {
+        aloitustila = true;
+        historia = new Pelihistoria();
+        logiikka = new Logiikka(historia);
+        valkoinen = null;
+        musta = null;
     }
 }

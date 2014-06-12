@@ -11,7 +11,7 @@ import jshakki.kayttoliittyma.graafinen.teema.*;
 import jshakki.logiikka.nappulat.Ruutu;
 
 /**
- * Piirtoalusta luokka toimii pohjana koko shakkipelin piirtamiselle.
+ * Piirtoalusta luokka toimii pohjana koko shakkipelin piirtämiselle.
  */
 public class Piirtoalusta extends JPanel {
     private final JShakkirunko peli;
@@ -19,7 +19,6 @@ public class Piirtoalusta extends JPanel {
     public final Teema teema;
     public List<NappulanKuva> nappulat;
     public List<NappulanKuva> syodytNappulat;
-    
     private boolean nappulatValmiit = true;
  
     public Piirtoalusta(JShakkirunko peli) {
@@ -58,9 +57,7 @@ public class Piirtoalusta extends JPanel {
         if (peli.aloitustila) {
             aloitustilanElementit(g);
         } else {
-            if (!nappulatValmiit) {
-                nappuloidenAlustaminen();
-            }
+            tarkistaAlustaminen();
             pelitilanElementit(g);
         }
     }
@@ -75,31 +72,45 @@ public class Piirtoalusta extends JPanel {
     private void aloitustilanElementit(Graphics g) {
         PelinAloittaja.piirra(g, teema);
         LataaVanha.piirra(g, teema);
-        ValkoisenValinta.piirra(g, teema);
-        MustanValinta.piirra(g, teema);
+        ValkoisenValinta.piirra(g, teema, peli);
+        MustanValinta.piirra(g, teema, peli);
         nappulatValmiit = false;
+        Slider.nollaa();
     }
     
     private void pelitilanElementit(Graphics g) {
         Vuoro.piirra(g, teema, peli.logiikka);
+        Lopeta.piirra(g, teema);
+        pelihistoriElementtit(g);
+        piirraNappulat(g);
+        piirraSyodytNappulat(g);
+        if (peli.logiikka.loppu()) {
+            PeliLoppu.piirra(g, teema);
+        } else {
+            RuudunKorostaja.piirra(g, teema);
+        }
+    }
+    
+    private void pelihistoriElementtit(Graphics g) {
         SiirrotPohja.piirra(g, teema);
         Siirrot.piirra(g, teema, peli.historia);
         Alakolmio.piirra(g, teema);
         Ylakolmio.piirra(g, teema);
         Slider.piirra(g, teema, peli.historia);
         Tallenna.piirra(g, teema);
-        Lopeta.piirra(g, teema);
-        piirraNappulat(g);
-        piirraSyodytNappulat(g);
+    }
+    
+    private void tarkistaAlustaminen() {
+        if (!nappulatValmiit) {
+            nappuloidenAlustaminen();
+        }
     }
     
     private void nappuloidenAlustaminen() {
         alustaNappulat();
         alustaSyodytNappulat();
         vaihdaKuvat();
-//        teema.alustaTeema();
-    }
-    
+    } 
 
     private void piirraNappulat(Graphics g) {
         if (peli.logiikka.paivita()) {
@@ -109,11 +120,6 @@ public class Piirtoalusta extends JPanel {
         for (NappulanKuva nappula : nappulat) {
             nappula.piirra(g);
         }
-        if (!peli.logiikka.loppu()) {
-            RuudunKorostaja.piirra(g, teema);
-        } else {
-            PeliLoppu.piirra(g, teema);
-        }
     }
 
     private void piirraSyodytNappulat(Graphics g) {
@@ -121,13 +127,9 @@ public class Piirtoalusta extends JPanel {
         int vPaikka = 0, mPaikka = 0;
         for (NappulanKuva nappula : syodytNappulat) {
             if (nappula.vari.equals("White")) {
-//                nappula.piirra(g, 745 + (vPaikka % 4 * 50), 390 - (vPaikka / 4 * 50));
                 vPaikka = nappula.piirra(g, 390, vPaikka, -1);
-//                vPaikka++;
             } else {
                 mPaikka = nappula.piirra(g, 49, mPaikka, 1);
-//                nappula.piirra(g, 745 + (mPaikka % 4 * 50), 40 + (mPaikka / 4 * 50));               
-//                mPaikka++;
             }
         }
     }
@@ -143,7 +145,6 @@ public class Piirtoalusta extends JPanel {
                 }
             }
         }
-        nappulatValmiit = true;
     }
 
     private void alustaSyodytNappulat() {
@@ -153,6 +154,7 @@ public class Piirtoalusta extends JPanel {
             syodytNappulat.add(new NappulanKuva(nappula, vari));
         }
         vaihdaNappulanKuvat(syodytNappulat);
+        nappulatValmiit = true;
     }
     
     private void vaihdaNappulanKuvat(List<NappulanKuva> list) {

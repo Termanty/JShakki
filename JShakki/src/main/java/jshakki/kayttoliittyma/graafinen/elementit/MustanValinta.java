@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
+import jshakki.jshakki.JShakkirunko;
 import jshakki.jshakki.OS;
 import jshakki.kayttoliittyma.graafinen.teema.Teema;
 
@@ -19,9 +20,7 @@ public class MustanValinta {
     
     private static final String ihminen = " IHMINEN";
     private static final String tk = "TIETOKONE";
-    
-    public static boolean ihminenValittu = true;
-        
+
     public static boolean korosta = false;
     
     public static boolean hiiriPaalla(Point p) {
@@ -33,13 +32,14 @@ public class MustanValinta {
      * Elementti piirretaan korostetus, jos hiiri on sen päällä.
      * @param g on otus joka osaa piirtää elementtejä.
      * @param teema tietää minkä tyylin mukaisesti elementti piirretään.
+     * @param peli mustalla pelaavan tekoäly päällä.
      */
-    public static void piirra(Graphics g, Teema teema) {
+    public static void piirra(Graphics g, Teema teema, JShakkirunko peli) {
         g.setFont(new Font("Ariel", Font.BOLD, 18));
         if (korosta) {
-            elementti(g, Color.BLACK, Color.WHITE, !ihminenValittu ? ihminen : tk, 8);
+            elementti(g, Color.BLACK, Color.WHITE, peli.getMusta() != null ? ihminen : tk, 8);
         } else {
-            elementti(g, Color.DARK_GRAY, Color.WHITE, ihminenValittu ? ihminen : tk, 8);
+            elementti(g, Color.DARK_GRAY, Color.WHITE, peli.getMusta() == null ? ihminen : tk, 8);
         }  
     }
     

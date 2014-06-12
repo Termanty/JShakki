@@ -71,6 +71,10 @@ public class Slider {
         }
     }
     
-    
-    
+    public static void nollaa() {
+        y = 135;
+        kor = 290;
+        jako = 0;
+        sliderPos = 0;
+    }  
 }

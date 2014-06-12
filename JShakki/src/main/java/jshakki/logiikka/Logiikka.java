@@ -12,23 +12,18 @@ import jshakki.logiikka.nappulat.*;
  * Shakkipeli luokka huolehtii pelin logiikasta.
  */
 public class Logiikka {
-    
-    Pelihistoria historia;
-    
+    public final int LEV = 8;
+    public final int KOR = 8;
     private final Ruutu[][] PELILAUTA;
     private final Ruutu[][] nappula; // sama kuin PELILAUTA. Tarkoituksena selkeyttää koodia jäljempänä. 
-    
     private final Tyhja TYHJA;
+    private final Pelihistoria historia;
     private Vari vuoro;
     private int vuoroNro;
     private boolean peliPaattyi;
     private boolean paivita;
-    
     public List<Ruutu> syodyt;
-    
-    public final int LEV = 8;
-    public final int KOR = 8;
-
+   
     /**
      * Konstruktori alustaa tärkeimmät luokkamuuttujat.
      * @param historia otukseen tallennetaan siirrot.
@@ -73,7 +68,7 @@ public class Logiikka {
      */
     public boolean siirto(int kor, int lev, int korMin, int levMin) {
         Ruutu syotava = nappula[korMin][levMin];
-        if (tarkistaSiirto(kor, lev, korMin, levMin)) {
+        if (!peliPaattyi && tarkistaSiirto(kor, lev, korMin, levMin)) {
             teeSiirto(kor, lev, korMin, levMin, syotava);
             return true;
         }
@@ -108,18 +103,6 @@ public class Logiikka {
      */
     public Ruutu ruutu(String mj) {
         return ruutu(num(mj,1),kir(mj,0));
-    }
-    
-    public boolean loppu() {
-        return this.peliPaattyi;
-    }
-    
-    public String vuoro() {
-        return this.vuoro.name();
-    }
-    
-    public int vuoroNro() {
-        return this.vuoroNro;
     }
     
     /**
@@ -165,6 +148,19 @@ public class Logiikka {
     }
     
     
+    // gettereitä
+    
+    public boolean loppu() {
+        return this.peliPaattyi;
+    }
+    
+    public String vuoro() {
+        return this.vuoro.name();
+    }
+    
+    public int vuoroNro() {
+        return this.vuoroNro;
+    }
     
     
 /// PRIVATE METODIT ******************************************************************

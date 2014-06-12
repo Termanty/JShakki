@@ -4,14 +4,7 @@ package jshakki.logiikka;
 import jshakki.logiikka.nappulat.Vari;
 import java.util.HashMap;
 import jshakki.jshakki.Pelihistoria;
-import jshakki.logiikka.nappulat.Kuningas;
-import jshakki.logiikka.nappulat.Kuningatar;
-import jshakki.logiikka.nappulat.Lahetti;
-import jshakki.logiikka.nappulat.Ratsu;
-import jshakki.logiikka.nappulat.Ruutu;
-import jshakki.logiikka.nappulat.Sotilas;
-import jshakki.logiikka.nappulat.Torni;
-import jshakki.logiikka.nappulat.Tyhja;
+import jshakki.logiikka.nappulat.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
