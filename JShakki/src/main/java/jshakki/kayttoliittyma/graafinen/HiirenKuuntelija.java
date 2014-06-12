@@ -28,31 +28,30 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (Vaihtaja.hiiriPaalla(e.getPoint())) {
-            piirtoalusta.teema.vaihdaTeema();
-        }
+        ainapaallaElementtiaKlikattu(e.getPoint()); 
         if (peli.aloitustila) {
-            aloitusElementtiaKlikattu(e.getPoint());
+            aloitustilanElementtiaKlikattu(e.getPoint());
         } else {
-            elementtiaKlikattu(e.getPoint());
+            pelitilanteenElementtiaKlikattu(e.getPoint());
         }
         piirtoalusta.repaint();
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (!peli.aloitustila) {
+        if (!peli.aloitustila || !peli.tekoalynVuoro || Pelilauta.hiiriPaalla(e.getPoint())) {
             nappulanJaSiirtojenKorostus(e.getPoint());
+            piirtoalusta.repaint();
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (!peli.aloitustila) {
+        if (!peli.aloitustila || !peli.tekoalynVuoro) {
             siirraNappula(e.getPoint());
             RuudunKorostaja.korosta = false;
+            piirtoalusta.repaint();
         }
-        piirtoalusta.repaint();
     }
 
     @Override
@@ -73,36 +72,42 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     }
     
     private void elementtienTunnistus(Point p) {
-        Vaihtaja.korosta = Vaihtaja.hiiriPaalla(p);
-        Oikeudet.korosta = Oikeudet.hiiriPaalla(p);
+        ainaKorostettavatElementit(p);
         if (peli.aloitustila) {
-            PelinAloittaja.korosta = PelinAloittaja.hiiriPaalla(p);
-            LataaVanha.korosta = LataaVanha.hiiriPaalla(p);
-            ValkoisenValinta.korosta = ValkoisenValinta.hiiriPaalla(p);
-            MustanValinta.korosta = MustanValinta.hiiriPaalla(p);        
+            aloitustilanKorostettavatElementit(p);     
         } else {
-            Ylakolmio.korosta = Ylakolmio.hiiriPaalla(p);
-            Alakolmio.korosta = Alakolmio.hiiriPaalla(p);
-            Slider.korosta = Slider.hiiriPaalla(p);
-            Tallenna.korosta = Tallenna.hiiriPaalla(p);
-            Lopeta.korosta = Lopeta.hiiriPaalla(p);
+            pelitilanKorostettavatElementit(p);
         }
         piirtoalusta.repaint();
     }
-
-    private void elementtiaKlikattu(Point p) {
-        if (Ylakolmio.hiiriPaalla(p)) {
-            Slider.kasvata();
-        }
-        if (Alakolmio.hiiriPaalla(p)) {
-            Slider.vahenna();
-        }
-        if (Lopeta.hiiriPaalla(p)) {
-            peli.lopetaPeli();
+    
+    private void ainaKorostettavatElementit(Point p) {
+        Vaihtaja.korosta = Vaihtaja.hiiriPaalla(p);
+        Oikeudet.korosta = Oikeudet.hiiriPaalla(p);
+    }
+    
+    private void aloitustilanKorostettavatElementit(Point p) {
+        PelinAloittaja.korosta = PelinAloittaja.hiiriPaalla(p);
+        LataaVanha.korosta = LataaVanha.hiiriPaalla(p);
+        ValkoisenValinta.korosta = ValkoisenValinta.hiiriPaalla(p);
+        MustanValinta.korosta = MustanValinta.hiiriPaalla(p);  
+    }
+    
+    private void pelitilanKorostettavatElementit(Point p) {
+        Ylakolmio.korosta = Ylakolmio.hiiriPaalla(p);
+        Alakolmio.korosta = Alakolmio.hiiriPaalla(p);
+        Slider.korosta = Slider.hiiriPaalla(p);
+        Tallenna.korosta = Tallenna.hiiriPaalla(p);
+        Lopeta.korosta = Lopeta.hiiriPaalla(p);  
+    }
+    
+    private void ainapaallaElementtiaKlikattu(Point p) {
+        if (Vaihtaja.hiiriPaalla(p)) {
+            piirtoalusta.teema.vaihdaTeema();
         }
     }
     
-    private void aloitusElementtiaKlikattu(Point p) {
+    private void aloitustilanElementtiaKlikattu(Point p) {
         if (PelinAloittaja.hiiriPaalla(p)) {
             peli.uusiPeli();
         }
@@ -116,18 +121,27 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
         }
     }
     
+    private void pelitilanteenElementtiaKlikattu(Point p) {
+        if (Ylakolmio.hiiriPaalla(p)) {
+            Slider.kasvata();
+        }
+        if (Alakolmio.hiiriPaalla(p)) {
+            Slider.vahenna();
+        }
+        if (Lopeta.hiiriPaalla(p)) {
+            peli.lopetaPeli();
+        }
+    }
+
     private void nappulanJaSiirtojenKorostus(Point p) {
-        if (Pelilauta.hiiriPaalla(p)) {
-            korMis = ykoordinaatti(p.y);
-            levMis = xkoordinaatti(p.x);
-            if (!peli.logiikka.tyhjaRuutu(7-korMis, levMis) &&
-                peli.logiikka.vuoro().equals(peli.logiikka.ruutu(7 - korMis, levMis).vari().name())) {
-                RuudunKorostaja.korosta = true;
-                RuudunKorostaja.y = korMis;
-                RuudunKorostaja.x = levMis;
-                RuudunKorostaja.siirrot = peli.logiikka.sallitutLiikkeet(7 - korMis, levMis);
-                piirtoalusta.repaint();
-            }
+        korMis = ykoordinaatti(p.y);
+        levMis = xkoordinaatti(p.x);
+        if (!peli.logiikka.tyhjaRuutu(7 - korMis, levMis)
+                && peli.logiikka.vuoro().equals(peli.logiikka.ruutu(7 - korMis, levMis).vari().name())) {
+            RuudunKorostaja.korosta = true;
+            RuudunKorostaja.y = korMis;
+            RuudunKorostaja.x = levMis;
+            RuudunKorostaja.siirrot = peli.logiikka.sallitutLiikkeet(7 - korMis, levMis);
         }
     }
     

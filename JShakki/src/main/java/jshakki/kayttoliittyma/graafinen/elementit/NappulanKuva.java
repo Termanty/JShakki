@@ -41,10 +41,10 @@ public class NappulanKuva {
      */
     public void piirra(Graphics g) {
         piirra(g, 300+(nappula.lev()*50), 40+((7-nappula.kor())*50));
-    }
+    } 
     
     /**
-     * Piirtää nappulan.
+     * Piirtää nappulan annettuihin koordinaatteihin.
      * @param g on Swinging Graphics otus.
      * @param x on kuvan vasemman yläkulman x sijainti
      * @param y on kuvan vasemman yläkulman y sijainti
@@ -52,4 +52,21 @@ public class NappulanKuva {
     public void piirra(Graphics g, int x, int y) {
         g.drawImage(image, x, y, null);
     }
+    
+    /**
+     * Piirtää syödyn nappulan.
+     * @param g on Swinging Graphics otus.
+     * @param y on kuvan vasemman yläkulman y sijainti
+     * @param laskuri tietää monesko syöty nappula tietylle värille.
+     * @param etumerkki määrää tuleeko lisärivi edellisen ylä vai alapuolelle.
+     * @return 
+     */
+    public int piirra(Graphics g, int y, int laskuri, int etumerkki) {
+        piirra(g, 745 + (laskuri % 4 * 50), y + etumerkki * (laskuri / 4) * 50);
+        return ++laskuri;
+    }
+
+   
+    
+    
 }

@@ -10,27 +10,21 @@ import jshakki.logiikka.nappulat.Vari;
  */
 public class JShakkirunko {
     public Logiikka logiikka = null;
-    public Pelihistoria historia = null;
-    private HistoriatiedostonKasittelija tiedostonkasittelija;
-    
+    public Pelihistoria historia = null; 
     public boolean aloitustila = true;
-    
+    public boolean tekoalynVuoro = false;
     private Tekoaly valkoinen = null;
     private Tekoaly musta = null;
 
     public JShakkirunko() {
-        tiedostonkasittelija = new HistoriatiedostonKasittelija();
         aloitustila();
     }
 
     public void uusiPeli() {
-        if (valkoinen != null) {
-            if (musta != null) {
-                System.err.println("Ei toimi vielä");
-            }
-            valkoinen.laskeSiirto();
-        }
         aloitustila = false;
+        if (valkoinen != null) {
+            tekoalySiirto(valkoinen);
+        }
     }
     
     public void lopetaPeli() {
@@ -46,28 +40,19 @@ public class JShakkirunko {
     public boolean siirto(int kor, int lev, int korMin, int levMin) {
         if (!logiikka.loppu() && logiikka.siirto(kor, lev, korMin, levMin)) {
             if (musta != null && logiikka.vuoro().equals(musta.vari.name())) {
-                musta.laskeSiirto();
+                tekoalySiirto(musta);
             }
             if (valkoinen != null && logiikka.vuoro().equals(valkoinen.vari.name())) {
-                valkoinen.laskeSiirto();
+                tekoalySiirto(valkoinen);
             }
             return true;
         }
         return false;
     }
-    
-    public void lataaTallennettuPeli() {
-        
-    }
-    
-    public void tallennaPeli() {
-        
-    }
 
     public Tekoaly getValkoinen() {
         return valkoinen;
     }
-
 
     public void setValkoinen() {
         if (valkoinen == null && musta == null) {
@@ -90,4 +75,9 @@ public class JShakkirunko {
         }
     }
 
+    private void tekoalySiirto(Tekoaly vari) {
+        tekoalynVuoro = true;
+        vari.laskeSiirto();
+        tekoalynVuoro = false;
+    }
 }

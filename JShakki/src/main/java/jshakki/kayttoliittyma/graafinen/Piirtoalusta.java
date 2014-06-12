@@ -118,15 +118,16 @@ public class Piirtoalusta extends JPanel {
 
     private void piirraSyodytNappulat(Graphics g) {
         SyodytPohja.piirra(g, teema);
-        int vPaikka = 0;
-        int mPaikka = 0;
+        int vPaikka = 0, mPaikka = 0;
         for (NappulanKuva nappula : syodytNappulat) {
             if (nappula.vari.equals("White")) {
-                nappula.piirra(g, 745 + (vPaikka % 4 * 50), 390 - (vPaikka / 4 * 50));
-                vPaikka++;
+//                nappula.piirra(g, 745 + (vPaikka % 4 * 50), 390 - (vPaikka / 4 * 50));
+                vPaikka = nappula.piirra(g, 390, vPaikka, -1);
+//                vPaikka++;
             } else {
-                nappula.piirra(g, 745 + (mPaikka % 4 * 50), 40 + (mPaikka / 4 * 50));
-                mPaikka++;
+                mPaikka = nappula.piirra(g, 49, mPaikka, 1);
+//                nappula.piirra(g, 745 + (mPaikka % 4 * 50), 40 + (mPaikka / 4 * 50));               
+//                mPaikka++;
             }
         }
     }

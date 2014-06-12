@@ -13,8 +13,6 @@ import jshakki.logiikka.nappulat.Vari;
 public class Tekoaly {
     public final Vari vari;
     private final Logiikka logiikka;
-    
-    public boolean vuoro = false;
 
     public Tekoaly(Vari vari, Logiikka logiikka) {
         this.vari = vari;
@@ -22,7 +20,6 @@ public class Tekoaly {
     }
 
     void laskeSiirto() {
-        vuoro = true;
         List<Ruutu> nappulat = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -40,10 +37,10 @@ public class Tekoaly {
         } while (siirrot.isEmpty());
         int arvottuSiirto = (int) (Math.random() * siirrot.size());
         int[] siirto = siirrot.get(arvottuSiirto);
-        if (logiikka.loppu() && logiikka.siirto(nappula.kor(), nappula.lev(), siirto[0], siirto[1])) {
+        if (!logiikka.loppu() && logiikka.siirto(nappula.kor(), nappula.lev(), siirto[0], siirto[1])) {   
+        } else {
             System.err.println("tekoaly siirto sucked");
         }
-        vuoro = false;
     }
     
     

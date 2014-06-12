@@ -10,6 +10,9 @@ import java.util.Scanner;
 
 /**
  * Tämä luokka lataa ja tallentaa pelejä.
+ * 
+ * EI VIELÄ KÄYTÖSSÄ !!!
+ * 
  */
 public class HistoriatiedostonKasittelija {
     private final String tiedostonNimi = "historia.txt";
