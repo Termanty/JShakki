@@ -156,7 +156,7 @@ public class Piirtoalusta extends JPanel {
     
     private void vaihdaNappulanKuvat(List<NappulanKuva> list) {
         for (NappulanKuva nappula : list) {
-            nappula.img = hae.kuva(teema.nappulat + nappula.vari + nappula.nimi() + ".png");
+            nappula.image = hae.kuva(teema.nappulat + nappula.vari + nappula.nimi() + ".png");
         }
     }
 }

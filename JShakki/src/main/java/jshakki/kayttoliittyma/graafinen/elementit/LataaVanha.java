@@ -12,12 +12,11 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
  *
  * @author termanty
  */
-public class LataaVanha {
-        
-    public static final int X = 749;
-    public static final int Y = 25;
-    public static final int LEV = 220;
-    public static final int KOR = 65;
+public class LataaVanha {        
+    private static final int X = 749;
+    private static final int Y = 25;
+    private static final int LEV = 220;
+    private static final int KOR = 65;
         
     public static boolean korosta = false;
     

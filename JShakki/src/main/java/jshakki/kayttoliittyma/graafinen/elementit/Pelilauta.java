@@ -8,16 +8,12 @@ import jshakki.jshakki.OS;
 /**
  * Pelilauta luokka piirtää elementin ja tarkistaa hiiren oleilun sen päällä.
  */
-public class Pelilauta {
-    
-    public static final int X = 280;
-    public static final int Y = 20;
-    public static final int LEV = 440;
-    public static final int KOR = 440;
-    public static final int X_LOPPU = X + LEV;
-    public static final int Y_LOPPU = Y + KOR;
-    
-    public static final int REUNUS = 20;
+public class Pelilauta {   
+    private static final int X = 280;
+    private static final int Y = 20;
+    private static final int LEV = 440;
+    private static final int KOR = 440;  
+    private static final int REUNUS = 20;
     
     public static BufferedImage img;
     
@@ -28,9 +24,9 @@ public class Pelilauta {
      */
     public static boolean hiiriPaalla(Point p) {
         return p.x + REUNUS + OS.X >= X 
-                && p.x - REUNUS + OS.X <= X_LOPPU 
+                && p.x - REUNUS + OS.X <= X + LEV 
                 && p.y + REUNUS + OS.Y >= Y 
-                && p.y - REUNUS + OS.Y <= Y_LOPPU;
+                && p.y - REUNUS + OS.Y <= Y + KOR;
     }
     
     /**

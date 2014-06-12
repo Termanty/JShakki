@@ -12,11 +12,10 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
  * Vaihtaja luokka piirtää elemetin ja tarkistaa onko hiiri sen päällä.
  */
 public class Vaihtaja {
-    
-    public static final int X = 740;
-    public static final int Y = 480;
-    public static final int LEV = 220;
-    public static final int KOR = 40;
+    private static final int X = 740;
+    private static final int Y = 480;
+    private static final int LEV = 220;
+    private static final int KOR = 40;
         
     public static boolean korosta = false;
     

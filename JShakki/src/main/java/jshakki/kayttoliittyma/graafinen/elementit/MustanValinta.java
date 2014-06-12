@@ -12,10 +12,10 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
  * MustanValinta luokka sisältää tiedot elementin piirtämiseen.
  */
 public class MustanValinta {
-    public static final int X = 435;
-    public static final int Y = 65;
-    public static final int LEV = 130;
-    public static final int KOR = 40;
+    private static final int X = 435;
+    private static final int Y = 65;
+    private static final int LEV = 130;
+    private static final int KOR = 40;
     
     private static final String ihminen = " IHMINEN";
     private static final String tk = "TIETOKONE";

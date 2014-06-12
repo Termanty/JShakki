@@ -12,11 +12,10 @@ import jshakki.logiikka.nappulat.Vari;
  * Vuoro luokka piirtää elementin, joka kertoo vuorossa olevan pelaajan.
  */
 public class Vuoro {
-    
-    public static final int X = 25;
-    public static final int Y = 25;
-    public static final int LEV = 235;
-    public static final int KOR = 65;
+    private static final int X = 25;
+    private static final int Y = 25;
+    private static final int LEV = 235;
+    private static final int KOR = 65;
     
     /**
      * piirra metodi piirtää vaihtaja elementin.

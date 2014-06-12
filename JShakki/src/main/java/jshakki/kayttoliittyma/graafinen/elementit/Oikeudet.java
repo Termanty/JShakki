@@ -13,13 +13,10 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
  */
 public class Oikeudet {
     
-    public static final int X = 740;
-    public static final int Y = 535;
-    public static final int LEV = 220;
-    public static final int KOR = 40;
-    
-    public static final String teksti = "copyright";
-    public static final String korostettuTeksti = "Tero Mäntylä 2014";
+    private static final int X = 740;
+    private static final int Y = 535;
+    private static final int LEV = 220;
+    private static final int KOR = 40;
     
     public static boolean korosta = false;
     

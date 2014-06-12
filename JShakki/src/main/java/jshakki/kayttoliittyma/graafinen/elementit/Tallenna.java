@@ -12,10 +12,10 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
  * Tallenna luokka piirtaa elementin pelin tallennusta varten.
  */
 public class Tallenna {
-    public static final int X = 25;
-    public static final int Y = 480;
-    public static final int LEV = 190;
-    public static final int KOR = 40;
+    private static final int X = 25;
+    private static final int Y = 480;
+    private static final int LEV = 190;
+    private static final int KOR = 40;
         
     public static boolean korosta = false;
     

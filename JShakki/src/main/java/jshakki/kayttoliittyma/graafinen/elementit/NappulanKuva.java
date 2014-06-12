@@ -10,27 +10,46 @@ import jshakki.logiikka.nappulat.Ruutu;
  */
 public class NappulanKuva {
     public final Ruutu nappula;
-    public String vari;
-    public BufferedImage img;
+    public final String vari;
+    public BufferedImage image;
 
+    /**
+     * Konstruktori luokalle NappulanKuva.
+     * @param nappula on logiikkan nappula.
+     * @param vari on nappulan väri.
+     */
     public NappulanKuva(Ruutu nappula, String vari) {
         this.nappula = nappula;
         this.vari = vari;
     }
     
-    public void vaihdaTeema(BufferedImage image) {
-        this.img = image;
+    public void setImage(BufferedImage image) {
+        this.image = image;
     }
     
+    /**
+     * Tätä metodia käytetään napulan kuvatiedoston nimen konstruktointiin.
+     * @return palauttaa logiikan nimen nappulalle.
+     */
     public String nimi() {
         return " " + nappula.nimi();
     }
     
+    /**
+     * Piirtää nappulan oikeaan paikkaan pelilaudalla.
+     * @param g on Swinging Graphics otus.
+     */
     public void piirra(Graphics g) {
-        g.drawImage(img, 300+(nappula.lev()*50), 40+((7-nappula.kor())*50), null);
+        piirra(g, 300+(nappula.lev()*50), 40+((7-nappula.kor())*50));
     }
     
+    /**
+     * Piirtää nappulan.
+     * @param g on Swinging Graphics otus.
+     * @param x on kuvan vasemman yläkulman x sijainti
+     * @param y on kuvan vasemman yläkulman y sijainti
+     */
     public void piirra(Graphics g, int x, int y) {
-        g.drawImage(img, x, y, null);
+        g.drawImage(image, x, y, null);
     }
 }

@@ -12,10 +12,10 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
  * Elementtiä klikkaamalla pystyy siirto listalla liikkumaan alaspäin.
  */
 public class Alakolmio {    
-    public static final int X = 230;
-    public static final int Y = 435;
-    public static final int LEV = 30;
-    public static final int KOR = 20;
+    private static final int X = 230;
+    private static final int Y = 435;
+    private static final int LEV = 30;
+    private static final int KOR = 20;
     
     private static final int kolmioX[] = {X,X+(LEV/2),X + LEV};
     private static final int kolmioY[] = {Y,Y + KOR,Y};

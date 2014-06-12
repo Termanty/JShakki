@@ -12,10 +12,10 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
  * Lopeta luokka piirtää pelin lopettamiselementin.
  */
 public class Lopeta {
-    public static final int X = 25;
-    public static final int Y = 535;
-    public static final int LEV = 190;
-    public static final int KOR = 40;
+    private static final int X = 25;
+    private static final int Y = 535;
+    private static final int LEV = 190;
+    private static final int KOR = 40;
         
     public static boolean korosta = false;
     

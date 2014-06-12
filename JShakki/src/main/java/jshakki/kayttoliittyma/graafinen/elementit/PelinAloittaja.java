@@ -12,11 +12,10 @@ import jshakki.kayttoliittyma.graafinen.teema.Teema;
  * PelinAloittaja luokka sisältää tiedot elementin piirtämiseen.
  */
 public class PelinAloittaja {
-    
-    public static final int X = 25;
-    public static final int Y = 25;
-    public static final int LEV = 235;
-    public static final int KOR = 65;
+    private static final int X = 25;
+    private static final int Y = 25;
+    private static final int LEV = 235;
+    private static final int KOR = 65;
     
     public static boolean korosta = false;
     

@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
  * Taustakuva luokka piirtää teeman mukaisen taustakuvan. 
  */
 public class Taustakuva {
-    public static final int X = 0;
-    public static final int Y = 0;
+    private static final int X = 0;
+    private static final int Y = 0;
     public static BufferedImage img;
      
     /**
