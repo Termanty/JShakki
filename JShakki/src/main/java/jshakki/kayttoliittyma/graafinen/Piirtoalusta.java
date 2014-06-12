@@ -20,7 +20,7 @@ public class Piirtoalusta extends JPanel {
     public List<NappulanKuva> nappulat;
     public List<NappulanKuva> syodytNappulat;
     
-    private boolean nappulatAlustettu = true;
+    private boolean nappulatValmiit = true;
  
     public Piirtoalusta(JShakkirunko peli) {
         super();
@@ -30,7 +30,6 @@ public class Piirtoalusta extends JPanel {
         this.nappulat = new ArrayList<>();
         this.syodytNappulat = new ArrayList<>();
         teema.alustaTeema();
-//        alustaPelimerkit();
     }
  
     @Override
@@ -55,45 +54,56 @@ public class Piirtoalusta extends JPanel {
     }
     
     private void piirraElementit(Graphics g) {
-        Taustakuva.piirra(g);
-        Pelilauta.piirra(g);   
-        Vaihtaja.piirra(g, teema);
-        Oikeudet.piirra(g, teema);
-        //
+        ainaPiirrettavat(g);
         if (peli.aloitustila) {
-//            AloitusPohja.piirra(g, teema, hae);
-            PelinAloittaja.piirra(g, teema);
-            LataaVanha.piirra(g, teema);
-//            Pelaajat.piirra(g, teema);
-            ValkoisenValinta.piirra(g, teema);
-            MustanValinta.piirra(g, teema);
-            nappulatAlustettu = false;
+            aloitustilanElementit(g);
         } else {
-            if (!nappulatAlustettu) {
-                nappulat.clear();
-                syodytNappulat.clear();
-                alustaPelimerkit();
-                vaihdaKuvat();
-                teema.alustaTeema();
+            if (!nappulatValmiit) {
+                nappuloidenAlustaminen();
             }
-            Vuoro.piirra(g, teema, peli.logiikka);
-            SiirrotPohja.piirra(g, teema);
-            Siirrot.piirra(g, teema, peli.historia);
-            Alakolmio.piirra(g, teema);
-            Ylakolmio.piirra(g, teema);
-            Slider.piirra(g, teema, peli.historia);
-            Tallenna.piirra(g, teema);
-            Lopeta.piirra(g, teema);
-            piirraNappulat(g);
-            piirraSyodytNappulat(g);
+            pelitilanElementit(g);
         }
     }
+    
+    private void ainaPiirrettavat(Graphics g) {
+        Taustakuva.piirra(g);
+        Pelilauta.piirra(g);
+        Vaihtaja.piirra(g, teema);
+        Oikeudet.piirra(g, teema);
+    }
+    
+    private void aloitustilanElementit(Graphics g) {
+        PelinAloittaja.piirra(g, teema);
+        LataaVanha.piirra(g, teema);
+        ValkoisenValinta.piirra(g, teema);
+        MustanValinta.piirra(g, teema);
+        nappulatValmiit = false;
+    }
+    
+    private void pelitilanElementit(Graphics g) {
+        Vuoro.piirra(g, teema, peli.logiikka);
+        SiirrotPohja.piirra(g, teema);
+        Siirrot.piirra(g, teema, peli.historia);
+        Alakolmio.piirra(g, teema);
+        Ylakolmio.piirra(g, teema);
+        Slider.piirra(g, teema, peli.historia);
+        Tallenna.piirra(g, teema);
+        Lopeta.piirra(g, teema);
+        piirraNappulat(g);
+        piirraSyodytNappulat(g);
+    }
+    
+    private void nappuloidenAlustaminen() {
+        alustaNappulat();
+        alustaSyodytNappulat();
+        vaihdaKuvat();
+//        teema.alustaTeema();
+    }
+    
 
     private void piirraNappulat(Graphics g) {
         if (peli.logiikka.paivita()) {
-            nappulat.clear();
-            alustaPelimerkit();
-            vaihdaKuvat();
+            nappuloidenAlustaminen();
             peli.logiikka.kuittaa();
         }
         for (NappulanKuva nappula : nappulat) {
@@ -110,21 +120,19 @@ public class Piirtoalusta extends JPanel {
         SyodytPohja.piirra(g, teema);
         int vPaikka = 0;
         int mPaikka = 0;
-        if (syodytNappulat.size() != peli.logiikka.syodyt.size()) {
-            alustaSyodyt();
-        }
         for (NappulanKuva nappula : syodytNappulat) {
             if (nappula.vari.equals("White")) {
-                nappula.piirra(g, 745+(vPaikka%4*50), 390-(vPaikka/4*50));
+                nappula.piirra(g, 745 + (vPaikka % 4 * 50), 390 - (vPaikka / 4 * 50));
                 vPaikka++;
             } else {
-                nappula.piirra(g, 745+(mPaikka%4*50), 40+(mPaikka/4*50));
+                nappula.piirra(g, 745 + (mPaikka % 4 * 50), 40 + (mPaikka / 4 * 50));
                 mPaikka++;
             }
         }
     }
     
-    private void alustaPelimerkit() {
+    private void alustaNappulat() {
+        nappulat.clear();
         for (int kor = 0; kor < 8; kor++) {
             for (int lev = 0; lev < 8; lev++) {
                 Ruutu nappula = peli.logiikka.ruutu(kor, lev);
@@ -134,10 +142,10 @@ public class Piirtoalusta extends JPanel {
                 }
             }
         }
-        nappulatAlustettu = true;
+        nappulatValmiit = true;
     }
 
-    private void alustaSyodyt() {
+    private void alustaSyodytNappulat() {
         syodytNappulat.clear();
         for (Ruutu nappula : peli.logiikka.syodyt) {
             String vari = nappula.vari() == Vari.VALKOINEN ? "White" : "Black";
@@ -151,7 +159,5 @@ public class Piirtoalusta extends JPanel {
             nappula.img = hae.kuva(teema.nappulat + nappula.vari + nappula.nimi() + ".png");
         }
     }
-    
-    
 }
 

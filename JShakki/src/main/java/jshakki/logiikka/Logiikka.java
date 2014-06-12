@@ -31,6 +31,7 @@ public class Logiikka {
 
     /**
      * Konstruktori alustaa tärkeimmät luokkamuuttujat.
+     * @param historia otukseen tallennetaan siirrot.
      */
     public Logiikka(Pelihistoria historia) {
         this.historia = historia;
@@ -38,13 +39,11 @@ public class Logiikka {
         this.nappula = this.PELILAUTA;
         this.syodyt = new ArrayList<>();
         this.TYHJA = new Tyhja();
-        pelitilanteenAlustus();
         this.vuoro = Vari.VALKOINEN;
         this.vuoroNro = 1;
         this.peliPaattyi = false;
         this.paivita = false;
-        
-        
+        pelitilanteenAlustus();
     }
     
     /**
@@ -75,15 +74,7 @@ public class Logiikka {
     public boolean siirto(int kor, int lev, int korMin, int levMin) {
         Ruutu syotava = nappula[korMin][levMin];
         if (tarkistaSiirto(kor, lev, korMin, levMin)) {
-            if (syotava != TYHJA) {
-                syodyt.add(syotava);
-                paivita = true;
-            }
-            syodaankoKuningas(korMin, levMin);
-            nappula[kor][lev].kasvataSiirtoLaskuria();
-            vaihdaPaikat(kor, lev, korMin, levMin);
-            historia.tallennaSiirto(kor, lev, korMin, levMin);
-            vaihdaVuoro();
+            teeSiirto(kor, lev, korMin, levMin, syotava);
             return true;
         }
         return false;
@@ -120,7 +111,7 @@ public class Logiikka {
     }
     
     public boolean loppu() {
-        return peliPaattyi;
+        return this.peliPaattyi;
     }
     
     public String vuoro() {
@@ -178,7 +169,21 @@ public class Logiikka {
     
 /// PRIVATE METODIT ******************************************************************
     
+    private void teeSiirto(int kor, int lev, int korMin, int levMin, Ruutu syotava) {
+        liisaaSyoty(syotava);
+        syodaankoKuningas(korMin, levMin);
+        nappula[kor][lev].kasvataSiirtoLaskuria();
+        vaihdaPaikat(kor, lev, korMin, levMin);
+        historia.tallennaSiirto(kor, lev, korMin, levMin);
+        vaihdaVuoro();
+    }
     
+    private void liisaaSyoty(Ruutu syotava) {
+        if (syotava != TYHJA) {
+            syodyt.add(syotava);
+            paivita = true;
+        }
+    }
     
     private int kir(String mj, int i) {
         return (int) (mj.charAt(i) - 'a');

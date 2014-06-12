@@ -140,12 +140,20 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     }
     
     private int xkoordinaatti(int x) {
-        return (x - 300 + OS.X) / 50;
+        return rajaTarkistus((x - 300 + OS.X) / 50);
     }
     
     private int ykoordinaatti(int y) {
-        return (y - 40 + OS.Y) / 50;
+        return rajaTarkistus((y - 40 + OS.Y) / 50);
     }
- 
     
+    private int rajaTarkistus (int i) {
+        if (i < 0) {
+            return 0;
+        }
+        if (i > 7) {
+            return 7;
+        }
+        return i;
+    }
 }

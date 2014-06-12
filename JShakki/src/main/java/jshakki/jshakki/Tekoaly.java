@@ -12,7 +12,7 @@ import jshakki.logiikka.nappulat.Vari;
  */
 public class Tekoaly {
     public final Vari vari;
-    private Logiikka logiikka;
+    private final Logiikka logiikka;
     
     public boolean vuoro = false;
 
@@ -40,9 +40,7 @@ public class Tekoaly {
         } while (siirrot.isEmpty());
         int arvottuSiirto = (int) (Math.random() * siirrot.size());
         int[] siirto = siirrot.get(arvottuSiirto);
-        if (!logiikka.loppu() && logiikka.siirto(nappula.kor(), nappula.lev(), siirto[0], siirto[1])) {
-            System.err.println("tekoaly siirto toimi");
-        } else {
+        if (logiikka.loppu() && logiikka.siirto(nappula.kor(), nappula.lev(), siirto[0], siirto[1])) {
             System.err.println("tekoaly siirto sucked");
         }
         vuoro = false;
