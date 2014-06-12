@@ -40,4 +40,26 @@ ti 3.6.
   Käyttöliittymän refaktorointi, Vähän dokumentointia. 7 h
 
 ke 4.6.
-  JavaDocit luokille, sekvenssikaaviot, kaiken laitto palautus kuntoon. 7 h 
+  JavaDocit luokille, sekvenssikaaviot, kaiken laitto palautus kuntoon. 7 h
+
+## viikko V
+pe 6.6.
+  Pelin aloitus ja lopetus logiikka sekä grafiikka. 6 h.
+
+la 7.6.
+  Pelin aloitus ja lopetus logiikka sekä grafiikka. 2 h.
+
+ti 10.6.
+  Tekoälyn toteutus ja sen vuorojen hallinta. 4 h.
+
+ke 11.6.
+  Tekoälyn toteutus ja sen vuorojen hallinta. 6 h.
+
+to 12.6.
+  Refaktorointia, bugien korjausta, dokumentointi viikon palautusta varten. 6 h.
+
+
+
+
+
+
