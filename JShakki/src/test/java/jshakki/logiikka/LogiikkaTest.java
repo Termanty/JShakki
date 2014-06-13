@@ -9,13 +9,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
  * @author termanty
  */
-public class ShakkipeliTest {
+public class LogiikkaTest {
     Logiikka testattava;
     
-    public ShakkipeliTest() {
+    public LogiikkaTest() {
         testattava = new Logiikka(new Pelihistoria());
     }    
     
