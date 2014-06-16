@@ -49,8 +49,8 @@ public class GraafinenKayttoliittyma implements Runnable {
     }
     
     private void lisaaKuuntelijat() {
-        frame.addMouseListener(new HiirenKuuntelija(peli, piirtoalusta));
-        frame.addMouseMotionListener(new HiirenKuuntelija(peli, piirtoalusta));
+        piirtoalusta.addMouseListener(new HiirenKuuntelija(peli, piirtoalusta));
+        piirtoalusta.addMouseMotionListener(new HiirenKuuntelija(peli, piirtoalusta));
     }
 
     public JFrame getFrame() {

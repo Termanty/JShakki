@@ -3,7 +3,6 @@ package jshakki.kayttoliittyma.graafinen.elementit;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import jshakki.jshakki.OS;
 
 /**
  * Pelilauta luokka piirtää elementin ja tarkistaa hiiren oleilun sen päällä.
@@ -23,10 +22,10 @@ public class Pelilauta {
      * @return palautetaan true, jos elementin päällä tai päivastoin.
      */
     public static boolean hiiriPaalla(Point p) {
-        return p.x + OS.X >= X + REUNUS
-                && p.x + OS.X <= X + LEV - REUNUS
-                && p.y + OS.Y >= Y + REUNUS
-                && p.y + OS.Y <= Y + KOR - REUNUS;
+        return p.x >= X + REUNUS
+                && p.x <= X + LEV - REUNUS
+                && p.y >= Y + REUNUS
+                && p.y <= Y + KOR - REUNUS;
     }
     
     /**

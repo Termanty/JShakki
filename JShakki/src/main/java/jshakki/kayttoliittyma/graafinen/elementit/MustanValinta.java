@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import jshakki.jshakki.JShakkirunko;
-import jshakki.jshakki.OS;
 import jshakki.kayttoliittyma.graafinen.teema.Teema;
 
 /**
@@ -24,7 +23,7 @@ public class MustanValinta {
     public static boolean korosta = false;
     
     public static boolean hiiriPaalla(Point p) {
-        return p.x + OS.X >= X && p.x + OS.X <= X + LEV && p.y + OS.Y >= Y && p.y + OS.Y <= Y + KOR;
+        return p.x >= X && p.x <= X + LEV && p.y >= Y && p.y <= Y + KOR;
     }
     
     /**

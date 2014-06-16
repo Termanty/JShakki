@@ -7,7 +7,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import jshakki.jshakki.JShakkirunko;
-import jshakki.jshakki.OS;
 
 /**
  * Hiirenkuuntelija luokka seuraa hiiren toimintoja.
@@ -152,11 +151,11 @@ public class HiirenKuuntelija implements MouseListener, MouseMotionListener {
     }
     
     private int xkoordinaatti(int x) {
-        return rajaTarkistus((x - 300 + OS.X) / 50);
+        return rajaTarkistus((x - 300) / 50);
     }
     
     private int ykoordinaatti(int y) {
-        return rajaTarkistus((y - 40 + OS.Y) / 50);
+        return rajaTarkistus((y - 40) / 50);
     }
     
     private int rajaTarkistus (int i) {
