@@ -2,7 +2,6 @@
 package jshakki.jshakki;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import jshakki.logiikka.Logiikka;
 import jshakki.logiikka.nappulat.Ruutu;
@@ -12,7 +11,15 @@ import jshakki.logiikka.nappulat.Vari;
  * Tekoaly luokka tekee siirrot tietokone pelaajalle.
  */
 public class Tekoaly {
+
+    /**
+     * Tekoälyn pelaaman nappuloiden väri.
+     */
     public final Vari vari;
+    
+    /**
+     * Logiikka huolehtii pelin siirroista.
+     */
     private final Logiikka logiikka;
 
     /**
@@ -42,6 +49,10 @@ public class Tekoaly {
         logiikka.siirto(nappula.kor(), nappula.lev(), siirto[0], siirto[1]);
     }
     
+    /**
+     * Etsitään nappulat joita tekoäly voi siirtää.
+     * @return lista siirrettävistä nappuloista.
+     */
     private List<Ruutu> haeSiirrettavat() {
         List<Ruutu> nappulat = new ArrayList<>();
         for (int i = 0; i < 8; i++) {

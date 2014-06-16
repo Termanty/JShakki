@@ -9,13 +9,40 @@ import jshakki.logiikka.nappulat.Vari;
  * Peli aloitus ja lopetus. Tekoälyn vuorot.
  */
 public class JShakkirunko {
+
+    /**
+     * Pelinappuloiden siirroista huolehtiva luokka.
+     */
     public Logiikka logiikka = null;
+
+    /**
+     * Tämä muutuja pitää kirjaa tehdyistä siirroista.
+     */
     public Pelihistoria historia = null; 
+
+    /**
+     * Ollaanko peliä edeltävässä aloitusnäyttö tilassa.
+     */
     public boolean aloitustila = true;
+
+    /**
+     * Onko tekoalylla siirtovuoro.
+     */
     public boolean tekoalynVuoro = false;
+    
+    /**
+     * Valkoisia nappuloita ohjaava tekoaly.
+     */
     private Tekoaly valkoinen = null;
+    
+    /**
+     * Mustia nappuloita ohjaava tekoaly.
+     */
     private Tekoaly musta = null;
 
+    /**
+     * Konstruktori jossa siirretään peli aloitustilaan.
+     */
     public JShakkirunko() {
         aloitustila();
     }
@@ -40,14 +67,14 @@ public class JShakkirunko {
     
     /**
      * Siirron toteutus ja tekoälyn siirto.
-     * @param kor mitä siirretään korkeus.
-     * @param lev mitä siirretään leveys.
-     * @param korMin minne siirretään korkeus.
-     * @param levMin minne siirretään leveys.
+     * @param korMista mitä siirretään korkeus.
+     * @param levMista mitä siirretään leveys.
+     * @param korMinnne minne siirretään korkeus.
+     * @param levMinne minne siirretään leveys.
      * @return true jos siirto onnistui.
      */
-    public boolean siirto(int kor, int lev, int korMin, int levMin) {
-        if (logiikka.siirto(kor, lev, korMin, levMin)) {
+    public boolean siirto(int korMista, int levMista, int korMinnne, int levMinne) {
+        if (logiikka.siirto(korMista, levMista, korMinnne, levMinne)) {
             if (musta != null && logiikka.vuoro().equals(musta.vari.name())) {
                 tekoalySiirto(musta);
             }
@@ -58,6 +85,8 @@ public class JShakkirunko {
         }
         return false;
     }
+    
+    // gettereitä ja settereitä
 
     public Tekoaly getValkoinen() {
         return valkoinen;
@@ -75,7 +104,6 @@ public class JShakkirunko {
         return musta;
     }
 
-
     public void setMusta() {
         if (musta == null && valkoinen == null) {
             musta = new Tekoaly(Vari.MUSTA, logiikka);
@@ -83,13 +111,20 @@ public class JShakkirunko {
             musta = null;
         }
     }
-
+    
+    /**
+     * Tekoaly suorittaa oman siirtonsa.
+     * @param vari on tekoalyn pelaama vari.
+     */
     private void tekoalySiirto(Tekoaly vari) {
         tekoalynVuoro = true;
         vari.laskeSiirto();
         tekoalynVuoro = false;
     }
     
+    /**
+     * Tämä metodi vaihtaa pelin aloitustilaan.
+     */
     private void aloitustila() {
         aloitustila = true;
         historia = new Pelihistoria();
