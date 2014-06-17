@@ -46,4 +46,21 @@ public class TyhjaTest {
         nappula.kasvataSiirtoLaskuria();
         assertEquals(-1, nappula.siirtojenMaara());
     }
+    
+    @Test
+    public void korPalauttaaNollan() {
+        assertEquals(0, nappula.kor());
+    }
+    
+    @Test
+    public void levPalauttaaNollan() {
+        assertEquals(0, nappula.lev());
+    }
+    
+    @Test
+    public void uusiSijaintiMetodiEiMuutaKorLevArvoja() {
+        nappula.uusiSijainti(1, 1);
+        assertEquals(0, nappula.kor());
+        assertEquals(0, nappula.lev());
+    }
 }

@@ -40,6 +40,7 @@
                     <instrumentation>
                         <includes>
                             <include>jshakki.jshakki/*.class</include>
+                            <include>jshakki.logiikka/*.class</include>
                         </includes>
                     </instrumentation>
                 </configuration>
@@ -52,9 +53,11 @@
             <configuration>
                 <targetClasses>
                     <param>jshakki.logiikka.*</param>
+                    <param>jshakki.jshakki.*</param>
                 </targetClasses>
                 <targetTests>
                     <param>jshakki.logiikka.*</param>
+                    <param>jshakki.jshakki.*</param>
                 </targetTests>
             </configuration>
         </plugin>

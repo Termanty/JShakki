@@ -13,9 +13,11 @@ import static org.junit.Assert.*;
  */
 public class LogiikkaTest {
     Logiikka testattava;
+    Pelihistoria historia;
     
     public LogiikkaTest() {
-        testattava = new Logiikka(new Pelihistoria());
+        historia = new Pelihistoria();
+        testattava = new Logiikka(historia);
     }    
     
     @Test
@@ -29,6 +31,7 @@ public class LogiikkaTest {
         assertFalse("Muutujan peliPäättyi arvo ei ollut false", testattava.loppu());
         assertEquals("Muutujan vuoroNro arvo ei ollut nolla", 1, testattava.vuoroNro());
         assertEquals("Muuttujan Vari arvo ei ollut Vari.VALKOINEN", "VALKOINEN", testattava.vuoro());
+        assertFalse(testattava.paivita());
     }
     
     @Test
@@ -41,6 +44,13 @@ public class LogiikkaTest {
                 assertEquals(r.nimi() + " väärässä paikassa "+i, r.vari(), testattava.ruutu(sijainnit[i],sijainnit[i+1]).vari());
             }
         }       
+    }
+    
+    
+    @Test
+    public void kuittauksenJalkeenPaivitaMuuttujaArvoFalse() {
+        testattava.kuittaa();
+        assertFalse(testattava.paivita());  
     }
     
     @Test
@@ -179,9 +189,24 @@ public class LogiikkaTest {
         assertTrue("Pelin päättyminen ei toiminut", testattava.loppu());
     }
     
- 
+    @Test
+    public void syotyNappulaLisataanListalle() {
+        teeSiirrot("a2a4 b7b5");
+        Ruutu syoty = testattava.ruutu("b5");
+        teeSiirrot("a4b5");
+        assertEquals("", 1, testattava.syodyt.size());
+        assertEquals("", syoty, testattava.syodyt.get(0));
+    }
     
-    
+    @Test
+    public void peliTallentuuHistoriaOtukseen() {
+        teeSiirrot("a2a4 b7b5 a4a5");
+        assertEquals("", 3, historia.getSiirrot().size());
+        assertEquals("", "a2a4", historia.getSiirrot().get(0));
+        assertEquals("", "b7b5", historia.getSiirrot().get(1));
+        assertEquals("", "a4a5", historia.getSiirrot().get(2));
+    }
+      
     
 // APUMETODIT
     

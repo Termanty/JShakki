@@ -1,14 +1,12 @@
 
 
-package jshakki.logiikka;
+package jshakki.logiikka.nappulat;
 
-import jshakki.logiikka.nappulat.Vari;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author termanty
  */
 public class VariTest {
 

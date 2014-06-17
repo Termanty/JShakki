@@ -1,7 +1,6 @@
 package jshakki.jshakki;
 
 import javax.swing.SwingUtilities;
-import jshakki.kayttoliittyma.teksti.TekstiUI;
 import jshakki.kayttoliittyma.graafinen.GraafinenKayttoliittyma;
 
 /**
@@ -11,15 +10,7 @@ public class App
 {
     public static void main( String[] args )
     {
-
-        JShakkirunko peli = new JShakkirunko();
-//        TekstiUI liittyma  = new TekstiUI(peli);
-//        if (args.length == 0) {
-//            liittyma = new TekstiUI(peli);
-//        }
-//        liittyma.run();
-        
-        GraafinenKayttoliittyma liit = new GraafinenKayttoliittyma(peli);
-        SwingUtilities.invokeLater(liit);
+        GraafinenKayttoliittyma gui = new GraafinenKayttoliittyma(new JShakkirunko());
+        SwingUtilities.invokeLater(gui);
     }
 }

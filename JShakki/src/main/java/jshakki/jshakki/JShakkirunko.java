@@ -92,6 +92,13 @@ public class JShakkirunko {
         return valkoinen;
     }
 
+    public Tekoaly getMusta() {
+        return musta;
+    }
+    
+    /**
+     * Valkoinen tekoaly käyttöön vain jos musta on ihmispelaaja.
+     */
     public void setValkoinen() {
         if (valkoinen == null && musta == null) {
             valkoinen = new Tekoaly(Vari.VALKOINEN, logiikka);
@@ -99,11 +106,10 @@ public class JShakkirunko {
             valkoinen = null;
         }
     }
-    
-    public Tekoaly getMusta() {
-        return musta;
-    }
 
+    /**
+     * Musta tekoaly käyttöön vain jos valkoinen on ihmispelaaja.
+     */
     public void setMusta() {
         if (musta == null && valkoinen == null) {
             musta = new Tekoaly(Vari.MUSTA, logiikka);
