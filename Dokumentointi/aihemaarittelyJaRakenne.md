@@ -3,6 +3,8 @@ simppeli shakkiohjelma
 
 Tämä shakkiohjelma on kauniilla graafisella käyttöliittymällä toteutettu shakkipelin versio. Ohjelma mahdollistaa kahden pelaajan pelaamisen toisiaan vastaan. Toteutus myös sisältää mahdollisuuden pelata satunnaisesti siirtoja arpovaa tietokonetta vastaa. 
 
+Shakkipeli sääntöjen toteutus on vajaa kahdella tavalla. Tornitusta ei ole mukana toteutuksessa ja peli ei väli shakkaus tilanteesta mitään, eikä tunnista. Peli päätty kun tehdään siirto, joka syö vastustajan kuninkaan.
+
 ## Pelin toiminnot
 - pelitavan valita: kaksin peli tai yksinpeli tietokonetta vastaan.
 - pelin aloitus ja lopetus.
