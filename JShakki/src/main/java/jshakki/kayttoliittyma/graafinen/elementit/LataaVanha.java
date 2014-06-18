@@ -32,7 +32,7 @@ public class LataaVanha {
     public static void piirra(Graphics g, Teema teema) {
         g.setFont(new Font("Ariel", Font.BOLD, 28));
         if (korosta) {
-            elementti(g, teema.korostettuVaaleaPohja, teema.tummaTeksti, "EI TOIMI VIEL", 15);
+            elementti(g, teema.korostettuVaaleaPohja, teema.tummaTeksti, "EI KÄYTÖSSÄ", 15);
         } else {
             elementti(g, teema.vaaleaPohja, teema.tummaTeksti, "LATAA PELI", 15);
         }  

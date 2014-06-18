@@ -27,7 +27,7 @@ public class Tallenna {
     public static void piirra(Graphics g, Teema teema) {
         g.setFont(new Font("Ariel", Font.BOLD, 20));
         if (korosta) {
-            elementti(g, teema.korostettuVaaleaPohja, teema.tummaTeksti, "ei toteutettu vielä");
+            elementti(g, teema.korostettuVaaleaPohja, teema.tummaTeksti, "ei käytössä");
         } else {
             elementti(g, teema.vaaleaPohja, teema.tummaTeksti, "tallenna");
         }  
