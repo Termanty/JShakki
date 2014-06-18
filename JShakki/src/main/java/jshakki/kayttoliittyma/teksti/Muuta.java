@@ -6,6 +6,7 @@ import jshakki.logiikka.nappulat.Ruutu;
 
 /**
  * Muuta luokka vaihtaa shakkinappulan nimen kuvaksi.
+ * TÄMÄ LUOKKA EI OLE KÄYTÖSSÄ LOPULLISESSA OHJELMASSA!
  */
 public class Muuta {
     

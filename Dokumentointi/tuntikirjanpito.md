@@ -58,6 +58,27 @@ ke 11.6.
 to 12.6.
   Refaktorointia, bugien korjausta, dokumentointi viikon palautusta varten. 6 h.
 
+## viikko VI
+pe 13.6.
+  Kaikenlaista viilaamista. 2h.
+  
+ma 16.6.
+  JavaDoc kirjoittamista. 2h.
+
+ti 17.6.
+  Testien kirjoittamista, rakennekuvaus, demotilaisuus. 4 h.
+
+ke 18.6.
+  Käyttöohjeen kirjoitus, tuntikirjanpito päivitys, sekvenssikaavioiden päivitys. 2 h.
+
+to 19.6.
+  Loppullisen palautus. 1h.
+
+
+Harjoitustyöhön käyttetty 99 tuntia.
+
+
+
 
 
 

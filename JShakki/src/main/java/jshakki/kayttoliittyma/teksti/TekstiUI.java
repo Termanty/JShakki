@@ -7,6 +7,7 @@ import jshakki.logiikka.nappulat.Ruutu;
 import jshakki.logiikka.nappulat.Vari;
 
 /**
+ * TÄMÄ LUOKKA EI OLE KÄYTÖSSÄ LOPULLISESSA OHJELMASSA!
  * TekstiUI on teksti pohjainen käyttöliittymä JShakki-peliin.
  * Tätä luokkaa on käyttetty ainoastaan ohjelman kehityksen alkuvaiheessa
  * pelilogiikan koodaamiseen.
