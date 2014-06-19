@@ -69,7 +69,7 @@ ti 17.6.
   Testien kirjoittamista, rakennekuvaus, demotilaisuus. 4 h.
 
 ke 18.6.
-  Käyttöohjeen kirjoitus, tuntikirjanpito päivitys, sekvenssikaavioiden päivitys. 2 h.
+  Käyttöohjeen kirjoitus, tuntikirjanpito päivitys. 2 h.
 
 to 19.6.
   Loppullisen palautus. 1h.
